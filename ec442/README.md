@@ -6,6 +6,8 @@ Chen Gao's personal notes for LSE EC442, 2026–27. Updated as the course progre
 
 Corrections and suggestions welcome through issues or pull requests.
 
+Typeset right arrows in math mode: `$->$` in prose; `->` inside an existing math expression.
+
 ## Build
 
 Tested with Typst 0.15.1. From this folder:
