@@ -32,6 +32,7 @@
 #let definition = thmbox("definition", "Definition", base_level: 2, fill: teal.lighten(80%))
 #let example = thmbox("example", "Example", titlefmt: strong, fill: green.lighten(90%), base_level: 2)
 #let proof = thmproof("proof", "Proof")
+#let algorithm = thmbox("algorithm", "Algorithm", fill: blue.lighten(95%), base_level: 2)
 
 // Number equations by lecture; each top-level heading starts a new lecture.
 #show heading.where(level: 1): it => {
@@ -68,7 +69,7 @@
 
 // Write your lecture notes here. Use == for sections and === for subsections.
 // Available environments: definition, theorem, proposition, corollary,
-// lemma, example, and proof.
+// lemma, example, proof, and algorithm.
 // Example syntax:
 // #definition[Definition text.] <def:label>
 // #theorem[Theorem statement.] <thm:label>
@@ -216,7 +217,7 @@ function space; assumptions matter.
   contraction: there exists $beta in (0, 1)$ such that
   $
     d(T x, T y) <= beta d(x, y)
-    quad "for all " x, y in S.
+    "for all " x, y in S.
   $
   Then $T$ has a unique fixed point $v in S$. For every $v_0 in S$ and
   $n = 0, 1, 2, dots$,
@@ -255,7 +256,7 @@ over feasible $k'$.
 - *FOC for $k'$*:
   $
     -u'(c) + beta v'(k') = 0
-    quad => quad u'(c) = beta v'(k').
+    => u'(c) = beta v'(k').
   $
 - *Envelope condition*: differentiate w.r.t. $k$, holding optimal $k'$ fixed:
   $
@@ -267,3 +268,54 @@ over feasible $k'$.
     = beta u'(c_(t+1)) [f'(k_(t+1)) + 1 - delta].
   $
   Same condition as sequence problem. At corners, use KKT conditions.
+
+== Using the value function numerically
+Need numerical representation of $v(k)$.
+- Simplest approach: restrict capital to finite grid
+  $
+    K_N = {k^1, k^2, dots, k^N} subset K.
+  $
+- Approximate value function by vector
+  $
+    bold(v) = (v_1, v_2, dots, v_N)^top in RR^N,
+    v_i approx v(k^i).
+  $
+  One entry per capital grid point.
+
+#algorithm("Value function iteration (VFI)")[
+  + *Choose grid* $K_N = {k^1, dots, k^N}$. For each pair $(i, j)$, compute
+    $
+      c_(i j) = f(k^i) + (1 - delta) k^i - k^j.
+    $
+    Let $J_i$ contain choices $j$ with $c_(i j) >= 0$ and finite $u(c_(i j))$.
+    Each $J_i$ must be nonempty.
+  + *Initial guess*: any $bold(v)^(0) in RR^N$, e.g. all zeros.
+    Set iteration $m = 0$ and tolerance $epsilon > 0$.
+  + *Bellman update*: for every $i = 1, dots, N$,
+    $
+      v_i^(m+1) = max_(j in J_i) [u(c_(i j)) + beta v_j^(m)].
+    $
+    Use the old vector for all updates: $bold(v)^(m+1) = T_N bold(v)^(m)$.
+  + *Convergence check*:
+    $
+      Delta_m = max_(1 <= i <= N) abs(v_i^(m+1) - v_i^(m)).
+    $
+    If $Delta_m <= epsilon$, stop and return $hat(bold(v)) = bold(v)^(m+1)$.
+    Otherwise set $m <- m + 1$ and repeat step 3.
+  + *Recover approximate policy*: for each $i$, choose
+    $
+      j_i in arg max_(j in J_i) [u(c_(i j)) + beta hat(v)_j].
+    $
+    Set $k'(k^i) = k^(j_i)$ and $c(k^i) = c_(i j_i)$.
+] <alg:vfi>
+
+*Why it converges*: $T_N$ is a $beta$-contraction in the sup norm.
+@thm:cmt → unique grid fixed point $bold(v)_N^*$;
+@alg:vfi converges from any initial vector.
+At stopping, value-error bound:
+$
+  norm(hat(bold(v)) - bold(v)_N^*)_infinity
+  <= frac(beta, 1 - beta) Delta_m
+  <= frac(beta, 1 - beta) epsilon.
+$
+This controls iteration error; grid approximation error remains.
