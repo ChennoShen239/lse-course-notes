@@ -2,3 +2,7 @@
 *.swp
 *.swo
 *~
+
+# Local course planning and calendar records
+/audit-shortlist-*.md
+/calendar-course-changes-*.json
