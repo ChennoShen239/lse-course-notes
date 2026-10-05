@@ -504,6 +504,16 @@ $
     0 <= y(k) & <= y(overline(k)) = overline(k)
                 "for all " k in X.
 $
+
+// BEGIN lecture addition G10
+#lecture-addition("The capital ceiling", source: "00:07:02 - 00:07:39")[
+  $overline(k)$ is the steady state with zero consumption: all output goes
+  into investment, and $overline(k)^alpha = delta overline(k)$.
+  The bound comes from feasibility alone. Starting in $X$, feasible savings
+  remain in $X$.
+]
+// END lecture addition G10
+
 Feasible savings and the Bellman operator:
 $
   Gamma(k) & = {k' >= 0 : c(k, k') >= 0} subset.eq X, \
@@ -522,6 +532,19 @@ $
            & >= sup_(k' in Gamma(k)) [u(c(k, k')) + beta g(k')] \
            & = (T g)(k).
 $
+
+// BEGIN lecture addition G11
+#lecture-addition("Why the first inequality can be strict", source: "00:08:00 - 00:10:59")[
+  If the maximum for $g$ is attained, let $k^star (k)$ be its optimal savings:
+  $
+    (T f)(k) & >= u(c(k, k^star (k))) + beta f(k^star (k)), \
+              & >= u(c(k, k^star (k))) + beta g(k^star (k)), \
+              & = (T g)(k).
+  $
+  The first step evaluates one feasible choice. It can be strict because
+  $k^star (k)$ need not maximize the objective with continuation value $f$.
+]
+// END lecture addition G11
 
 === Discounting
 
@@ -569,6 +592,15 @@ Other variables:
 
 The value function takes the state variables as its arguments.
 
+// BEGIN lecture addition G12
+#lecture-addition("A past choice can be a current state", source: "00:16:22 - 00:18:54")[
+  The household chose today's capital in the past; it is fixed when today's
+  consumption-saving decision is made. Models with habits or varying patience
+  may require preference states. Here $beta$ and $sigma$ remain parameters
+  because they are fixed.
+]
+// END lecture addition G12
+
 === How to determine the state
 
 + *Fix timing*: Specify what is observed before choices are made.
@@ -606,7 +638,7 @@ Each period, allocate inherited capital $k$ and one unit of labor freely
 between consumption ($c$) and investment ($i$) sectors.
 Let $alpha, gamma in (0, 1)$.
 
-Feasibility:
+#block(sticky: true)[Feasibility:]
 $
           c & = underbrace(k_c^alpha n_c^(1 - alpha), "consumption output"), \
          k' & = underbrace((1 - delta) k, "remaining capital")
@@ -630,13 +662,27 @@ $
 $
 subject to the constraints above, with $u$ as defined in Recall.
 
+// BEGIN lecture addition G13
+#lecture-addition("Timing and the sectoral split", source: "00:24:30 - 00:30:44")[
+  Let $tilde(v)(k_c, k_i)$ be the value after capital has been allocated across
+  sectors. Before allocation,
+  $
+    v(k) = max_(k_c + k_i = k) tilde(v)(k_c, k_i).
+  $
+  In this deterministic model, the future split can be planned a period
+  earlier. Treating the initial allocation consistently gives the same
+  choices. With $M$ grid points per state, retaining both stocks requires
+  $M^2$ combinations; retaining total capital requires $M$.
+]
+// END lecture addition G13
+
 === Example: two sectors with irreversible investment
 
 Capital is installed before the period and cannot move between sectors.
 Choose labor allocations and new investment $x_c, x_i$ today;
 investment becomes productive next period.
 
-Feasibility:
+#block(sticky: true)[Feasibility:]
 $
           c & = k_c^alpha n_c^(1 - alpha), \
   x_c + x_i & = underbrace(k_i^gamma n_i^(1 - gamma), "investment output"), \
@@ -651,6 +697,24 @@ $
   "for " j in {c, i}.
 $
 Sectoral capital can decline only through depreciation.
+
+// BEGIN lecture addition G14
+#lecture-addition("Why the aggregate equation is insufficient", source: "00:32:20 - 00:34:45")[
+  The state is $(k_c, k_i)$. Adding the accumulation equations leaves the
+  separate restrictions $x_c, x_i >= 0$ in place. Dropping them would permit
+  conversion of existing capital between sectors. They can bind when initial
+  stocks are imbalanced or shocks change the desired sectoral mix.
+]
+// END lecture addition G14
+
+// BEGIN lecture addition G15
+#lecture-addition("Applications of multisector models", source: "00:20:42 - 00:20:53; 00:35:00 - 00:36:15")[
+  Separate consumption and investment sectors allow general and
+  investment-specific technological change to have different effects on
+  business cycles. Larger models use input-output networks, with sectors
+  buying CES aggregates of intermediate inputs, to study shock propagation.
+]
+// END lecture addition G15
 
 === Standard model with shocks
 
@@ -671,7 +735,7 @@ subject to @eq:shock-resources. The expectation is over next period's shock $z'$
 
 ==== State $x$: total resources
 
-After observing $z$, define
+#block(sticky: true)[After observing $z$, define]
 $
   x = (1 - delta) k + z k^alpha.
 $
@@ -680,7 +744,7 @@ $
   w(x) = max_(c, k')
   [u(c) + beta bb(E)_(z')[w(x')]],
 $
-subject to
+#block(sticky: true)[subject to]
 $
   c + k' & = x, \
       x' & = (1 - delta) k' + z' (k')^alpha.
@@ -688,6 +752,14 @@ $
 $z'$ is independent of $z$, so the transition of $x'$ requires only $k'$.
 
 #text(fill: red)[Note: This reduction to $x$ relies on $z$ being i.i.d. over time.]
+
+// BEGIN lecture addition G16
+#lecture-addition("The forecast matters with persistent shocks", source: "00:45:42 - 00:46:22")[
+  Two states can have the same current resources $x$ but different productivity
+  $z$. With persistence, their distributions of $z'$ differ, so their optimal
+  savings can differ. Current $z$ carries information about tomorrow.
+]
+// END lecture addition G16
 
 
 ==== State $k$: before the shock
@@ -720,6 +792,14 @@ make past productivity uninformative about $z$. After observing $z$, the
 state records realized resources through $(k,z)$ or $x$. Decisions can
 depend on observed $z$ in all three formulations.
 
+// BEGIN lecture addition G17
+#lecture-addition("Several values within one period", source: "00:51:25 - 00:52:16")[
+  A model can use value functions at several stages of a period. A value
+  before information arrives is linked to the later value by an expectation
+  over the information revealed between those stages.
+]
+// END lecture addition G17
+
 
 == Equilibrium
 
@@ -742,6 +822,15 @@ Two conditions:
 - *Feasibility*: The allocation is feasible: total use of each good does not exceed
   production plus endowments.
 
+// BEGIN lecture addition G18
+#lecture-addition("Trading dates and events", source: "01:02:26 - 01:03:56")[
+  With complete markets, goods are distinguished by delivery date and event.
+  The lecture's example is consumption in 2027 conditional on no rain in
+  Australia. Suitable sequential asset markets can span the same contingent
+  consumption trades as markets opened once at date 0.
+]
+// END lecture addition G18
+
 == Sequential equilibrium
 
 In the deterministic standard model, markets open each period.
@@ -761,7 +850,7 @@ $
   max_({c_t, k_(t+1)}_(t=0)^infinity)
   sum_(t=0)^infinity beta^t u(c_t),
 $
-subject to
+#block(sticky: true)[subject to]
 $
   c_t + k_(t+1) & = underbrace((1 + r_t) k_t, "capital payoff")
                   + underbrace(w_t n_t, "labor income"), \
@@ -778,6 +867,15 @@ $
   [K_t^alpha N_t^(1 - alpha) - (r_t + delta) K_t - w_t N_t].
 $
 
+// BEGIN lecture addition G19
+#lecture-addition("Representative agents and price taking", source: "01:06:36 - 01:08:06; 01:12:24 - 01:13:53")[
+  The representative firm behaves as an atomistic price taker. Its labor
+  demand $N_t$ is a choice; $N_t = 1$ is imposed through market clearing.
+  Representative notation can stand for a continuum of identical agents.
+  Separate demand and supply symbols make this distinction explicit.
+]
+// END lecture addition G19
+
 === Market clearing
 
 $
@@ -791,9 +889,21 @@ $
   w_t & = (1 - alpha) k_t^alpha.
 $
 
+// BEGIN lecture addition G20
+#lecture-addition("Depreciation and the quoted return", source: "01:10:41 - 01:11:28; 01:14:52 - 01:16:21")[
+  An alternative convention quotes the capital rental rate
+  $rho_t = r_t + delta$ and lets the household bear depreciation. Then
+  $
+    c_t + k_(t+1) & = (1 - delta + rho_t) k_t + w_t n_t, \
+    "firm capital cost" & = rho_t K_t.
+  $
+  The net-return and rental-rate conventions describe the same payments.
+]
+// END lecture addition G20
+
 === No-Ponzi condition
 
-If borrowing is allowed, replace $k_(t+1) >= 0$ with
+#block(sticky: true)[If borrowing is allowed, replace $k_(t+1) >= 0$ with]
 $
   liminf_(t -> infinity)
   frac(k_(t+1), product_(s=1)^t (1 + r_s)) >= 0.
@@ -802,7 +912,7 @@ At an interior optimum with $u'(c_s) > 0$, the Euler equation gives
 $
   1 + r_s = frac(u'(c_(s-1)), beta u'(c_s)).
 $
-Multiplying from $s = 1$ to $t$, marginal utilities cancel:
+#block(sticky: true)[Multiplying from $s = 1$ to $t$, marginal utilities cancel:]
 $
   product_(s=1)^t (1 + r_s) & = product_(s=1)^t frac(u'(c_(s-1)), beta u'(c_s)), \
                             & = frac(u'(c_0), beta^t u'(c_t)).
@@ -818,6 +928,16 @@ $
   liminf_(t -> infinity) beta^t u'(c_t) k_(t+1) >= 0.
 $
 The household cannot finance consumption by rolling over debt forever.
+
+// BEGIN lecture addition G21
+#lecture-addition("Physical capital and financial assets", source: "01:16:28 - 01:17:20; 01:18:29 - 01:19:47")[
+  Physical capital is nonnegative. An individual's financial asset position
+  can be negative when borrowing is allowed for consumption smoothing.
+  Period budgets alone permit arbitrarily large debt followed by refinancing
+  of principal and interest. A borrowing limit or no-Ponzi condition restricts
+  those plans.
+]
+// END lecture addition G21
 
 == Arrow-Debreu equilibrium
 
@@ -886,5 +1006,4 @@ $
   = underbrace((1 + r_0) k_0, "initial capital wealth")
   + underbrace(sum_(t=0)^infinity p_t w_t, "lifetime labor income").
 $
-No separate no-Ponzi condition is needed: the date-0 budget already limits
-lifetime spending to lifetime wealth.
+The lifetime budget makes a separate no-Ponzi condition unnecessary.
