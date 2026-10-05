@@ -422,3 +422,469 @@ This controls iteration error; grid approximation error remains.
   - *Responses*: (1) Develop computational tools for complex models; (2) Simplify models to match cognitive complexity (behavioral/limited rationality).
 ]
 // END lecture addition G9
+
+= Lecture 2 Oct 5
+
+
+== Recall
+
+=== Bellman equation for the standard growth model
+
+$
+  v(k) = max_(c, k') [u(c) + beta v(k')],
+  u(c) = c^(1 - sigma) / (1 - sigma),
+$
+subject to
+$
+  c + k' = (1 - delta) k + k^alpha,
+  c > 0, k' >= 0.
+$
+For $sigma = 1$, use $u(c) = log c$.
+
+=== Contraction mapping theorem
+
+On a nonempty complete metric space $(S, d)$, a contraction $T: S -> S$
+with modulus $beta in (0, 1)$ has a unique fixed point $v$ (@thm:cmt):
+$
+  d(T x, T y) <= beta d(x, y), \
+  d(T^n v_0, v) <= beta^n d(v_0, v).
+$
+Iteration from any $v_0 in S$ converges geometrically to $v$.
+
+== Blackwell's sufficient conditions
+
+#theorem("Blackwell's sufficient conditions")[
+  Let $B(X)$ be the bounded real-valued functions on $X$, equipped with
+  the sup norm, and let $T: B(X) -> B(X)$. Suppose:
+
+  + *Monotonicity*: For all $f, g in B(X)$,
+    $
+      f(x) >= g(x) " for all " x in X
+      ==> (T f)(x) >= (T g)(x) " for all " x in X.
+    $
+  + *Discounting*: There exists $beta in (0, 1)$ such that, for every
+    $f in B(X)$ and $a >= 0$,
+    $
+      (T(f + a))(x) <= (T f)(x) + beta a
+      "for all " x in X.
+    $
+    Here $(f + a)(x) = f(x) + a$.
+
+  Then $T$ is a contraction with modulus $beta$:
+  $
+    norm(T f - T g)_infinity <= beta norm(f - g)_infinity.
+  $
+] <thm:blackwell>
+
+=== Verification for the Bellman operator
+
+Maximization preserves pointwise inequalities, so $f >= g ==> T f >= T g$.
+Adding a constant to continuation utility gives
+$
+  (T(f + a))(k)
+  = max_(c, k') [u(c) + beta f(k')] + beta a
+  = (T f)(k) + beta a.
+$
+Both conditions hold; the self-map requirement $T: B(X) -> B(X)$
+must also be verified.
+
+
+== Blackwell's conditions for the standard model
+
+Let $alpha, delta, beta in (0, 1)$. Resources and consumption:
+$
+      y(k) & = underbrace((1 - delta) k, "remaining capital")
+             + underbrace(k^alpha, "output"), \
+  c(k, k') & = y(k) - k'.
+$
+The invariant state space satisfies
+$
+  overline(k) & = delta^(-1 / (1 - alpha)), \
+            X & = [0, overline(k)], \
+    0 <= y(k) & <= y(overline(k)) = overline(k)
+                "for all " k in X.
+$
+Feasible savings and the Bellman operator:
+$
+  Gamma(k) & = {k' >= 0 : c(k, k') >= 0} subset.eq X, \
+  (T f)(k) & = sup_(k' in Gamma(k))
+             [underbrace(u(c(k, k')), "current utility")
+               + beta underbrace(f(k'), "continuation value")].
+$
+Extend $u$ to $c = 0$ by its limit, possibly $-infinity$.
+Replace $sup$ with $max$ when the optimum is attained.
+
+=== Monotonicity
+
+For $f, g in B(X)$ with $f >= g$ pointwise,
+$
+  (T f)(k) & = sup_(k' in Gamma(k)) [u(c(k, k')) + beta f(k')] \
+           & >= sup_(k' in Gamma(k)) [u(c(k, k')) + beta g(k')] \
+           & = (T g)(k).
+$
+
+=== Discounting
+
+For $f in B(X)$ and a constant $a >= 0$,
+$
+  (T(f + a))(k) & = sup_(k' in Gamma(k))
+                  [u(c(k, k')) + beta f(k') + underbrace(beta a, "constant in " k')] \
+                & = (T f)(k) + beta a.
+$
+
+
+=== Boundedness and conclusion
+
+For $0 < sigma < 1$, $u(0) = 0$ and
+$
+    0 <= u(c(k, k')) & <= u(overline(k)) < infinity, \
+  norm(T f)_infinity & <= u(overline(k)) + beta norm(f)_infinity < infinity.
+$
+Thus $T: B(X) -> B(X)$ on the complete sup-norm space $B(X)$.
+By @thm:blackwell and @thm:cmt,
+there is a unique $v in B(X)$ with $T v = v$, and for every $v_0 in B(X)$,
+$
+  norm(T^n v_0 - v)_infinity
+  <= beta^n norm(v_0 - v)_infinity -> 0.
+$
+
+For $sigma >= 1$ (including log utility),
+$
+  k = 0 ==> Gamma(k) = {0} ==> (T f)(0) = -infinity.
+$
+The bounded-function theorem then requires a different state or function space.
+
+== Formulating recursive models
+
+Identify the state variables before writing the Bellman equation.
+
+A *state variable*:
+- Matters for the decision problem.
+- Is taken as given by the decision maker at the time of choice.
+- Varies over time or across states.
+
+Other variables:
+- *Choice variables*: chosen by the decision maker.
+- *Parameters*: affect the problem but are fixed over time and across states.
+
+The value function takes the state variables as its arguments.
+
+=== How to determine the state
+
++ *Fix timing*: Specify what is observed before choices are made.
+  A lagged choice may be today's state; a newly chosen quantity is a control.
++ *List candidates*: Retain inherited stocks and observed shocks that affect
+  current constraints, utility, or forecasts. Separate fixed parameters.
++ *Check sufficiency*: Given state $s$ and choices $q$, specify
+  $
+                    q & in Gamma(s), \
+    "current utility" & = U(s, q), \
+                   s' & = G(s, q, epsilon').
+  $
+  Here $epsilon'$ is future uncertainty. Two histories with the same $s$
+  must give the same feasible choices, current utility, and conditional
+  distribution of $s'$ for every feasible $q$.
++ *Remove redundancy*: Drop a coordinate only if this sufficiency test
+  still holds. A one-to-one change of coordinates gives an equivalent state.
++ *Write the Bellman equation*:
+  $
+    v(s) = sup_(q in Gamma(s))
+    [underbrace(U(s, q), "current utility")
+      + beta underbrace(bb(E)[v(s') | s, q], "expected continuation")].
+  $
+  Use $max$ when the optimum is attained; omit the expectation in a
+  deterministic model.
+
+*Reduction test*: If two candidate states have the same proposed summary
+but different feasible choices, utility, or transition distributions,
+the summary is insufficient.
+
+
+=== Example: standard model with two sectors
+
+Each period, allocate inherited capital $k$ and one unit of labor freely
+between consumption ($c$) and investment ($i$) sectors.
+Let $alpha, gamma in (0, 1)$.
+
+Feasibility:
+$
+          c & = underbrace(k_c^alpha n_c^(1 - alpha), "consumption output"), \
+         k' & = underbrace((1 - delta) k, "remaining capital")
+              + underbrace(k_i^gamma n_i^(1 - gamma), "investment output"), \
+  k_c + k_i & = k, \
+  n_c + n_i & = 1.
+$
+All quantities are nonnegative.
+
+*State identification*:
+- $k$ is inherited; $(k_c, k_i, n_c, n_i)$ are chosen before production.
+- Free reallocation removes dependence on the previous sectoral split.
+- Given $k$ and current choices, utility and next-period $k'$ are determined.
+
+Hence $s = k$ is sufficient.
+
+The Bellman equation is
+$
+  v(k) = max_(c, k', k_c, k_i, n_c, n_i)
+  [u(c) + beta v(k')],
+$
+subject to the constraints above, with $u$ as defined in Recall.
+
+=== Example: two sectors with irreversible investment
+
+Capital is installed before the period and cannot move between sectors.
+Choose labor allocations and new investment $x_c, x_i$ today;
+investment becomes productive next period.
+
+Feasibility:
+$
+          c & = k_c^alpha n_c^(1 - alpha), \
+  x_c + x_i & = underbrace(k_i^gamma n_i^(1 - gamma), "investment output"), \
+       k'_c & = (1 - delta) k_c + x_c, \
+       k'_i & = (1 - delta) k_i + x_i, \
+  n_c + n_i & = 1, \
+   x_c, x_i & >= 0.
+$
+All other quantities are nonnegative. Irreversibility implies
+$
+  k'_j >= (1 - delta) k_j
+  "for " j in {c, i}.
+$
+Sectoral capital can decline only through depreciation.
+
+=== Standard model with shocks
+
+Productivity $z$ is i.i.d. over time. The resource constraint is
+$
+  c + k' = (1 - delta) k + z k^alpha.
+$ <eq:shock-resources>
+In all formulations, $c, k' >= 0$.
+
+==== States $(k, z)$: after the shock
+
+Observe $z$, then choose $c$ and $k'$:
+$
+  v(k, z) = max_(c, k')
+  [u(c) + beta bb(E)_(z')[v(k', z')]],
+$
+subject to @eq:shock-resources. The expectation is over next period's shock $z'$.
+
+==== State $x$: total resources
+
+After observing $z$, define
+$
+  x = (1 - delta) k + z k^alpha.
+$
+Then
+$
+  w(x) = max_(c, k')
+  [u(c) + beta bb(E)_(z')[w(x')]],
+$
+subject to
+$
+  c + k' & = x, \
+      x' & = (1 - delta) k' + z' (k')^alpha.
+$
+$z'$ is independent of $z$, so the transition of $x'$ requires only $k'$.
+
+#text(fill: red)[Note: This reduction to $x$ relies on $z$ being i.i.d. over time.]
+
+
+==== State $k$: before the shock
+
+$V(k)$ is the value _before $z$ is observed._ Choices $c(z)$ and $k'(z)$
+may _depend on its realization:_
+
+*Chocies.* _For a fixed $(k,z)$ or $x$, Options 1 and 2 maximize over scalar choices
+$c,k'$. Their policy functions are $c(k,z),k'(k,z)$ or $c(x),k'(x)$;
+state arguments are implicit. Option 3 maximizes over functions
+$c(z),k'(z)$ for every possible $z$._
+
+
+$
+  V(k) = max_(c(z), k'(z))
+  bb(E)_z [u(c(z)) + beta V(k'(z))],
+$
+subject to
+$
+  c(z) + k'(z) = (1 - delta) k + z k^alpha
+  "for every " z.
+$
+$
+  v(k, z) & = w((1 - delta) k + z k^alpha), \
+     V(k) & = bb(E)_z [v(k, z)].
+$
+
+*Timing.*  Before observing $z$, $V(k)$ averages over its realization; i.i.d. shocks
+make past productivity uninformative about $z$. After observing $z$, the
+state records realized resources through $(k,z)$ or $x$. Decisions can
+depend on observed $z$ in all three formulations.
+
+
+== Equilibrium
+
+A social planner maximizes welfare subject to feasibility constraints.
+In a decentralized economy, agents make their own choices, linked through
+markets, institutions, and policies.
+
+- How can decentralized outcomes be represented formally?
+- How do equilibrium allocations relate to the planner's solution?
+- Can decentralized equilibria be formulated recursively?
+
+== What is a competitive equilibrium?
+
+A competitive equilibrium consists of:
+- An _allocation_: consumption, production, and factor inputs.
+- A _price system_: prices in every market.
+
+Two conditions:
+- *Optimization*: Households maximize utility and firms maximize profits, taking prices as given.
+- *Feasibility*: The allocation is feasible: total use of each good does not exceed
+  production plus endowments.
+
+== Sequential equilibrium
+
+In the deterministic standard model, markets open each period.
+The household owns capital $k_t$ and a fixed labor endowment $n_t = 1$.
+It rents capital and supplies labor to the firm; both agents take prices as given.
+Let $r_t$ be the net return on capital. The capital rental rate is
+$r_t + delta$; the wage is $w_t$.
+
+Given $k_0$, a sequential equilibrium consists of an allocation
+$lr({c_t, n_t, k_(t+1)})_(t=0)^infinity$ and prices
+$lr({r_t, w_t})_(t=0)^infinity$ satisfying the following conditions.
+
+=== Household
+
+Given the price paths, the household solves
+$
+  max_({c_t, k_(t+1)}_(t=0)^infinity)
+  sum_(t=0)^infinity beta^t u(c_t),
+$
+subject to
+$
+  c_t + k_(t+1) & = underbrace((1 + r_t) k_t, "capital payoff")
+                  + underbrace(w_t n_t, "labor income"), \
+            n_t & = 1, \
+            c_t & >= 0, \
+        k_(t+1) & >= 0.
+$
+
+=== Firm
+
+The firm chooses capital demand $K_t$ and labor demand $N_t$ each period:
+$
+  max_(K_t, N_t >= 0)
+  [K_t^alpha N_t^(1 - alpha) - (r_t + delta) K_t - w_t N_t].
+$
+
+=== Market clearing
+
+$
+            K_t & = k_t, \
+            N_t & = n_t = 1, \
+  c_t + k_(t+1) & = (1 - delta) k_t + k_t^alpha.
+$
+At positive inputs, the firm's first-order conditions imply
+$
+  r_t & = alpha k_t^(alpha - 1) - delta, \
+  w_t & = (1 - alpha) k_t^alpha.
+$
+
+=== No-Ponzi condition
+
+If borrowing is allowed, replace $k_(t+1) >= 0$ with
+$
+  liminf_(t -> infinity)
+  frac(k_(t+1), product_(s=1)^t (1 + r_s)) >= 0.
+$
+At an interior optimum with $u'(c_s) > 0$, the Euler equation gives
+$
+  1 + r_s = frac(u'(c_(s-1)), beta u'(c_s)).
+$
+Multiplying from $s = 1$ to $t$, marginal utilities cancel:
+$
+  product_(s=1)^t (1 + r_s) & = product_(s=1)^t frac(u'(c_(s-1)), beta u'(c_s)), \
+                            & = frac(u'(c_0), beta^t u'(c_t)).
+$
+Hence
+$
+  frac(k_(t+1), product_(s=1)^t (1 + r_s))
+  = frac(beta^t u'(c_t) k_(t+1), u'(c_0)).
+$
+Since $u'(c_0) > 0$ is constant, dividing by it preserves the sign
+of the limit inferior. Thus the no-Ponzi condition is equivalent to
+$
+  liminf_(t -> infinity) beta^t u'(c_t) k_(t+1) >= 0.
+$
+The household cannot finance consumption by rolling over debt forever.
+
+== Arrow-Debreu equilibrium
+
+Sequential markets open each period. In an Arrow-Debreu equilibrium, markets
+open once at date 0. Agents contract for goods delivered at each future date
+(and state, under uncertainty). Delivery and production still occur each period.
+
+Given $k_0$, an Arrow-Debreu equilibrium consists of an allocation
+$lr({c_t, n_t, k_(t+1)})_(t=0)^infinity$ and prices
+$lr({p_t, r_t, w_t})_(t=0)^infinity$ satisfying the conditions below.
+
+#text(fill: red)[
+  The additional price $p_t > 0$ is the date-0 price of one unit of the good
+  delivered at date $t$, with $p_0 = 1$. It converts date-$t$ quantities into
+  date-0 goods.
+]
+The wage $w_t$ and capital rental rate $r_t + delta$ remain measured in
+date-$t$ goods. Their date-0 prices are $p_t w_t$ and $p_t (r_t + delta)$.
+
+=== Household
+
+The household solves
+$
+  max_({c_t, k_(t+1)}_(t=0)^infinity)
+  sum_(t=0)^infinity beta^t u(c_t),
+$
+subject to $n_t = 1$, $c_t >= 0$, given $k_0$, and a single present-value budget:
+$
+  sum_(t=0)^infinity p_t (c_t + k_(t+1))
+  = sum_(t=0)^infinity p_t [(1 + r_t) k_t + w_t n_t].
+$
+The present-value sums are assumed finite.
+
+=== Firm and market clearing
+
+For each delivery date $t$, the firm solves
+$
+  max_(K_t, N_t >= 0)
+  [K_t^alpha N_t^(1 - alpha) - (r_t + delta) K_t - w_t N_t].
+$
+Multiplying profits by $p_t > 0$ leaves the input choices unchanged.
+Markets clear at every date:
+$
+            K_t & = k_t, \
+            N_t & = n_t = 1, \
+  c_t + k_(t+1) & = (1 - delta) k_t + k_t^alpha.
+$
+
+=== No arbitrage and the present-value budget
+
+In the household's budget, one unit of $k_(t+1)$ costs $p_t$ and generates
+a payoff worth $p_(t+1) (1 + r_(t+1))$ at date 0.
+No arbitrage requires
+$
+  p_t - p_(t+1) (1 + r_(t+1)) & = 0, \
+           frac(p_t, p_(t+1)) & = 1 + r_(t+1).
+$
+Thus $p_t / p_(t+1)$ is the gross real return from $t$ to $t+1$.
+With $p_0 = 1$,
+$
+  p_t = frac(1, product_(s=1)^t (1 + r_s)).
+$
+Capital purchases and their future payoffs cancel from the lifetime budget:
+$
+  sum_(t=0)^infinity p_t c_t
+  = underbrace((1 + r_0) k_0, "initial capital wealth")
+  + underbrace(sum_(t=0)^infinity p_t w_t, "lifetime labor income").
+$
+No separate no-Ponzi condition is needed: the date-0 budget already limits
+lifetime spending to lifetime wealth.
