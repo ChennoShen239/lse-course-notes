@@ -538,8 +538,8 @@ $
   If the maximum for $g$ is attained, let $k^star (k)$ be its optimal savings:
   $
     (T f)(k) & >= u(c(k, k^star (k))) + beta f(k^star (k)), \
-              & >= u(c(k, k^star (k))) + beta g(k^star (k)), \
-              & = (T g)(k).
+             & >= u(c(k, k^star (k))) + beta g(k^star (k)), \
+             & = (T g)(k).
   $
   The first step evaluates one feasible choice. It can be strict because
   $k^star (k)$ need not maximize the objective with continuation value $f$.
@@ -894,7 +894,7 @@ $
   An alternative convention quotes the capital rental rate
   $rho_t = r_t + delta$ and lets the household bear depreciation. Then
   $
-    c_t + k_(t+1) & = (1 - delta + rho_t) k_t + w_t n_t, \
+          c_t + k_(t+1) & = (1 - delta + rho_t) k_t + w_t n_t, \
     "firm capital cost" & = rho_t K_t.
   $
   The net-return and rental-rate conventions describe the same payments.
@@ -954,6 +954,8 @@ $lr({p_t, r_t, w_t})_(t=0)^infinity$ satisfying the conditions below.
   delivered at date $t$, with $p_0 = 1$. It converts date-$t$ quantities into
   date-0 goods.
 ]
+
+
 The wage $w_t$ and capital rental rate $r_t + delta$ remain measured in
 date-$t$ goods. Their date-0 prices are $p_t w_t$ and $p_t (r_t + delta)$.
 
@@ -988,22 +990,533 @@ $
 
 === No arbitrage and the present-value budget
 
-In the household's budget, one unit of $k_(t+1)$ costs $p_t$ and generates
-a payoff worth $p_(t+1) (1 + r_(t+1))$ at date 0.
-No arbitrage requires
-$
-  p_t - p_(t+1) (1 + r_(t+1)) & = 0, \
-           frac(p_t, p_(t+1)) & = 1 + r_(t+1).
-$
+#definition("No arbitrage in capital")[
+  In this deterministic Arrow-Debreu economy, one unit of $k_(t+1)$ costs
+  $p_t$ at date 0 and pays $p_(t+1) (1 + r_(t+1))$ in date-0 goods.
+  No arbitrage in capital requires
+  $
+    p_t - p_(t+1) (1 + r_(t+1)) & = 0, \
+             frac(p_t, p_(t+1)) & = 1 + r_(t+1).
+  $
+]
 Thus $p_t / p_(t+1)$ is the gross real return from $t$ to $t+1$.
 With $p_0 = 1$,
 $
   p_t = frac(1, product_(s=1)^t (1 + r_s)).
 $
-Capital purchases and their future payoffs cancel from the lifetime budget:
+#block(sticky: true)[Capital purchases and their future payoffs cancel from the lifetime budget:]
 $
   sum_(t=0)^infinity p_t c_t
   = underbrace((1 + r_0) k_0, "initial capital wealth")
   + underbrace(sum_(t=0)^infinity p_t w_t, "lifetime labor income").
 $
 The lifetime budget makes a separate no-Ponzi condition unnecessary.
+
+
+== Recursive equilibrium
+
+Recursive methods apply to *decentralized economies* as well as planning
+problems. Build on *sequential equilibrium*: agents choose each period,
+and state variables evolve over time.
+
+In the standard model, distinguish two states:
+- $k$: *individual capital*, which determines household wealth.
+- $K$: *aggregate capital*, which determines prices and their future path.
+
+The household chooses $k'$ taking $K' = g(K)$ and the associated prices
+_as given_. In equilibrium, $k = K$, but keeping both states in the
+household problem preserves *price-taking*. With heterogeneity,
+individual and aggregate states generally differ.
+
+=== Standard model
+
+A recursive competitive equilibrium consists of:
+- *Value function:* $v(k, K)$.
+- *Policy functions:* $c(k, K)$ and $k'(k, K)$.
+- *Price functions:* $r(K)$ and $w(K)$.
+- *Aggregate law of motion:* $g(K)$.
+
+These functions satisfy four conditions:
+
++ *Household optimality.* Given $r$, $w$ and $g$, the value function solves
+  $
+    v(k, K) = max_(c, k' >= 0) {u(c) + beta v(k', K')},
+  $
+  subject to
+  $
+    c + k' & = (1 + r(K)) k + w(K), \
+        K' & = g(K).
+  $
+  The policies $c(k, K)$ and $k'(k, K)$ attain this maximum.
+
++ *Firm optimality.* With aggregate labor equal to one and $K > 0$,
+  $
+    r(K) & = alpha K^(alpha - 1) - delta, \
+    w(K) & = (1 - alpha) K^alpha.
+  $
+  Here $r(K)$ is the _net return_; the capital rental rate is $r(K) + delta$.
+
++ #block(sticky: true)[*Market clearing.* For every admissible $K$,]
+  $
+    c(K, K) + k'(K, K) = (1 - delta) K + K^alpha.
+  $
+
++ #block(sticky: true)[
+    *Consistency.* The _perceived_ aggregate law must equal the law
+    _generated_ by optimal household saving:
+  ]
+  $
+    g(K) = k'(K, K).
+  $
+
+== The First Welfare Theorem
+
+#theorem("First Welfare Theorem")[
+  With *locally nonsatiated preferences*, *complete competitive markets*
+  and *no externalities*, every competitive equilibrium allocation is
+  *Pareto efficient*. This formulation assumes finitely many consumers
+  and well-defined lifetime budgets.
+]<thm:fwt>
+
+_Pareto efficiency_ means that no feasible allocation makes everyone
+weakly better off and at least one person strictly better off.
+
+=== Key assumptions
+
+- *Local nonsatiation:* every neighborhood of a consumption bundle
+  contains a strictly preferred bundle.
+- *Complete markets:* all relevant goods, delivery dates and states
+  can be traded.
+- *No externalities:* effects on others operate through market prices
+  and trades.
+
+*Convexity is not required.* Economies with _infinitely many overlapping
+generations_ lie outside this finite-consumer result; competitive equilibria
+can be inefficient.
+
+=== Proof by contradiction of @thm:fwt
+
+#proof[
+  Let $p >= 0$ denote equilibrium prices and $omega$ aggregate endowments.
+  At equilibrium, consumer $i$ consumes $x_i^star$ and has wealth $m_i$
+  from endowments and distributed profits; firm $j$ produces $y_j^star$.
+
+  Suppose $(tilde(x_i), tilde(y_j))$ is a feasible Pareto improvement:
+  every consumer weakly prefers $tilde(x_i)$ to $x_i^star$, and consumer
+  $h$ strictly prefers $tilde(x_h)$ to $x_h^star$.
+
+  + *Consumer optimality.*
+    - *Strict improvement:* the bundle must cost more than $m_i$;
+      otherwise it was affordable.
+    - *Weak improvement:* the bundle cannot cost less than $m_i$.
+      With _budget slack_, local nonsatiation gives a nearby, strictly
+      better bundle that remains affordable.
+    #block(sticky: true)[Either violation contradicts optimality. Hence]
+    $
+      p dot tilde(x_i) & >= m_i "for every" i, \
+      p dot tilde(x_h) & > m_h "for the strictly improved consumer" h.
+    $
+    Summing gives
+    $
+      sum_i p dot tilde(x_i) > sum_i m_i.
+    $
+
+  + *Feasibility and firm optimality.*
+    Consumption is bounded by endowments plus production.
+    #block(sticky: true)[
+      Profit maximization implies $p dot tilde(y_j) <= p dot y_j^star$
+      for each firm. Therefore
+    ]
+    $
+      sum_i p dot tilde(x_i) & <= p dot omega + sum_j p dot tilde(y_j) "(feasibility)", \
+                             & <= p dot omega + sum_j p dot y_j^star "(profit maximization)", \
+                             & = sum_i m_i "(endowments + distributed profits)".
+    $
+
+  + *Contradiction.* Total cost cannot be both _greater than_ and
+    _at most_ aggregate wealth. No feasible Pareto improvement exists.
+]
+
+=== Implication for the standard model
+
+In the *representative-agent standard model*, a competitive equilibrium
+allocation solves the planner's problem. _If the planner's solution is
+unique and equilibrium exists_, the allocations coincide. Recover prices
+from firms' marginal products.
+
+== The Second Welfare Theorem
+
+#theorem("Second Welfare Theorem")[
+  With complete competitive markets, no externalities and the conditions
+  below, any *Pareto-efficient allocation* can be supported as a
+  *competitive equilibrium* after *lump-sum wealth transfers*.
+]<thm:swt>
+
+=== Sufficient conditions
+
+- *Consumers:* a finite set.
+- *Consumption:* each consumption set $X_i$ is convex.
+- *Preferences:* $u_i$ is continuous and locally nonsatiated. For
+  $x, x' in X_i$ and $0 < lambda < 1$, assume
+  $
+    u_i (x) > u_i (x')
+    ==> u_i (lambda x + (1 - lambda) x') > u_i (x').
+  $
+- *Production:* the aggregate production set $Y = sum_j Y_j$ is convex.
+- *Separation:* the commodity space $S$ is finite-dimensional, or
+  $Y$ has a nonempty interior.
+- #block(sticky: true)[
+    *Budget regularity:* at supporting prices $p$, each consumer has
+    a feasible bundle $x_i^0 in X_i$ with
+  ]
+  $
+    p dot x_i^0 < p dot x_i^star.
+  $
+
+Convexity alone guarantees only a _quasi-equilibrium_: a strictly
+preferred bundle may cost exactly the consumer's wealth.#footnote[
+  See #link("https://scottcondie.github.io/teaching/580/chapters/ge-welfare.html")[
+    Condie's welfare-theorem notes, Proposition 6.1
+  ] for the budget condition. In an infinite-dimensional commodity space,
+  $p dot x$ denotes the continuous price functional applied to $x$.
+]
+
+=== Wealth transfers
+
+At supporting prices, $m_i$ includes original endowments and profits at
+the target production plan.
+#block(sticky: true)[For target consumption $x_i^star$, choose *transfers* $T_i$:]
+$
+        T_i & = underbrace(p dot x_i^star, "target wealth")
+              - underbrace(m_i, "original wealth"), \
+  p dot x_i & <= m_i + T_i = p dot x_i^star, \
+  sum_i T_i & = 0.
+$
+Feasibility and profit distribution imply
+$sum_i p dot x_i^star = sum_i m_i$, so transfers sum to zero.
+*Lump-sum* transfers are _independent of choices_, leaving marginal
+incentives unchanged.
+
+=== Supporting prices
+
++ *Separation:* convexity permits a separating hyperplane between feasible
+  aggregate resources and aggregate bundles that improve welfare.
++ *Prices:* the separating functional defines the price system $p$.
++ *Optimization:* firms maximize profits at these prices; budget regularity
+  ensures consumers optimize their transfer-adjusted budgets.
+
+== How do the welfare theorems matter?
+
+- *Markets and information:* under the welfare-theorem assumptions,
+  equilibrium prices coordinate decentralized choices into an efficient
+  allocation. _The Use of Knowledge in Society_ @hayek1945knowledge
+  explains how prices communicate _dispersed information_.
+- *Policy:* diagnose failed assumptions, such as externalities, market power
+  or missing markets. Under the second theorem's conditions, _lump-sum
+  redistribution_ can implement different efficient distributions without
+  changing marginal incentives.
+- *Computing equilibrium:* in the standard model, solve the planner's
+  Bellman equation, then recover prices from marginal products. With
+  heterogeneity, a planner allocation may require _wealth transfers_ to
+  be decentralized.
+
+= Lecture 4 Oct 6
+
+== Fundamental models of economic growth
+
+The *standard model* is a Solow growth model with _optimizing consumers_.
+It matches long-run growth facts for high-income countries, but growth
+models should also explain:
+- Economic development beyond the period described by the Kaldor facts.
+- Income and growth differences across _all countries_.
+- The origin of productivity growth.
+
+#definition("Kaldor's growth facts")[
+  Kaldor's six *stylized facts* @kaldor1961growth summarize long-run
+  growth patterns, originally observed in industrialized economies:
+
+  + *Output per worker* $Y_t / N_t$ grows at a roughly constant positive rate.
+  + *Capital per worker* $K_t / N_t$ grows over time.
+  + The *return to capital* is roughly constant.
+  + The *capital-output ratio* $K_t / Y_t$ is roughly constant.
+  + *Labor and capital income shares* are roughly constant.
+  + *Output-per-worker growth rates* differ substantially across countries.
+]<def:kaldor-facts>
+
+== Solow
+
+=== Setup
+
+Output combines capital $K_t$ and effective labor $A_t N_t$:
+$
+  Y_t = K_t^alpha (A_t N_t)^(1 - alpha), 0 < alpha < 1.
+$
+Here $N_t$ is population (and labor supply); $A_t$ is *labor-augmenting
+productivity*. Both grow _exogenously_:
+$
+  A_(t+1) & = (1 + g) A_t, \
+  N_(t+1) & = (1 + n) N_t.
+$
+Assume $g, n >= 0$. A *fixed saving rate* $0 < s < 1$ determines investment:
+$
+  K_(t+1) & = (1 - delta) K_t + s Y_t, \
+      C_t & = (1 - s) Y_t,
+$
+where $0 <= delta <= 1$ is depreciation. In the _standard model_,
+households instead choose saving optimally.
+
+=== Capital per effective worker
+
+#block(sticky: true)[Normalize by effective labor:]
+$
+  k_t & = frac(K_t, A_t N_t), \
+  y_t & = frac(Y_t, A_t N_t) = k_t^alpha, \
+  c_t & = frac(C_t, A_t N_t) = (1 - s) k_t^alpha.
+$
+Divide capital accumulation by $A_t N_t$ and use
+$A_(t+1) N_(t+1) = (1 + g)(1 + n) A_t N_t$:
+$
+  k_(t+1) (1 + g)(1 + n) & = (1 - delta) k_t + s k_t^alpha, \
+           k_(t+1) - k_t & = frac(
+                             s k_t^alpha - (delta + g + n + g n) k_t,
+                             (1 + g)(1 + n)
+                           ).
+$
+*Effective capital rises* when investment exceeds depreciation and the
+capital needed to keep up with population and productivity growth.
+The term $g n$ is retained because time is _discrete_.
+
+=== Balanced growth path
+
+On a *balanced growth path (BGP)*, capital per effective worker is constant:
+$
+  s overline(k)^alpha & = (delta + g + n + g n) overline(k), \
+          overline(k) & = (frac(s, delta + g + n + g n))^(1 / (1 - alpha)).
+$
+This positive steady state requires $delta + g + n + g n > 0$.
+For $k_0 > 0$, diminishing returns imply convergence: $k_t$ rises below
+$overline(k)$ and falls above it.
+
+- *Aggregate quantities:* $K_t$, $Y_t$ and $C_t$ grow at rate
+  $(1 + g)(1 + n) - 1$.
+- *Per capita quantities:* $K_t / N_t$, $Y_t / N_t$ and $C_t / N_t$
+  grow at rate $g$.
+- *Growth facts:* the capital-output ratio, factor income shares and
+  the marginal product of capital are constant; real wages grow at rate $g$.
+
+A higher saving rate raises the BGP *level* of income per capita, not its
+*growth rate* $g$. With $g > 0$, the BGP matches Kaldor's first five facts.
+Cross-country differences in long-run growth require different _exogenous_
+productivity growth rates $g$.
+
+=== Limitations
+
+- Persistent cross-country income gaps require _exogenous differences_
+  in productivity, saving or population growth.
+- Baseline calibrations can imply faster convergence than observed,
+  even among high-income countries.
+- Productivity growth is unexplained; the model also lacks a mechanism
+  for the historical transition from long-run stagnation to sustained growth.
+
+
+== Malthus
+
+=== Setup
+
+The model describes a preindustrial economy with population $N_t$ and
+*fixed land* $X > 0$:
+$
+  Y_t = N_t^alpha (A_t X)^(1 - alpha), 0 < alpha < 1.
+$
+Productivity grows exogenously at rate $g >= 0$:
+$
+  A_(t+1) = (1 + g) A_t.
+$
+*Population growth responds to income per capita*:
+$
+  frac(N_(t+1), N_t) & = s frac(Y_t, N_t), \
+             N_(t+1) & = s Y_t.
+$
+Here $s > 0$ is a demographic parameter. Higher income raises fertility
+or reduces mortality. Population increases when $s Y_t / N_t > 1$.
+
+=== Population per effective land unit
+
+#block(sticky: true)[Normalize by effective land $A_t X$:]
+$
+               n_t & = frac(N_t, A_t X), \
+  frac(Y_t, A_t X) & = n_t^alpha, \
+    frac(Y_t, N_t) & = n_t^(alpha - 1).
+$
+Using $N_(t+1) = s Y_t$ gives
+$
+  n_(t+1) (1 + g) & = s n_t^alpha, \
+          n_(t+1) & = frac(s, 1 + g) n_t^alpha.
+$
+Since $alpha < 1$, income per person falls as population grows relative
+to effective land.
+
+=== Balanced growth path
+
+#block(sticky: true)[On the BGP, $n_t = overline(n)$ is constant:]
+$
+  overline(n) (1 + g) & = s overline(n)^alpha, \
+          overline(n) & = (frac(s, 1 + g))^(1 / (1 - alpha)).
+$
+For $n_0 > 0$, $n_t$ converges to $overline(n)$: it rises below the steady
+state and falls above it.
+
+#block(sticky: true)[BGP income per capita and population density are]
+$
+  frac(Y_t, N_t) & = overline(n)^(alpha - 1) = frac(1 + g, s), \
+    frac(N_t, X) & = A_t overline(n).
+$
+- Population and aggregate output grow at rate $g$.
+- #text(fill: red)[*Income per capita is constant*, even with positive productivity growth.]
+- Holding $s$ and $g$ fixed, higher productivity levels imply greater
+  population density and the same BGP income per capita.
+
+
+A permanent increase in the _level_ of productivity initially raises
+income per person. Higher income accelerates population growth. As
+population rises relative to land, diminishing returns bring income per
+person back toward $(1 + g) / s$.
+
+- Explains the world until 1800s
+
+=== Malthus versus Solow
+
+Solow accumulates *capital*; Malthus accumulates *population*. On the BGP,
+the return to the accumulated factor is constant. With competitive factor
+pricing, Malthus implies
+$
+    w_t & = alpha frac(Y_t, N_t) = alpha frac(1 + g, s), \
+  r_t^X & = (1 - alpha) frac(Y_t, X),
+$
+where $r_t^X$ is the rental rate of land. _Wages are constant and land rents
+grow at rate $g$._
+
+In Solow, the return to capital is constant and wages
+grow at rate $g$.
+
+=== From Malthus to Solow
+
+Malthus describes preindustrial stagnation; Solow describes sustained
+growth in modern economies. Neither model alone explains the transition.
+_Malthus to Solow_ @hansen2002malthus combines both technologies in one
+economy. Firms choose which to operate as productivity grows.
+
+==== Technologies and resources
+
+Both technologies are available in every period and produce the *same good*:
+$
+  Y_(M,t) & = A_(M,t) K_(M,t)^alpha_1 N_(M,t)^alpha_2 X^(1 - alpha_1 - alpha_2), \
+  Y_(S,t) & = A_(S,t) K_(S,t)^theta N_(S,t)^(1 - theta).
+$
+The Malthus sector $M$ uses land; the Solow sector $S$ uses only capital
+and labor. Assume $alpha_1, alpha_2 > 0$, $alpha_1 + alpha_2 < 1$ and
+$0 < theta < 1$. Sectoral *TFP* grows exogenously:
+$
+  A_(j,t+1) = gamma_j A_(j,t), quad j in {M, S}.
+$
+Here $gamma_M >= 1$ and $gamma_S > 1$ are gross growth factors.
+Competitive firms allocate capital and labor freely across sectors:
+$
+  K_t & = K_(M,t) + K_(S,t), \
+  N_t & = N_(M,t) + N_(S,t), \
+  X & = 1.
+$
+One period represents a generation, so capital depreciates fully ($delta = 1$).
+Land does not depreciate. Aggregate feasibility is
+$
+  C_t + K_(t+1) = Y_(M,t) + Y_(S,t).
+$
+
+==== Households and population
+
+Households live for two periods and work only when young. A household
+born at $t$ chooses positive consumption and nonnegative capital $k_(t+1)$
+and land $x_(t+1)$. With $beta > 0$, its objective is
+$
+  max log c_(1,t) + beta log c_(2,t+1),
+$
+subject to
+$
+  c_(1,t) + k_(t+1) + q_t x_(t+1) & = w_t, \
+  c_(2,t+1) & = r_(t+1)^K k_(t+1) + (r_(t+1)^X + q_(t+1)) x_(t+1).
+$
+Here $q_t$ is the land price and $r_t^K$, $r_t^X$ are capital and land
+rental rates. With full depreciation, $r_(t+1)^K$ is the entire payoff
+from one unit of capital saved at $t$.
+
+There are $N_t$ young households at $t$. Population follows a *calibrated*
+function $G$:
+$
+  N_(t+1) = G(c_(1,t)) N_t.
+$
+$G$ rises with consumption at low living standards and falls at high
+living standards. Each young household supplies one unit of labor.
+Asset and goods markets clear when
+$
+  K_(t+1) & = N_t k_(t+1), \
+  1 & = N_t x_(t+1), \
+  C_t & = N_t c_(1,t) + N_(t-1) c_(2,t).
+$
+With interior asset holdings, household optimality gives
+$
+  c_(1,t) & = frac(w_t, 1 + beta), \
+  q_t r_(t+1)^K & = r_(t+1)^X + q_(t+1), \
+  K_(t+1) & = N_t frac(beta, 1 + beta) w_t - q_t.
+$
+The second equation equates the returns on capital and land. The third
+subtracts land purchases from the young generation's total saving.
+
+==== Solow sector entry
+
+Normalize the output price to one. At given factor prices, the minimum
+cost of producing one unit with the Solow technology is
+$
+  frac(1, A_(S,t))
+  (frac(r_t^K, theta))^theta
+  (frac(w_t, 1 - theta))^(1 - theta).
+$
+To test entry, evaluate this cost at the *Malthus-only* factor prices
+$r_(M,t)^K$ and $w_(M,t)$. Entry is profitable when
+$
+  A_(S,t) >
+  underbrace(
+    (frac(r_(M,t)^K, theta))^theta
+    (frac(w_(M,t), 1 - theta))^(1 - theta),
+    "entry threshold"
+  ).
+$
+Once entry occurs, factor prices adjust. If both sectors operate,
+their marginal products of capital and labor must coincide:
+$
+  r_t^K & = alpha_1 frac(Y_(M,t), K_(M,t)) = theta frac(Y_(S,t), K_(S,t)), \
+  w_t & = alpha_2 frac(Y_(M,t), N_(M,t)) = (1 - theta) frac(Y_(S,t), N_(S,t)).
+$
+The Malthus sector remains active at every finite date. With fixed land,
+scaling its capital and labor down together makes their marginal products
+arbitrarily large, so allocating a small amount to this sector remains worthwhile.
+
+==== Transition
+
++ Initially, only the Malthus technology operates. Population growth
+  absorbs productivity gains, keeping living standards constant.
+  Solow productivity continues to grow while that sector is unused.
++ On the Malthusian growth path, wages and capital rental rates are
+  constant, so the entry threshold is fixed. Rising $A_(S,t)$ eventually
+  crosses it, and firms allocate capital and labor to the Solow sector.
++ The Solow sector has constant returns in capital and labor, with no
+  fixed land input. In the calibrated economy, its share expands and
+  income per person grows. The Malthus sector's share tends to zero.
+  Population growth eventually falls through the assumed function $G$.
+
+==== Limitations
+
+- Productivity growth remains exogenous.
+- The demographic transition comes from the calibrated function $G$;
+  fertility and mortality decisions are not derived from household choices.
+- The two technologies produce the same good. Requiring a separate
+  agricultural good for subsistence would change the mechanism.
