@@ -1000,6 +1000,22 @@ $
   $
 ]
 Thus $p_t / p_(t+1)$ is the gross real return from $t$ to $t+1$.
+
+// BEGIN recording additions 2026-10-06
+#lecture-addition("Why positive capital requires no arbitrage", source: "2026-10-06, 00:00:46 - 00:03:31")[
+  One extra unit of $k_(t+1)$ changes lifetime wealth by
+  $
+    p_(t+1) (1 + r_(t+1)) - p_t.
+  $
+  - If negative, the household chooses $k_(t+1) = 0$.
+  - If positive, capital purchases generate unbounded wealth; there is no finite optimum.
+  - If zero, the household is indifferent over capital holdings at these prices.
+
+  An equilibrium with positive capital therefore requires equality.
+  Future capital purchases and payoffs cancel; *initial capital* remains
+  part of wealth because its acquisition cost is outside the lifetime budget.
+]
+
 With $p_0 = 1$,
 $
   p_t = frac(1, product_(s=1)^t (1 + r_s)).
@@ -1011,6 +1027,16 @@ $
   + underbrace(sum_(t=0)^infinity p_t w_t, "lifetime labor income").
 $
 The lifetime budget makes a separate no-Ponzi condition unnecessary.
+
+#lecture-addition("Valuing other assets", source: "2026-10-06, 00:04:08 - 00:05:13")[
+  Date prices also value a claim to a dividend stream $d_t$:
+  $
+    q_0 = sum_(t=1)^infinity p_t d_t.
+  $
+  The same method prices a bond by multiplying each payoff by its delivery-date
+  price. With uncertainty, use *state-contingent prices*. This is why
+  Arrow-Debreu notation is convenient for asset pricing.
+]
 
 
 == Recursive equilibrium
@@ -1027,6 +1053,15 @@ The household chooses $k'$ taking $K' = g(K)$ and the associated prices
 _as given_. In equilibrium, $k = K$, but keeping both states in the
 household problem preserves *price-taking*. With heterogeneity,
 individual and aggregate states generally differ.
+
+#lecture-addition("Whose saving moves tomorrow's prices?", source: "2026-10-06, 00:07:30 - 00:08:48; 00:11:18 - 00:11:46")[
+  Think of the representative household as one of many identical, tiny households.
+  More *aggregate* saving lowers tomorrow's return to capital and raises wages.
+  One household's saving has no effect on either price.
+
+  Thus $K' = g(K)$ is taken as given inside the household problem.
+  Impose $g(K) = k'(K, K)$ when checking equilibrium consistency.
+]
 
 === Standard model
 
@@ -1093,6 +1128,18 @@ weakly better off and at least one person strictly better off.
 *Convexity is not required.* Economies with _infinitely many overlapping
 generations_ lie outside this finite-consumer result; competitive equilibria
 can be inefficient.
+
+#lecture-addition("Why overlapping generations are an exception", source: "2026-10-06, 00:18:10 - 00:21:32")[
+  In a two-period OLG economy, infinitely many generations can trade an
+  intrinsically worthless asset. The young give goods to the old for money,
+  then sell that money to the next young generation when they retire.
+  Under suitable conditions, this transfer scheme can improve on a nonmonetary
+  equilibrium.
+
+  *A last generation breaks the argument:* it cannot sell the money onward
+  and loses from accepting it. The infinite sequence of consumers matters
+  for this exception to the First Welfare Theorem.
+]
 
 === Proof by contradiction of @thm:fwt
 
@@ -1220,6 +1267,26 @@ incentives unchanged.
   heterogeneity, a planner allocation may require _wealth transfers_ to
   be decentralized.
 
+#lecture-addition("Diagnosing a policy problem", source: "2026-10-06, 00:27:40 - 00:29:30")[
+  Ask which welfare-theorem assumption fails in the proposed application.
+  - *Pollution:* an upstream producer harms downstream users without paying
+    for that harm. A market for the relevant rights can price the externality.
+  - *Health insurance:* adverse selection can prevent useful insurance markets
+    from forming. A missing market may justify intervention, but the underlying
+    information problem still needs to be addressed.
+]
+
+#lecture-addition("What should an economist remember?", source: "2026-10-06, 00:32:07 - 00:39:19")[
+  The class proposed equilibrium, Nash equilibrium, supply and demand, and
+  economy-wide resource constraints. *Nash equilibrium* concerns individual
+  best responses; maximizing total welfare is a different condition.
+
+  Economics often starts from *purposeful choices*: agents have objectives
+  and face constraints. Macroeconomics asks how these choices interact and
+  add up. Giving one group more resources requires accounting for where
+  those resources come from.
+]
+
 = Lecture 4 Oct 6
 
 == Fundamental models of economic growth
@@ -1309,6 +1376,30 @@ A higher saving rate raises the BGP *level* of income per capita, not its
 Cross-country differences in long-run growth require different _exogenous_
 productivity growth rates $g$.
 
+#lecture-addition("Growth during the transition", source: "2026-10-06, 00:46:30 - 00:46:49; 00:48:04 - 00:48:30")[
+  Constant $k_t = K_t / (A_t N_t)$ does not mean constant $K_t$: on the BGP,
+  aggregate capital grows with effective labor.
+
+  Cobb-Douglas *factor income shares* are constant even outside the BGP.
+  Starting below $overline(k)$, $k_t$ rises, so
+  $
+    frac(K_t, Y_t) & = k_t^(1 - alpha) " rises", \
+    "MPK"_t & = alpha k_t^(alpha - 1) " falls".
+  $
+  Constant capital-output ratios and returns are properties of the BGP,
+  rather than every point along the transition.
+]
+
+#lecture-addition("What the fixed saving rate assumes", source: "2026-10-06, 00:50:44 - 00:52:16")[
+  The Solow model imposes the consumption-saving choice through $s$.
+  It is a *reduced-form behavioral assumption*. The standard model derives
+  this choice from household optimization.
+
+  A steady ratio in effective units still permits growth in levels and
+  transitional dynamics. The version here is deterministic because it
+  contains no shocks.
+]
+
 === Limitations
 
 - Persistent cross-country income gaps require _exogenous differences_
@@ -1332,13 +1423,23 @@ Productivity grows exogenously at rate $g >= 0$:
 $
   A_(t+1) = (1 + g) A_t.
 $
-*Population growth responds to income per capita*:
+#block(sticky: true)[*Population growth responds to income per capita*:]
 $
   frac(N_(t+1), N_t) & = s frac(Y_t, N_t), \
              N_(t+1) & = s Y_t.
 $
 Here $s > 0$ is a demographic parameter. Higher income raises fertility
 or reduces mortality. Population increases when $s Y_t / N_t > 1$.
+
+#lecture-addition("Two routes from income to population", source: "2026-10-06, 00:57:22 - 00:59:04; 01:00:08 - 01:00:14")[
+  Higher income can raise demand for children or improve survival through
+  better nutrition, especially in infancy. Either route gives a positive
+  income-population feedback.
+
+  Unlike Solow's saving rate, this $s$ is *not a fraction of output saved*;
+  the model does not require $s < 1$. Its demographic interpretation differs
+  even though it occupies the same place in the accumulation equation.
+]
 
 === Population per effective land unit
 
@@ -1382,6 +1483,27 @@ income per person. Higher income accelerates population growth. As
 population rises relative to land, diminishing returns bring income per
 person back toward $(1 + g) / s$.
 
+#lecture-addition("Lower fertility raises levels, not long-run growth", source: "2026-10-06, 01:07:11 - 01:09:19")[
+  Holding $g$ fixed, a lower demographic parameter $s$ raises BGP income
+  per person, $(1 + g) / s$, while per capita growth remains zero.
+  The lecture used *later marriage* as an example: fewer childbearing years
+  can lower fertility at a given income and support higher living standards
+  within the Malthusian regime.
+]
+
+#lecture-addition("What if land expands?", source: "2026-10-06, 01:09:24 - 01:11:28")[
+  Fixed land creates diminishing returns to population. If land instead
+  grows exogenously, the same normalization uses $A_t X_t$.
+  With $X_(t+1) / X_t = 1 + g_X$, effective land grows at
+  $
+    1 + g_(A X) = (1 + g)(1 + g_X).
+  $
+  Replacing $g$ by $g_(A X)$ gives BGP income per person
+  $(1 + g_(A X)) / s$. Frontier expansion can raise this *level* and sustain
+  faster population growth; a constant expansion rate still leaves
+  long-run income per person constant.
+]
+
 - Explains the world until 1800s
 
 === Malthus versus Solow
@@ -1403,6 +1525,22 @@ grow at rate $g$.
 
 Malthus describes preindustrial stagnation; Solow describes sustained
 growth in modern economies. Neither model alone explains the transition.
+
+#lecture-addition("What must change to escape stagnation?", source: "2026-10-06, 01:13:28 - 01:15:52")[
+  The lecture outlined three mechanisms for the next class:
+  - *Structural change:* move production from land-dependent agriculture
+    toward industry and services, whose capital and labor inputs can expand.
+  - *Demographic change:* weaken the positive income-fertility relationship;
+    richer modern economies generally have lower birth rates.
+  - *Productivity growth:* explain why it accelerates and how it interacts
+    with the other mechanisms.
+
+  A student also raised the scale effect in endogenous growth:
+  more people can produce more ideas. The lecturer noted that this is
+  another mechanism studied in the literature.
+]
+// END recording additions 2026-10-06
+
 _Malthus to Solow_ @hansen2002malthus combines both technologies in one
 economy. Firms choose which to operate as productivity grows.
 
@@ -1480,8 +1618,10 @@ $
   (frac(r_t^K, theta))^theta
   (frac(w_t, 1 - theta))^(1 - theta).
 $
-To test entry, evaluate this cost at the *Malthus-only* factor prices
-$r_(M,t)^K$ and $w_(M,t)$. Entry is profitable when
+#block(sticky: true)[
+  To test entry, evaluate this cost at the *Malthus-only* factor prices
+  $r_(M,t)^K$ and $w_(M,t)$. Entry is profitable when
+]
 $
   A_(S,t) >
   underbrace(
