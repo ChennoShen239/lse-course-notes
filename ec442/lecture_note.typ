@@ -1054,7 +1054,10 @@ _as given_. In equilibrium, $k = K$, but keeping both states in the
 household problem preserves *price-taking*. With heterogeneity,
 individual and aggregate states generally differ.
 
-#lecture-addition("Whose saving moves tomorrow's prices?", source: "2026-10-06, 00:07:30 - 00:08:48; 00:11:18 - 00:11:46")[
+#lecture-addition(
+  "Whose saving moves tomorrow's prices?",
+  source: "2026-10-06, 00:07:30 - 00:08:48; 00:11:18 - 00:11:46",
+)[
   Think of the representative household as one of many identical, tiny households.
   More *aggregate* saving lowers tomorrow's return to capital and raises wages.
   One household's saving has no effect on either price.
@@ -1384,7 +1387,7 @@ productivity growth rates $g$.
   Starting below $overline(k)$, $k_t$ rises, so
   $
     frac(K_t, Y_t) & = k_t^(1 - alpha) " rises", \
-    "MPK"_t & = alpha k_t^(alpha - 1) " falls".
+           "MPK"_t & = alpha k_t^(alpha - 1) " falls".
   $
   Constant capital-output ratios and returns are properties of the BGP,
   rather than every point along the transition.
@@ -1431,7 +1434,10 @@ $
 Here $s > 0$ is a demographic parameter. Higher income raises fertility
 or reduces mortality. Population increases when $s Y_t / N_t > 1$.
 
-#lecture-addition("Two routes from income to population", source: "2026-10-06, 00:57:22 - 00:59:04; 01:00:08 - 01:00:14")[
+#lecture-addition(
+  "Two routes from income to population",
+  source: "2026-10-06, 00:57:22 - 00:59:04; 01:00:08 - 01:00:14",
+)[
   Higher income can raise demand for children or improve survival through
   better nutrition, especially in infancy. Either route gives a positive
   income-population feedback.
@@ -1562,7 +1568,7 @@ Competitive firms allocate capital and labor freely across sectors:
 $
   K_t & = K_(M,t) + K_(S,t), \
   N_t & = N_(M,t) + N_(S,t), \
-  X & = 1.
+    X & = 1.
 $
 One period represents a generation, so capital depreciates fully ($delta = 1$).
 Land does not depreciate. Aggregate feasibility is
@@ -1581,7 +1587,7 @@ $
 subject to
 $
   c_(1,t) + k_(t+1) + q_t x_(t+1) & = w_t, \
-  c_(2,t+1) & = r_(t+1)^K k_(t+1) + (r_(t+1)^X + q_(t+1)) x_(t+1).
+                        c_(2,t+1) & = r_(t+1)^K k_(t+1) + (r_(t+1)^X + q_(t+1)) x_(t+1).
 $
 Here $q_t$ is the land price and $r_t^K$, $r_t^X$ are capital and land
 rental rates. With full depreciation, $r_(t+1)^K$ is the entire payoff
@@ -1597,14 +1603,14 @@ living standards. Each young household supplies one unit of labor.
 Asset and goods markets clear when
 $
   K_(t+1) & = N_t k_(t+1), \
-  1 & = N_t x_(t+1), \
-  C_t & = N_t c_(1,t) + N_(t-1) c_(2,t).
+        1 & = N_t x_(t+1), \
+      C_t & = N_t c_(1,t) + N_(t-1) c_(2,t).
 $
 With interior asset holdings, household optimality gives
 $
-  c_(1,t) & = frac(w_t, 1 + beta), \
+        c_(1,t) & = frac(w_t, 1 + beta), \
   q_t r_(t+1)^K & = r_(t+1)^X + q_(t+1), \
-  K_(t+1) & = N_t frac(beta, 1 + beta) w_t - q_t.
+        K_(t+1) & = N_t frac(beta, 1 + beta) w_t - q_t.
 $
 The second equation equates the returns on capital and land. The third
 subtracts land purchases from the young generation's total saving.
@@ -1634,7 +1640,7 @@ Once entry occurs, factor prices adjust. If both sectors operate,
 their marginal products of capital and labor must coincide:
 $
   r_t^K & = alpha_1 frac(Y_(M,t), K_(M,t)) = theta frac(Y_(S,t), K_(S,t)), \
-  w_t & = alpha_2 frac(Y_(M,t), N_(M,t)) = (1 - theta) frac(Y_(S,t), N_(S,t)).
+    w_t & = alpha_2 frac(Y_(M,t), N_(M,t)) = (1 - theta) frac(Y_(S,t), N_(S,t)).
 $
 The Malthus sector remains active at every finite date. With fixed land,
 scaling its capital and labor down together makes their marginal products
@@ -1660,3 +1666,534 @@ arbitrarily large, so allocating a small amount to this sector remains worthwhil
   fertility and mortality decisions are not derived from household choices.
 - The two technologies produce the same good. Requiring a separate
   agricultural good for subsistence would change the mechanism.
+
+= Lecture 4 Oct 12
+
+== Consumption, heterogeneity and policy
+
+// BEGIN recording additions 2026-10-12
+#lecture-addition("Consumption functions and consumption smoothing", source: "2026-10-12, 00:08:21 - 00:16:02")[
+  In the simple Keynesian example, consumption responds mechanically to current
+  income. An illustrative marginal propensity to consume of 0.8 gives
+  $
+    "multiplier" = frac(1, 1 - "MPC") = frac(1, 1 - 0.8) = 5.
+  $
+  An optimizing household instead considers lifetime resources:
+  - A permanent income gain supports a larger increase in consumption.
+  - A one-off windfall is spread across future periods through saving.
+  - An announced future income change can affect consumption today.
+
+  The saving-and-borrowing example assumes *incomplete insurance*.
+  With complete markets, idiosyncratic windfalls would be shared through
+  state-contingent claims.
+]
+
+#lecture-addition("Hall's consumption test", source: "2026-10-12, 00:16:03 - 00:22:07")[
+  Consumption already incorporates information about expected future income.
+  Hall's test asks whether other current information helps forecast its next
+  change @hall1978stochastic.
+
+  For the exact random-walk benchmark, assume an unconstrained interior choice,
+  a constant gross return $R$, $beta R = 1$ and quadratic utility
+  $u'(c) = a - b c$, with $b > 0$. The Euler equation gives
+  $
+    u'(c_t) & = beta R E_t [u'(c_(t+1))], \
+    a - b c_t & = a - b E_t [c_(t+1)], \
+    E_t [c_(t+1) - c_t] & = 0.
+  $
+  Quadratic utility gives certainty equivalence. Precautionary saving can
+  break the exact random-walk result.
+
+  *Paper detail:* Hall used aggregate US data. Current income did not help
+  predict consumption once current consumption was controlled for, but stock
+  prices did. The original empirical conclusion was therefore qualified.
+]
+
+#lecture-addition("From New Keynesian models to HANK", source: "2026-10-12, 00:24:00 - 00:31:09")[
+  Woodford combines optimizing households with nominal price or wage rigidities
+  @woodford2003interest. Interest rates and expected future rates affect
+  consumption through households' Euler equations.
+
+  Households differ in wealth, liquidity and debt exposure. A household facing
+  mortgage repricing can react differently from a wealthy saver. *HANK*
+  (Heterogeneous Agent New Keynesian) models incorporate these differences;
+  the paper discussed was _Monetary Policy According to HANK_
+  @kaplan2018monetary.
+]
+
+#lecture-addition("Debt deflation", source: "2026-10-12, 00:32:24 - 00:34:35")[
+  With fixed nominal debt $D$, a fall in the price level raises its real value:
+  $
+    P' = P / 2 quad => quad frac(D, P') = 2 frac(D, P).
+  $
+  Bankruptcies can disrupt production and access to finance. The lecturer
+  suggested this could be an important channel behind severe downturns,
+  possibly more important than a household demand shortfall.
+  A related model of firm borrowing and collateral is _Credit Cycles_
+  @kiyotaki1997credit.
+]
+
+#lecture-addition("Ricardian equivalence as a benchmark", source: "2026-10-12, 00:34:45 - 00:37:03")[
+  Hold government spending fixed. Debt finance postpones taxes. If households
+  are unconstrained, forward looking and bear the future tax liabilities,
+  changing the timing of taxes leaves lifetime wealth unchanged
+  @barro1974bonds.
+
+  Borrowing constraints, finite horizons and limited foresight can break this
+  neutrality. The benchmark helps identify which assumptions make the timing
+  of taxes matter.
+]
+// END opening discussion 2026-10-12
+
+== Facts on growth and demographics
+
+Figures from Lecture 5, slides 4--7.
+- Income and population data: Maddison Project Database 2023 @bolt2024maddison.
+- Fertility data: UN World Population Prospects @un2024wpp,
+  via #link("https://ourworldindata.org/grapher/children-per-woman-un")[Our World in Data].
+
+#let figure-note(body) = block(width: 100%, above: 7pt, below: 0.5em)[
+  #set text(size: 9pt)
+  #set par(justify: false)
+  _Note:_ #body
+]
+
+=== Income per capita over the long run
+
+Income remains low for centuries, then takes off. Takeoff dates differ across
+countries; modern income gaps are large.
+
+#block(sticky: true)[
+  #figure(
+    image("figures/income_long_run.svg", width: 100%),
+    caption: [Income per capita over the long run.],
+  )<fig:long-run-income>
+]
+#figure-note[
+  $y_t = Y_t / N_t$: income per capita in 2011 international dollars.
+]
+
+=== Population growth
+
+Population growth has a hump shape in many regions, with peaks at different
+dates. Births, deaths and migration all matter.
+
+#block(sticky: true)[
+  #figure(
+    image("figures/population_growth.svg", width: 100%),
+    caption: [Population growth by region.],
+  )<fig:population-growth>
+]
+#figure-note[
+  $g_N$: average annual population growth (% per year) between benchmark
+  years, plotted at interval midpoints.
+]
+
+#block(sticky: true)[
+  === Fertility over time
+
+  _Total fertility rate (TFR)_ is lifetime births per woman at current
+  age-specific fertility rates. Fertility declines at different times;
+  several countries fall below replacement.
+]
+
+#block(sticky: true)[
+  #figure(
+    image("figures/fertility_history.svg", width: 100%),
+    caption: [Fertility over time.],
+  )<fig:fertility-history>
+]
+#figure-note[
+  $"TFR"_t$: total fertility rate (births per woman).
+  Dashed line: replacement benchmark, about 2.1 births per woman.
+]
+
+=== Fertility and income across countries
+
+In 2022, richer countries generally have lower fertility. Israel lies
+above the high-income cluster.
+
+#block(sticky: true)[
+  #figure(
+    image("figures/fertility_income_2022.svg", width: 100%),
+    caption: [Fertility and income, 2022.],
+  )<fig:fertility-income>
+]
+#figure-note[
+  $"TFR"$: births per woman; $y = Y / N$: income per capita in 2011
+  international dollars (log scale). Countries with population above one million.
+]
+
+== Malthus to Solow: simulated transition
+
+#block(sticky: true)[
+  #figure(
+    image("figures/malthus_solow_transition.svg", width: 100%),
+    caption: [Simulated transition from Malthus to Solow.],
+  )<fig:malthus-solow-transition>
+]
+#figure-note[
+  Left: income per capita $y = Y / N$ (model units, log scale).
+  Middle: Solow output share $Y_S / (Y_M + Y_S)$.
+  Right: population growth $g_N$ (% per year). Time is in years; one model period
+  is 35 years. Parameters: $(alpha_1, alpha_2, theta) = (0.1, 0.6, 0.4)$;
+  gross TFP growth factors per period: $(gamma_M, gamma_S) = (1.032, 1.518)$.
+  Lecture 5, slide 12: simplified simulation using Hansen--Prescott technology
+  parameters and population function @hansen2002malthus, with a fixed saving
+  rate in place of the OLG saving problem.
+]
+
++ Initially, only the *Malthus sector* operates. Income per capita is flat;
+  productivity gains raise population.
++ Rising Solow productivity crosses the *entry threshold*. The Solow sector's
+  output share increases and income per capita starts to grow.
++ Population growth first rises, then falls. The decline comes from the
+  *calibrated population function*; fertility choices are not derived here.
+
+#lecture-addition("Why an unused technology can improve", source: "2026-10-12, 00:54:30 - 00:56:12")[
+  Solow-sector productivity grows even before the sector operates. The lecture
+  interpreted this as accumulated knowledge from other activities: precise
+  metalworking and other complementary skills eventually make industrial
+  production viable. The steam engine illustrates how an invention can depend
+  on many earlier improvements. Productivity growth is still exogenous in
+  the model.
+]
+
+#lecture-addition("Trade and the return to education", source: "2026-10-12, 00:59:39 - 01:01:58")[
+  A student asked how trade affects the transition. Galor and Mountford
+  @galor2008trading study specialization and demographic change:
+  - An early industrializer specializes in activities intensive in human
+    capital and imports food. Higher returns to education favor investment
+    per child.
+  - A later industrializer specializes in agriculture. Lower returns to
+    education favor higher fertility and can delay its transition.
+
+  Trade can therefore widen differences in income per person and population
+  growth through the quantity-quality choice.
+]
+
+#lecture-addition("Food and structural change", source: "2026-10-12, 01:02:24 - 01:03:03")[
+  Hansen and Prescott treat the two sectors' outputs as perfect substitutes.
+  If food must instead come from agriculture, a growing population may draw
+  workers back into the land-dependent sector. Feeding the population then
+  becomes a constraint on the expansion of industry.
+]
+
+
+== Becker, Murphy and Tamura (1990)
+
+_Human Capital, Fertility, and Economic Growth_ @becker1990human.
+Lecture 5, slides 14 to 28 use a simplified version without physical capital.
+
+Parents choose the number of children and education per child: the
+_quantity-quality choice_. The model can have two stable regimes:
+*high fertility and stagnation*, or *lower fertility and sustained growth*.
+Escaping stagnation requires a sufficiently large shock.
+
+=== Demographics, state and choices
+
+People live for two periods: childhood, then adulthood. Adults work and
+consume, and spend time raising and teaching the next generation.
+
+- State: acquired human capital $H >= 0$. Every adult also has raw-labor
+  productivity $H_0 > 0$; total productivity is $H_0 + H$.
+- Choices: consumption $c > 0$, number of children $n > 0$ (continuous),
+  and teaching time per child $h >= 0$.
+- Next state: each child inherits the same human capital $H'$.
+- Adult time endowment is one. Each child requires fixed childcare time
+  $v > 0$ and a goods cost $f >= 0$.
+
+This version has no assets or aggregate shocks. $H_0$ is fixed raw-labor
+productivity, distinct from the initial value of $H$.
+
+=== Dynastic preferences
+
+Parents value their own consumption and their children's utility:
+$
+  u(c) & = frac(c^sigma, sigma), quad 0 < sigma < 1, \
+  a(n) & = alpha n^(-epsilon), quad alpha > 0, quad 0 < epsilon < 1, \
+  V(H) & = u(c) + a(n) n V(H') \
+       & = frac(c^sigma, sigma) + alpha n^(1 - epsilon) V(H').
+$
+
+- Altruism *per child*, $a(n)$, falls with fertility; total weight on children,
+  $alpha n^(1 - epsilon)$, rises.
+- $epsilon = - frac(d log a(n), d log n)$ measures how altruism per child
+  falls with fertility. Relative risk aversion is $1 - sigma$.
+
+Assume finite dynastic utility. The continuation weight varies with $n$.
+
+#lecture-addition("The continuation value belongs to the child", source: "2026-10-12, 01:06:07 - 01:08:09; 01:11:08 - 01:11:59")[
+  $V(H')$ is the child's adult utility, including that child's concern for the
+  next generation. Parents care about their children's actual welfare.
+  If $H'$ differs from parental human capital, the child can choose different
+  fertility and education. Identical people within a generation need not make
+  identical choices across generations.
+]
+
+=== Resources and human-capital production
+
+Childcare and teaching leave $1 - n(v + h)$ units of working time:
+$
+   c + f n & = [1 - n(v + h)] (H_0 + H), \
+        H' & = A h (H_0 + H), quad A > 0, \
+  n(v + h) & <= 1.
+$
+
+$A$ is teaching productivity. Higher parental human capital raises both the
+opportunity cost of time and the amount a parent can teach.
+
+Eliminate $h$ to write the problem in $(n, H')$:
+$
+            h & = frac(H', A(H_0 + H)), \
+  c(H, n, H') & = (1 - n v)(H_0 + H) - frac(n H', A) - f n.
+$
+
+The Bellman equation is
+$
+  V(H) = max_(n > 0, H' >= 0)
+  {frac(c(H, n, H')^sigma, sigma) + alpha n^(1 - epsilon) V(H')},
+  quad c(H, n, H') > 0.
+$
+
+More children raise the total cost of providing a given education per child.
+
+#block(sticky: true)[
+  === Optimal education: corner condition and Euler equation
+
+  At a differentiable optimum, the marginal benefit cannot exceed the marginal
+  cost at zero investment; they are equal at positive investment:
+]
+$
+                                  alpha n^(1 - epsilon) V'(H') & <= frac(n c^(sigma - 1), A), \
+  H' [frac(n c^(sigma - 1), A) - alpha n^(1 - epsilon) V'(H')] & = 0.
+$
+
+The envelope condition is
+$
+  V'(H) = c^(sigma - 1) (1 - n v).
+$
+
+Holding $H'$ fixed keeps teaching cost $n H'/A$ independent of $H$.
+The envelope coefficient $1 - n v$ therefore differs from working time
+$1 - n(v + h)$.
+
+Let $c'$ and $n'$ denote the child's adult choices. Substitute the child's
+envelope condition into the education FOC:
+$
+  alpha n^(1 - epsilon) (c')^(sigma - 1) (1 - n' v) & <= frac(n c^(sigma - 1), A), \
+  underbrace(
+    frac(n^epsilon, alpha) (frac(c', c))^(1 - sigma),
+    "consumption MRS"
+  )                                                 & >= underbrace(A(1 - n' v), "education return").
+$
+
+Equality holds if $h > 0$. High fertility raises $n^epsilon / alpha$ and
+discourages investment in each child's future consumption.
+
+#lecture-addition("Why education can be zero", source: "2026-10-12, 01:14:03 - 01:16:24")[
+  Children receive $H_0$ without teaching. When acquired human capital is low,
+  a small addition to $H'$ gives a small proportional gain in their future
+  productivity, while teaching immediately reduces parental working time.
+  Because parents also pay the fixed food cost $f n$, the percentage loss in
+  their consumption can exceed the percentage loss in earnings.
+
+  When acquired skills account for most of children's future earnings,
+  education has a much larger effect on their welfare. This is the intuition
+  behind the two investment regimes.
+]
+
+=== Optimal fertility
+
+For an interior fertility choice, differentiate the Bellman equation with
+respect to $n$:
+$
+  underbrace((1 - epsilon) alpha n^(-epsilon) V(H'), "benefit of another child")
+  = underbrace(
+    c^(sigma - 1) [(v + h)(H_0 + H) + f],
+    "goods and time cost"
+  ).
+$
+
+Higher $H$ makes childcare and teaching time more expensive. The substitution
+effect favors fewer children and more education per child. Higher income also
+raises demand for children, so the net fertility response depends on both effects.
+
+#lecture-addition("Positive fertility and the quantity-quality choice", source: "2026-10-12, 01:16:24 - 01:18:34")[
+  At a fixed continuation value $V(H') > 0$, the marginal benefit of children
+  diverges as fertility approaches zero:
+  $
+    (1 - epsilon) alpha n^(-epsilon) V(H') -> infinity
+    quad "as" quad n -> 0.
+  $
+  This supports positive fertility under the model's assumptions, even when
+  teaching is zero.
+
+  Planning more education per child raises the time cost of every additional
+  child through $(v + h)(H_0 + H)$. Education choices make children more
+  expensive and can reduce fertility.
+]
+
+=== Malthusian steady state
+
+Every generation chooses zero education:
+$
+    H & = H' = h = 0, \
+  c_M & = H_0 - n_M (v H_0 + f) > 0.
+$
+
+#block(sticky: true)[With constant consumption and fertility,]
+$
+  V(0) & = frac(c_M^sigma, sigma) + alpha n_M^(1 - epsilon) V(0), \
+       & = frac(c_M^sigma, sigma [1 - alpha n_M^(1 - epsilon)]).
+$
+
+#block(sticky: true)[
+  Finite utility requires $alpha n_M^(1 - epsilon) < 1$.
+  Fertility $n_M$ satisfies the FOC below; substituting $V(0)$ gives its second form:
+]
+$
+  (1 - epsilon) alpha n_M^(-epsilon) V(0)
+  = c_M^(sigma - 1) (v H_0 + f).
+$
+
+$
+  frac(
+    (1 - epsilon) alpha n_M^(-epsilon) c_M,
+    sigma [1 - alpha n_M^(1 - epsilon)]
+  ) = v H_0 + f.
+$
+
+For a *strict no-investment corner*, the Euler condition becomes
+$
+  frac(n_M^epsilon, alpha) > A(1 - n_M v).
+$
+
+- High fertility raises the left side and lowers the right side. Suitable
+  $v$, $f$ and preference parameters support the no-investment corner.
+- The strict inequality persists after small increases in $H$. Parents still
+  choose $H' = 0$, returning to stagnation in one generation.
+- Consumption per adult stays constant. Under the model's one-adult household
+  convention, $N_(t+1) = n_M N_t$; population grows if $n_M > 1$.
+
+=== Balanced growth path
+
+For sufficiently large $H$, education can sustain growth. Along a growing
+path, $H_0/H -> 0$ and $f/c -> 0$. Set $H_0 = f = 0$ in the limiting problem:
+$
+   c & = [1 - n(v + h)] H, \
+  H' & = A h H.
+$
+
+On the *balanced growth path* (BGP), $n$ and $h$ are constant. Define the
+gross growth factor $1 + g$:
+$
+  1 + g = frac(c', c) = frac(H', H) = A h.
+$
+
+Homogeneity implies $V(H) = C H^sigma$, with $C > 0$, so
+$
+  frac(V'(H') H', V(H')) = sigma.
+$
+
+The interior FOCs for teaching and fertility are
+$
+             A alpha n^(-epsilon) V'(H') & = c^(sigma - 1), \
+  (1 - epsilon) alpha n^(-epsilon) V(H') & = c^(sigma - 1) (v + h) H.
+$
+
+#block(sticky: true)[Divide the first by the second, then multiply by $H'$:]
+$
+  frac(1, 1 - epsilon) frac(V'(H') H', V(H')) & = frac(H', A H(v + h)), \
+                     frac(sigma, 1 - epsilon) & = frac(h, v + h), \
+                      (1 - epsilon - sigma) h & = sigma v.
+$
+
+$
+      h & = frac(sigma v, 1 - epsilon - sigma), \
+  1 + g & = frac(A sigma v, 1 - epsilon - sigma).
+$
+
+Positive teaching requires $1 - epsilon - sigma > 0$; positive growth requires
+$1 + g > 1$. These conditions describe the limiting growth regime.
+An economy starting near $H = 0$ can still remain in stagnation.
+
+Fertility on the BGP satisfies the Euler equation
+$
+  frac(n^epsilon, alpha) (1 + g)^(1 - sigma) & = A(1 - n v), \
+                                   n^epsilon & = alpha A(1 - n v) (1 + g)^(sigma - 1).
+$
+
+The candidate must also satisfy
+$
+                             n(v + h) & < 1, \
+  alpha n^(1 - epsilon) (1 + g)^sigma & < 1.
+$
+
+The first condition leaves time for production and positive consumption.
+The second ensures finite dynastic utility as consumption grows:
+$
+  V(H) = frac(
+    [1 - n(v + h)]^sigma H^sigma,
+    sigma [1 - alpha n^(1 - epsilon) (1 + g)^sigma]
+  ).
+$
+
+- On an interior feasible BGP, higher fixed childcare time $v$ raises teaching
+  time per child and the growth rate.
+- $alpha$ affects BGP fertility; it drops out of the growth formula.
+- Growth is *endogenous*: parents choose teaching while $A$ stays constant.
+  With $H_0 > 0$ or $f > 0$, the BGP formulas hold asymptotically.
+
+#lecture-addition("Mass schooling and fertility", source: "2026-10-12, 01:24:05 - 01:25:02")[
+  The lecture linked falling fertility in today's high-income countries to
+  the expansion of mass schooling in the late nineteenth century. Education
+  increased the investment families made in each child, motivating the
+  quantity-quality mechanism in these growth models.
+]
+
+=== Two regimes and the transition threshold
+
+#block(width: 100%, sticky: true)[
+  #set align(center)
+  #figure(
+    image("figures/bmt_two_regimes.svg", width: 75%),
+    caption: [Human capital and the two regimes.],
+  )<fig:bmt-two-regimes>
+]
+#figure-note[
+  $H_t$ and $H_(t+1)$: acquired human capital per adult in successive
+  generations (model units). Dashed line: $H_(t+1) = H_t$.
+  $H^*$: threshold separating stagnation and growth in the schematic.
+  Lecture 5, slide 27. The curve is a schematic, not a calibrated policy function.
+]
+
+- Near zero, $h = 0$ and $H_(t+1) = 0$.
+- Below the threshold, positive education can still be insufficient to replace
+  parental human capital: $H_(t+1) < H_t$.
+- Above the threshold, $H_(t+1) > H_t$; the economy approaches the BGP.
+  Fertility is lower and teaching per child is higher in the growth regime.
+- A large enough shock to human capital or technology can change the eventual
+  regime. A small temporary increase in $H$ may leave it unchanged.
+
+On the BGP, *growth rates and time allocation* stay constant while human capital
+keeps rising. The smooth threshold crossing is schematic: a nonconcave problem
+can have a policy jump or a kink in $V$. FOCs alone do not establish the global
+optimum.
+
+=== Assessment
+
+- Cheap parental time favors many children. Costly time and productive teaching
+  favor more investment per child.
+- The _Malthusian_ regime has high fertility and stagnant income per adult.
+  Land is absent, and there is no exogenous productivity trend whose gains
+  are absorbed by population growth.
+- A large shock can start sustained growth. Its historical origin is outside
+  the model.
+- Stagnation can be optimal for a dynasty under these preferences and
+  constraints. Pareto efficiency across generations requires a specified
+  welfare criterion; it does not follow from household optimality alone.
+- The dynastic-altruism framework remains widely used to model fertility
+  in macroeconomics.
+
+// END recording additions 2026-10-12
