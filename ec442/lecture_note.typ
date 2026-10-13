@@ -13,7 +13,7 @@
   author: "Chen Gao",
   date: datetime.today(),
   // Add abstract: [...] or preface: [...] here when needed.
-  abstract: [Notes on the 1st year Macro class],
+  abstract: [Notes on LSE EC442: Macroeconomics.],
   bibliography: bibliography("refs.bib", style: "apa"),
   figure-index: (enabled: true),
   table-index: (enabled: true),
@@ -91,18 +91,10 @@
 
 = Lecture 1 Sep. 29
 
-// Write your lecture notes here. Use == for sections and === for subsections.
-// Available environments: definition, theorem, proposition, corollary,
-// lemma, example, proof, and algorithm.
-// Example syntax:
-// #definition[Definition text.] <def:label>
-// #theorem[Theorem statement.] <thm:label>
-// #proof[Proof text.]
-// Refer to labeled results with @def:label or @thm:label.
-
 == Why heterogeneity
-Complete markets + standard welfare assumptions:
-- Competitive eq. Pareto efficient; planner representation w/ fixed weights $alpha_i > 0$.
+Complete competitive markets under the welfare-theorem assumptions:
+- Equilibrium allocations are Pareto efficient. Consider an interior planner
+  allocation with fixed welfare weights $alpha_i > 0$.
 - Common discounting; preferences $u(c) - v(n)$. Consumption FOCs:
   $
     alpha_i u'(c_t^i) = alpha_j u'(c_t^j)
@@ -116,19 +108,20 @@ Complete markets + standard welfare assumptions:
   $
   Fixed consumption shares $->$ *perfect insurance* against idiosyncratic income shocks.
   Aggregate risk remains; unequal Pareto weights $->$ unequal consumption.
-- Strictly convex labor disutility; interior labor choice; aggregate conditions fixed:
-  productivity ↑ $->$ labor ↑; consumption share unchanged.
-
-Implications:
-- Karl Marx
-- Full insurance at odds w/ data
+- With strictly convex labor disutility and an interior choice, an
+  idiosyncratic productivity increase raises labor supply, holding aggregate
+  shadow prices fixed. The consumption share is unchanged.
 
 
 // BEGIN lecture addition G1
 #lecture-addition("Intuition for Complete Markets", source: "00:13:54, 00:16:04")[
-  - *Example*: 18 students; one high earner, others lower. Complete markets $->$ high earner sells state-contingent claims $->$ consumption decoupled from income.
-  - *Marx analogy*: "From each according to ability, to each according to needs." Efficient allocation equalizes marginal utilities regardless of income.
-  - *Empirical mismatch*: Data shows strong income-consumption correlation. Complete markets imply correlation vanishes $->$ model unrealistic. Heterogeneity requires market incompleteness.
+  - *Example*: 18 students trade state-contingent claims before earnings risk
+    is realized. Their incomes can differ while consumption shares remain fixed.
+  - *Marx analogy*: "From each according to ability, to each according to needs." The planner equalizes weighted marginal utilities; individual income does not determine consumption.
+  - *Empirical test*: With common preferences and fixed Pareto weights,
+    idiosyncratic earnings shocks should not change consumption shares after
+    controlling for aggregate conditions. Excess sensitivity motivates
+    incomplete-market models.
 ]
 // END lecture addition G1
 
@@ -247,13 +240,15 @@ Answer:
 
 // BEGIN lecture addition G2
 #lecture-addition("Computational Advantage of DP", source: "01:06:37, 01:07:39")[
-  - *Lagrangian*: Leads to 2nd-order difference eq. Solving via "shooting" $->$ local, clunky.
+  - *Lagrangian*: Euler conditions give a difference equation. Shooting starts
+    from a guessed initial control and checks the terminal condition.
   - *Recursive*: Bellman eq. $->$ direct computation of *global solution* via iteration.
-  - *Convergence*: VFI guaranteed to converge to unique fixed point (via CMT), unlike many ODE/PDE methods.
+  - *Convergence*: Under the contraction assumptions, VFI converges to a unique
+    fixed point. A numerical discretization still introduces approximation error.
 ]
 // END lecture addition G2
 
-== Dynamic Programming
+== Dynamic programming
 *Bellman operator* $T$: candidate continuation value $v$ $->$ updated value $T v$.
 $
   (T v)(k) = max_(c, k') [u(c) + beta v(k')]
@@ -291,7 +286,9 @@ function space; assumptions matter.
 
 // BEGIN lecture addition G5
 #lecture-addition("Intuition for Contraction Mapping", source: "00:59:06, 01:01:46")[
-  - Analogous to Brouwer fixed-point theorem in 1D: continuous function mapping interval to itself with slope $< 1$ $->$ unique fixed point.
+  - On a compact interval, $abs(g'(x)) <= beta < 1$ makes $g$ a contraction,
+    provided it maps the interval into itself. Brouwer gives existence for a
+    continuous self-map; contraction also gives uniqueness and convergence.
   - In function spaces, "slope" = contraction factor $beta$. Iterating operator moves points closer $->$ convergence to unique fixed point.
 ]
 // END lecture addition G5
@@ -316,9 +313,10 @@ function space; assumptions matter.
 
 // BEGIN lecture addition G3
 #lecture-addition("Economic Interpretation of VFI", source: "00:56:48, 00:58:31")[
-  - *Initial guess* $bold(v)^(0) = 0$: One-period model (no future utility). Agent consumes all output today.
-  - *First iteration* $T bold(v)^(0)$: Two-period model. Optimize today/tomorrow, world ends after tomorrow.
-  - *Convergence*: Each iteration extends horizon by 1 period. $n -> infinity$ $->$ infinite-horizon value function.
+  - $v^(0) = 0$ is a zero terminal payoff.
+  - $T v^(0)$ solves a one-period problem: consume all current resources.
+  - $T^2 v^(0)$ solves a two-period problem. Each application of $T$ adds
+    one period; $T^n 0$ is the $n$-period value with zero terminal utility.
 ]
 // END lecture addition G3
 
@@ -399,7 +397,7 @@ This controls iteration error; grid approximation error remains.
 
 // BEGIN lecture addition G7
 #lecture-addition("Convergence in General Equilibrium", source: "01:14:16, 01:15:18")[
-  - CMT guarantees convergence for individual decision problems (value functions).
+  - Under its assumptions, CMT guarantees convergence of individual value functions.
   - Heterogeneous GE: convergence of *distribution* of states (assets, income, human capital) required.
   - Distribution = higher-dimensional object; may have multiple fixed points $->$ more complex than single-agent VFI.
 ]
@@ -410,7 +408,9 @@ This controls iteration error; grid approximation error remains.
 #lecture-addition("Curse of Dimensionality", source: "01:15:51, 01:16:53")[
   - Grid-based VFI suffers from *curse of dimensionality*: $n$ state variables $->$ $M^n$ grid points (exponential growth).
   - Large $n$ (e.g., 50) $->$ computationally intractable.
-  - *Frontier approaches*: Sparse grids; mean field games [ASR uncertain: Ben Moll]; heuristic trust in convergence when rigorous proofs unavailable.
+  - Sparse grids reduce the number of nodes. Mean field methods couple
+    individual decisions with distribution dynamics; equilibrium convergence
+    still requires its own argument.
 ]
 // END lecture addition G8
 
@@ -698,6 +698,18 @@ $
 $
 Sectoral capital can decline only through depreciation.
 
+*State:* $(k_c, k_i)$. Two economies with the same total capital but
+opposite sectoral splits face different current production possibilities
+and different bounds on tomorrow's stocks. Total capital alone is insufficient.
+Current labor and investment allocations are controls.
+
+The Bellman equation is
+$
+  v(k_c, k_i) = max_(c, n_c, n_i, x_c, x_i)
+  {u(c) + beta v((1 - delta) k_c + x_c, (1 - delta) k_i + x_i)},
+$
+subject to the feasibility constraints above.
+
 // BEGIN lecture addition G14
 #lecture-addition("Why the aggregate equation is insufficient", source: "00:32:20 - 00:34:45")[
   The state is $(k_c, k_i)$. Adding the accumulation equations leaves the
@@ -767,7 +779,7 @@ $z'$ is independent of $z$, so the transition of $x'$ requires only $k'$.
 $V(k)$ is the value _before $z$ is observed._ Choices $c(z)$ and $k'(z)$
 may _depend on its realization:_
 
-*Chocies.* _For a fixed $(k,z)$ or $x$, Options 1 and 2 maximize over scalar choices
+*Choices.* _For a fixed $(k, z)$ or $x$, Options 1 and 2 maximize over scalar choices
 $c,k'$. Their policy functions are $c(k,z),k'(k,z)$ or $c(x),k'(x)$;
 state arguments are implicit. Option 3 maximizes over functions
 $c(z),k'(z)$ for every possible $z$._
@@ -818,9 +830,11 @@ A competitive equilibrium consists of:
 - A _price system_: prices in every market.
 
 Two conditions:
-- *Optimization*: Households maximize utility and firms maximize profits, taking prices as given.
-- *Feasibility*: The allocation is feasible: total use of each good does not exceed
-  production plus endowments.
+- *Optimization*: households maximize utility within their budgets; firms
+  maximize profits. Both take prices as given. Household wealth includes
+  endowments and ownership shares of firm profits.
+- *Market clearing*: demand equals endowments plus net production for every
+  good. With free disposal, excess supply is permitted only at a zero price.
 
 // BEGIN lecture addition G18
 #lecture-addition("Trading dates and events", source: "01:02:26 - 01:03:56")[
@@ -966,7 +980,8 @@ $
   max_({c_t, k_(t+1)}_(t=0)^infinity)
   sum_(t=0)^infinity beta^t u(c_t),
 $
-subject to $n_t = 1$, $c_t >= 0$, given $k_0$, and a single present-value budget:
+subject to $n_t = 1$, $c_t >= 0$, $k_(t+1) >= 0$, given $k_0$,
+and a single present-value budget:
 $
   sum_(t=0)^infinity p_t (c_t + k_(t+1))
   = sum_(t=0)^infinity p_t [(1 + r_t) k_t + w_t n_t].
@@ -993,7 +1008,7 @@ $
 #definition("No arbitrage in capital")[
   In this deterministic Arrow-Debreu economy, one unit of $k_(t+1)$ costs
   $p_t$ at date 0 and pays $p_(t+1) (1 + r_(t+1))$ in date-0 goods.
-  No arbitrage in capital requires
+  At positive capital holdings, no arbitrage requires
   $
     p_t - p_(t+1) (1 + r_(t+1)) & = 0, \
              frac(p_t, p_(t+1)) & = 1 + r_(t+1).
@@ -1290,7 +1305,7 @@ incentives unchanged.
   those resources come from.
 ]
 
-= Lecture 4 Oct 6
+= Lecture 3 Oct 6
 
 == Fundamental models of economic growth
 
@@ -1510,7 +1525,7 @@ person back toward $(1 + g) / s$.
   long-run income per person constant.
 ]
 
-- Explains the world until 1800s
+The model captures long preindustrial periods of stagnant income per person.
 
 === Malthus versus Solow
 
@@ -1636,6 +1651,9 @@ $
     "entry threshold"
   ).
 $
+If $A_(S,0) = 1$, then $A_(S,t) = gamma_S^t$; the slide's factor
+$1/gamma_S^t$ is therefore $1/A_(S,t)$.
+
 Once entry occurs, factor prices adjust. If both sectors operate,
 their marginal products of capital and labor must coincide:
 $
@@ -1697,8 +1715,8 @@ arbitrarily large, so allocating a small amount to this sector remains worthwhil
   a constant gross return $R$, $beta R = 1$ and quadratic utility
   $u'(c) = a - b c$, with $b > 0$. The Euler equation gives
   $
-    u'(c_t) & = beta R E_t [u'(c_(t+1))], \
-    a - b c_t & = a - b E_t [c_(t+1)], \
+                u'(c_t) & = beta R E_t [u'(c_(t+1))], \
+              a - b c_t & = a - b E_t [c_(t+1)], \
     E_t [c_(t+1) - c_t] & = 0.
   $
   Quadratic utility gives certainty equivalence. Precautionary saving can
@@ -1923,7 +1941,10 @@ $
 
 Assume finite dynastic utility. The continuation weight varies with $n$.
 
-#lecture-addition("The continuation value belongs to the child", source: "2026-10-12, 01:06:07 - 01:08:09; 01:11:08 - 01:11:59")[
+#lecture-addition(
+  "The continuation value belongs to the child",
+  source: "2026-10-12, 01:06:07 - 01:08:09; 01:11:08 - 01:11:59",
+)[
   $V(H')$ is the child's adult utility, including that child's concern for the
   next generation. Parents care about their children's actual welfare.
   If $H'$ differs from parental human capital, the child can choose different
@@ -2071,8 +2092,9 @@ $
 
 - High fertility raises the left side and lowers the right side. Suitable
   $v$, $f$ and preference parameters support the no-investment corner.
-- The strict inequality persists after small increases in $H$. Parents still
-  choose $H' = 0$, returning to stagnation in one generation.
+- When the zero-investment policy is strictly optimal and remains so near
+  $H = 0$, small increases in $H$ lead back to $H' = 0$ in one generation.
+  The Euler inequality alone is a local condition, not a global optimality proof.
 - Consumption per adult stays constant. Under the model's one-adult household
   convention, $N_(t+1) = n_M N_t$; population grows if $n_M > 1$.
 
@@ -2181,7 +2203,12 @@ keeps rising. The smooth threshold crossing is schematic: a nonconcave problem
 can have a policy jump or a kink in $V$. FOCs alone do not establish the global
 optimum.
 
-=== Assessment
+
+
+
+= Lecture 5 Oct 13
+
+== Becker, Murphy and Tamura: assessment
 
 - Cheap parental time favors many children. Costly time and productive teaching
   favor more investment per child.
@@ -2196,4 +2223,1105 @@ optimum.
 - The dynastic-altruism framework remains widely used to model fertility
   in macroeconomics.
 
+== Unified growth theory: Galor and Weil (2000)
+
+_Population, Technology, and Growth: From Malthusian Stagnation to the
+Demographic Transition and Beyond_ @galor2000population.
+Lecture 5, slides 29 to 33.
+
+Population growth speeds up technological progress. Faster technological
+change raises the return to education, shifting parents toward fewer,
+better-educated children. The transition to modern growth is *endogenous*.
+
+=== Households and child quality
+
+People live for two periods: childhood, then adulthood. Each adult has one
+unit of time and chooses consumption $c_t$, fertility $n_t$, and education
+per child $e_(t+1) >= 0$.
+
+- $L_t$: adult population; land $X$ is fixed.
+- $A_t$: technology; $g_(t+1) = A_(t+1)/A_t - 1$ is technological progress
+  per generation.
+- $h_t$: human capital per adult; $w_t$: wage per efficiency unit of labor.
+  Potential income, before childcare, is $z_t = w_t h_t$.
+- Each child costs $tau^q > 0$ units of parental time; each unit of education
+  costs another $tau^e > 0$ units. Write $tau(e) = tau^q + tau^e e$.
+
+Preferences and the budget constraint are
+$
+                         u_t & = (1 - gamma) log c_t + gamma log(n_t h_(t+1)), \
+  c_t + z_t n_t tau(e_(t+1)) & = z_t, \
+                         c_t & >= tilde(c) > 0, quad 0 < gamma < 1.
+$
+
+Parents value the number and human capital of their children. Here $gamma$
+is the preference weight on children, and $tilde(c)$ is subsistence consumption.
+The lecture suppresses the child's future wage in utility: an individual
+parent takes it as given, so it does not affect the choices.
+
+// BEGIN recording additions 2026-10-13
+#lecture-addition("Child quality in preferences", source: "2026-10-13, 00:04:01 - 00:04:31")[
+  Becker, Murphy and Tamura value children's continuation utility. Galor and
+  Weil put $n_t h_(t+1)$ directly into parental utility. This reduced-form
+  specification avoids solving the children's dynastic problem.
+]
+
+#block(sticky: true)[
+  === Fertility and subsistence
+
+  If the subsistence constraint is slack, the fertility FOC gives
+]
+$
+  frac(gamma, n_t) & = frac((1 - gamma) z_t tau(e_(t+1)), c_t), \
+  n_t tau(e_(t+1)) & = gamma, \
+               c_t & = (1 - gamma) z_t.
+$
+
+This requires $z_t >= tilde(z) := tilde(c)/(1 - gamma)$.
+For $z_t > tilde(c)$, the full solution is
+$
+  n_t tau(e_(t+1)) = cases(
+    1 - frac(tilde(c), z_t) & "if" tilde(c) < z_t < tilde(z),
+    gamma & "if" z_t >= tilde(z),
+  ).
+$
+
+- Below $tilde(z)$, $c_t = tilde(c)$. Higher income frees time from work
+  and raises fertility, holding education fixed.
+- Above $tilde(z)$, the fraction of time spent on children is constant:
+  $n_t = gamma/(tau^q + tau^e e_(t+1))$. More income alone does not raise
+  fertility; more education lowers it.
+
+#lecture-addition("Population growth requires a parameter restriction", source: "2026-10-13, 00:12:29 - 00:13:49")[
+  At zero education, unconstrained fertility is
+  $
+    n_t^("unconstrained") = frac(gamma, tau^q).
+  $
+  Population growth in this regime requires $gamma/tau^q > 1$.
+  A ratio below one gives declining population even when subsistence is slack.
+  The income-fertility feedback comes from *binding subsistence*; unconstrained
+  fertility is constant at fixed education.
+]
+
+=== Education and technological change
+
+Children's human capital is
+$
+  h_(t+1) = h(e_(t+1), g_(t+1)), quad h > 0, \
+  h_e > 0, quad h_(e e) < 0, quad h_g < 0, quad h_(e g) > 0.
+$
+
+Education raises human capital with diminishing returns. Technological
+change makes existing skills less useful; education reduces this loss.
+The paper assumes the productivity gain still raises potential earnings.
+
+After substituting optimal fertility, the education choice in either income
+regime is
+$
+  e_(t+1) in arg max_(e >= 0)
+  frac(h(e, g_(t+1)), tau^q + tau^e e).
+$
+
+For positive education, the marginal gain in child quality equals the
+proportional increase in the time cost per child:
+$
+  frac(h_(e)(e, g), h(e, g)) = frac(tau^e, tau^q + tau^e e).
+$
+At $e = 0$, the left side is no larger than the right side.
+
+#block(sticky: true)[
+  Define $F(e, g) = tau(e) h_(e)(e, g) - tau^e h(e, g)$. At an interior optimum,
+]
+$
+            F(e, g) & = 0, \
+                F_e & = tau(e) h_(e e) < 0, \
+                F_g & = tau(e) h_(e g) - tau^e h_g > 0, \
+  frac(d e(g), d g) & = -frac(F_g, F_e) > 0.
+$
+
+The model assumes a threshold $hat(g)$ satisfying $F(0, hat(g)) = 0$:
+$
+  e_(t+1) & = e(g_(t+1)), \
+     e(g) & = 0, quad "if" g <= hat(g), \
+     e(g) & > 0, quad e'(g) > 0, quad "if" g > hat(g).
+$
+
+Slow technological change gives an *education corner*. Faster change makes
+education worth its time cost, even though preferences stay fixed.
+
+=== Technology and population dynamics
+
+Technological progress depends on the education of the current adults and
+the size of the population:
+$
+  g_(t+1) & = g(e_t, L_t), \
+  A_(t+1) & = (1 + g_(t+1)) A_t, \
+  e_(t+1) & = e(g_(t+1)), \
+  h_(t+1) & = h(e_(t+1), g_(t+1)), \
+  L_(t+1) & = n_t L_t.
+$
+
+The technology function is increasing in both arguments: educated adults
+generate more ideas, and a larger population means more potential inventors.
+$n_t = 1$ means replacement fertility under this population normalization.
+Each $t$ is a generation, not a year.
+
+Parents take $z_t$ and $g_(t+1)$ as given when choosing $n_t$ and $e_(t+1)$.
+Their children's education affects technological progress in $t + 2$.
+Fixed land holds down income per adult as population expands, unless
+technology and human capital grow fast enough to offset it.
+
+#lecture-addition("The population relevant for scale effects", source: "2026-10-13, 00:06:30 - 00:07:12; 00:22:37 - 00:23:43")[
+  The relevant population is the network exchanging ideas. Small countries
+  can use knowledge from abroad, so national population need not predict
+  national technological progress. Kremer's historical comparisons concern
+  connected and isolated populations. In a small isolated group, a skill
+  can disappear when its few practitioners die.
+]
+
+=== From stagnation to modern growth
+
+Conditional on a fixed $L$, the education-technology intersections satisfy
+$
+  e^* = e(g^*), quad g^* = g(e^*, L).
+$
+These are *conditional steady states* for $(e, g)$; technology levels and
+population need not be constant along the full transition.
+
++ *Malthusian regime.* Small $L$ gives slow technological progress and
+  $e = 0$, the unique stable conditional steady state. Technology gains
+  mostly raise population; income per adult remains near subsistence.
+  Population growth gradually raises $g(0, L)$.
++ *Post-Malthusian regime.* Larger $L$ accelerates technological progress.
+  The diagram has multiple conditional steady states; the economy initially
+  remains near the low-education one. Income per adult starts rising, but
+  population growth still absorbs part of the output gain. While subsistence
+  binds, higher income also raises the time available for children.
++ *Modern growth regime.* Once $g(0, L) > hat(g)$, zero education cannot
+  remain optimal. Education and technological progress reinforce each other.
+  Education per child rises, fertility falls, and income per adult grows
+  persistently.
+
+Rising population shifts the technology locus to the right in the lecture's
+$(g, e)$ diagram. The low-education steady state eventually disappears.
+
+=== Assessment
+
+- Rising returns to education drive the demographic transition. Above
+  subsistence, income alone leaves fertility unchanged at fixed education.
+- The transition can occur without a large outside shock to human capital.
+  It relies on the assumed population scale effect in technological progress.
+- Technological progress is a reduced-form function of education and
+  population. Structural change and institutions are outside these equations;
+  the model is difficult to quantify against historical data.
+
+#lecture-addition("Structural change and the demand for literacy", source: "2026-10-13, 00:15:31 - 00:16:25")[
+  On a family farm, practical knowledge can pass directly from parents to
+  children. Large organizations require bookkeeping, accounting and written
+  instructions. Even a delivery driver needs to read addresses and
+  instructions. Changing production organization can therefore raise the
+  return to literacy and formal schooling.
+]
+
+
+== Dynamics of education and technology
+
+Hold $L$ fixed within each panel:
+- Blue solid curve: parents' education choice, $e = e(g)$.
+- Orange dashed curve: technological progress, $g = g(e, L)$.
+- Filled points are locally stable; hollow points are unstable.
+
+An intersection is a conditional steady state. Education evolves according to
+$
+  e_(t+1) = e(g(e_t, L)).
+$
+At a positive-education intersection, the response to a small change in $e_t$ is
+$
+  frac(d e_(t+1), d e_t) = e'(g^*) g_(e)(e^*, L).
+$
+The steady state is locally stable if this response is below one, unstable if
+it exceeds one. A larger population shifts the technology locus right;
+the education-choice curve stays fixed.
+
+=== Malthusian regime
+
+#block(width: 100%, sticky: true)[
+  #set align(center)
+  #figure(
+    image("figures/gw_malthusian.svg", width: 80%),
+    caption: [Malthusian regime.],
+  )<fig:gw-malthusian>
+]
+#figure-note[
+  Redrawn schematic based on Lecture 5, slide 32, first overlay.
+  $g_0 = g(0, L) < hat(g)$; education is zero.
+  The technology locus is adjusted to give the unique intersection described
+  in the slide's text. The curves are illustrative, not calibrated.
+]
+
+- Small population gives slow technological progress. The only conditional
+  steady state is $(g_0, 0)$; small education increases die out.
+- Technology can still raise population while education stays zero.
+  As $L$ grows, the technology locus moves right.
+
+=== Post-Malthusian regime
+
+#block(width: 100%, sticky: true)[
+  #set align(center)
+  #figure(
+    image("figures/gw_post_malthusian.svg", width: 80%),
+    caption: [Post-Malthusian regime.],
+  )<fig:gw-post-malthusian>
+]
+#figure-note[
+  Redrawn schematic based on Lecture 5, slide 32, second overlay.
+  $(g_u, e_u)$ is unstable; $(g_h, e_h)$ is the stable high-education state.
+  The curves are illustrative, not calibrated.
+]
+
+- Three intersections: the zero-education and high-education states are
+  stable; the middle state is unstable.
+- At fixed $L$, $e_u$ separates the two basins of attraction. Below it,
+  education returns to zero; above it, education approaches $e_h$.
+- The economy can remain near the low state while population expands and
+  technology accelerates. The threshold itself moves as $L$ changes.
+
+=== Modern growth regime
+
+#block(width: 100%, sticky: true)[
+  #set align(center)
+  #figure(
+    image("figures/gw_modern.svg", width: 80%),
+    caption: [Modern growth regime.],
+  )<fig:gw-modern>
+]
+#figure-note[
+  Redrawn schematic based on Lecture 5, slide 32, third overlay.
+  The only intersection is $(g^*, e^*)$, with positive education.
+  The curves are illustrative, not calibrated.
+]
+
+- With $g(0, L) > hat(g)$, zero education is no longer optimal. The low
+  conditional steady state disappears; education moves toward $e^* > 0$.
+- Faster technological change raises education; educated adults generate
+  faster technological progress. Once subsistence is slack,
+  $n_t = gamma/(tau^q + tau^e e_(t+1))$: more education lowers fertility.
+- The population need not shrink when fertility falls. Income per adult
+  grows as technology and human capital outpace the pressure on fixed land.
+
+
+== The transition: other contributions
+
+Lecture 5, slide 34.
+
+- @kremer1993population: _more people generate more
+  nonrival ideas; better technology supports a larger population under the
+  Malthusian land constraint. The model predicts population growth increasing
+  with population size over much of history. Historical population data and
+  comparisons of technologically isolated societies support this scale effect._
+
+- @jones2001industrial: _combines idea production,
+  endogenous fertility and mortality, and fixed land. Under suitable returns
+  to accumulable factors, population and ideas can generate a takeoff followed
+  by a demographic transition. In the quantitative model, stronger rewards to
+  inventors, interpreted as improvements in innovation-promoting institutions,
+  substantially advance the takeoff. Its timing depends on these incentives._
+
+- @galor2002selection: _preferences for child quality
+  differ across heritable types. In the Malthusian regime, quality-oriented
+  families can earn more and afford more children, giving their
+  type an evolutionary advantage. Their growing population share raises
+  investment in human capital and technological progress. The distribution
+  of preferences therefore evolves within the model._
+
+- @greenwood2002demographic: _a quantitative model of
+  the U.S. demographic transition with agriculture and manufacturing.
+  Productivity growth raises wages and the time cost of children. As
+  agriculture contracts, parents increasingly educate children for skilled
+  manufacturing work. Costly education favors fewer children; movement from
+  high-fertility rural households to lower-fertility urban households also
+  reduces aggregate fertility._
+
+- @doepke2004fertility: _a quantitative transition model
+  linking structural change, fertility, education, and child labor. Restricting
+  child labor removes children's potential earnings, raising the net cost of
+  having many children. In the calibrated model, child labor restrictions have
+  much larger effects on fertility decline than education subsidies. Policies
+  also affect the evolving income distribution._
+
+- @galor2008trading: _trade changes the returns to child
+  quantity and quality through specialization. Industrial economies specialize
+  in goods intensive in human capital, encouraging education and lower
+  fertility. Agricultural exporters face weaker incentives to educate and
+  can have a delayed fertility transition. Trade can widen income and
+  population-growth differences across countries._
+
+
+== The transition: recent research
+
+Lecture 5, slide 35.
+
+=== Human capital and the Industrial Revolution
+
+- @squicciarini2015human: _distinguishes average literacy
+  from upper-tail knowledge. Subscriptions to the eighteenth-century
+  Encyclopédie proxy the presence of knowledge elites in French cities.
+  Subscriber density predicts growth after industrialization begins. Initial
+  literacy is associated with development levels, but does not predict growth.
+  The mechanism is higher productivity in innovative industrial technology._
+
+- @delacroix2018clans: _emphasizes tacit knowledge
+  passed from master to apprentice. Institutions determine who can learn
+  from whom. Their model shows how guilds, journeymanship, and apprenticeship
+  markets spread skills beyond closed family or clan networks, helping explain
+  Europe's preindustrial technological advantage._
+
+- @kelly2023mechanics: _studies English counties between
+  the 1760s and 1830s. High initial mechanical skills and low wages predict
+  industrialization. Literacy, banks, and proximity to coal have little
+  explanatory power in their regressions._
+
+=== Unified growth and cross-country evidence
+
+@cervellati2023empirics
+
+#emph[
+  The model combines endogenous physical capital, human capital, population,
+  and technology. Physical and human
+  capital are complementary; technology diffuses internationally. A quantitative
+  multi-country version matches several patterns of long-run growth and
+  comparative development within the same model.
+
+  Growth accelerates around the demographic transition and can temporarily
+  exceed its eventual BGP rate as factors accumulate. The model also reproduces
+  patterns in cross-country growth regressions using simulated panel data.
+  Different transition dates help explain differences in income and growth
+  across countries.
+]
+
+=== Demographic transitions across time and space
+
+@delventhal2024demographic
+
+#emph[
+  The study covers birth and death rates for *186 countries over more than
+  250 years* (CEMFI Working Paper 2402).
+  The transition from high fertility and mortality to low fertility and
+  mortality is completed or underway in nearly every country.
+
+  - Later demographic transitions are faster.
+  - Having more neighbors that have started the transition is associated with
+    a higher probability of starting one's own transition.
+
+  Their quantitative model combines parents' quantity-quality choices with
+  the geographic diffusion of production and medical technologies from Great
+  Britain. It matches the differing transition dates, increasing transition
+  speeds, and the association between faster fertility decline and rising
+  schooling.
+]
+
+#lecture-addition("What explains recent fertility declines?", source: "2026-10-13, 00:16:59 - 00:19:18")[
+  - Rising schooling and declining child labor increase the cost of children
+    relative to their earnings contribution.
+  - Mothers' labor-force participation can raise the time cost of children.
+    The lecture noted rapid fertility decline in several countries without
+    the large participation increase seen during the Western transition.
+  - Exposure to different family norms through modern media was suggested
+    as a possible additional mechanism. This was an open hypothesis.
+]
+
+== From Solow to Lucas
+
+Structural change and endogenous population growth can account for the
+transition from Malthusian stagnation to Solow-style growth. We still need
+to explain large, persistent differences in income per worker across countries.
+Lecture 5, slides 36 to 37.
+
+=== Predictions of the capital-only model
+
+The lecture keeps Cobb-Douglas production as the benchmark:
+$
+                Y & = A K^alpha N^(1 - alpha), quad 0 < alpha < 1, \
+  y := frac(Y, N) & = A (frac(K, N))^alpha, \
+            "MPK" & = frac(partial Y, partial K)
+                    = alpha A (frac(K, N))^(alpha - 1).
+$
+Here $A$ is *total factor productivity*. The labor-augmenting $A_t$ in the
+earlier Solow section would enter this expression as $A_t^(1 - alpha)$.
+Competitive factor income shares are $alpha$ and $1 - alpha$.
+
++ *Conditional convergence.* With the same productivity path, saving rate,
+  population growth, and depreciation, countries below the common BGP grow
+  faster through capital accumulation. Different fundamentals can instead
+  imply different BGP targets. Controlling only for population growth does
+  not establish a common target.
++ *Capital returns.* At a given $A$ and labor quality, lower $K/N$ raises
+  MPK because $alpha - 1 < 0$. Explaining poverty entirely by low physical
+  capital therefore predicts high capital returns in poor countries.
+
+The lecture's puzzles are slow catch-up and persistent income gaps, together
+with the absence of the very large return differences implied by capital
+scarcity alone. Allowing different $A$ can fit income differences, but leaves
+their source unexplained.
+
+#lecture-addition("The capital-flow puzzle", source: "2026-10-13, 00:29:55 - 00:30:24")[
+  If countries differ only in physical capital, high MPK should draw capital
+  toward poor countries. The lecture contrasts this prediction with capital
+  flows concentrated within and between rich countries. Explaining income
+  gaps by physical-capital scarcity alone also has to explain these flows.
+]
+
+=== What can explain the income gaps?
+
+- *Human capital:* workers differ in skills and productive knowledge,
+  accumulated through education and learning. Omitting these inputs puts
+  their contribution into measured TFP.
+- *Endogenous productivity:* incentives to create and adopt ideas determine
+  technological progress. R&D-based models are the next lecture's topic.
+- *Misallocation:* frictions prevent labor and capital from reaching their
+  most productive uses, reducing aggregate output for given resources.
+
+_Human capital is an input that can be accumulated_ @lucas1988mechanics.
+_With productive human capital $h$ per worker,_
+$
+      Y & = A K^alpha (h N)^(1 - alpha), \
+  "MPK" & = alpha A (frac(K, h N))^(alpha - 1).
+$
+_The relevant scarcity is now $K/(h N)$. At a common $A$, increasing $K/N$
+and $h$ by the same proportion raises income per worker by that proportion
+while leaving MPK unchanged._
+
+
 // END recording additions 2026-10-12
+
+== Main idea of Lucas (1988)
+
+_On the Mechanics of Economic Development_ @lucas1988mechanics.
+Lecture 5, slides 38 to 40 use a simplified discrete-time planner problem
+without human-capital externalities.
+
+Human capital is a factor that can be accumulated. The worker divides
+productive capacity between making goods and learning. Both technology
+parameters, $A$ and $B$, are constant.
+
+=== States, choices, and resources
+
+- States: physical capital $k > 0$ and human capital $h > 0$.
+  Population is fixed and normalized to one.
+- Choices: consumption $c > 0$, next-period physical capital $k' >= 0$,
+  and human-capital allocations $h_1, h_2 >= 0$.
+- $h_1$ is used in goods production; $h_2$ is used in learning.
+  They satisfy $h_1 + h_2 = h$.
+- Next-period human capital is $h' = B h_2$, where $B > 0$ is learning
+  productivity. This is the whole human-capital transition in this specification.
+
+Preferences are CRRA:
+$
+  u(c) = cases(
+    frac(c^(1 - sigma), 1 - sigma) & "if" sigma != 1,
+    log c & "if" sigma = 1,
+  ), quad sigma > 0.
+$
+Assume $0 < beta < 1$, $0 < alpha < 1$, $A > 0$, and $0 <= delta <= 1$.
+Here $sigma$ is relative risk aversion.
+
+=== Bellman equation
+
+#block(sticky: true)[The social planner solves]
+$
+  v(k, h) = max_(c, k', h_1, h_2)
+  {u(c) + beta v(k', B h_2)}
+$
+#block(sticky: true)[subject to]
+$
+  c + k' & <= (1 - delta) k + A k^alpha h_1^(1 - alpha), \
+      h' & = B h_2, \
+       h & = h_1 + h_2, \
+       c & > 0, quad k', h_1, h_2 >= 0.
+$
+The goods constraint binds because utility is increasing in consumption.
+More $h_1$ raises current output; more $h_2$ raises next period's productive
+capacity.
+
+#lecture-addition("Why exact linearity matters", source: "2026-10-13, 00:35:45 - 00:37:24")[
+  Learning mainly uses learners' and teachers' time. In the EC442 example,
+  forgone earnings are the main cost; classroom equipment is secondary.
+
+  To see the role of *linearity*, hold the learning share $s = h_2/h$ fixed
+  and compare a diminishing-returns technology:
+  $
+    h' & = B h_2^eta, quad 0 < eta < 1, \
+    frac(h', h) & = B s^eta h^(eta - 1).
+  $
+  This growth factor falls as $h$ rises. The linear case $eta = 1$ preserves
+  a constant return and permits sustained growth from human-capital accumulation.
+]
+
+=== Optimality conditions
+
+Write goods production and its marginal products as
+$
+        f(k, h_1) & = A k^alpha h_1^(1 - alpha), \
+    f_(k)(k, h_1) & = alpha A (frac(h_1, k))^(1 - alpha), \
+  f_(h_1)(k, h_1) & = (1 - alpha) A (frac(k, h_1))^alpha.
+$
+
+Eliminating $h_2$ gives $h_1 = h - h'/B$. At an interior optimum, the FOCs
+for $k'$ and $h'$ are
+$
+                  u'(c) & = beta v_(k)(k', h'), \
+  u'(c) f_(h_1)(k, h_1) & = beta B v_(h)(k', h').
+$
+The second condition equates the output lost by shifting human capital into
+learning with the discounted value of the human capital it creates.
+
+The envelope conditions are
+$
+  v_(k)(k, h) & = u'(c) [1 - delta + f_(k)(k, h_1)], \
+  v_(h)(k, h) & = u'(c) f_(h_1)(k, h_1).
+$
+
+Substitute next period's envelope conditions into the FOCs and use
+$u'(c) = c^(-sigma)$:
+$
+  (frac(c', c))^sigma & = beta [1 - delta
+                          + alpha A (frac(h'_1, k'))^(1 - alpha)], \
+  (frac(c', c))^sigma & = beta B
+                        (frac(k', h'_1))^alpha (frac(h_1, k))^alpha.
+$
+Here $c'$ and $h'_1$ are next period's consumption and production allocation.
+The first equation governs physical investment; the second governs learning.
+The learning return includes the change in human capital's marginal product.
+
+#block(sticky: true)[
+  === Balanced growth path
+
+  On a BGP, allocation shares and capital ratios are constant:
+]
+$
+  gamma = frac(c', c) = frac(k', k) = frac(h', h) = frac(h'_1, h_1).
+$
+Here $gamma$ is the *gross growth factor*; net growth is $gamma - 1$.
+In the learning Euler equation, the two capital-ratio terms cancel:
+$
+  gamma^sigma & = beta B gamma^alpha gamma^(-alpha) = beta B, \
+        gamma & = (beta B)^(1/sigma).
+$
+Sustained positive growth requires $beta B > 1$.
+
+Let $r^K = f_(k)(k, h_1)$ be the capital rental rate, written as $r$ on
+slide 40. The physical-capital Euler equation implies
+$
+      gamma^sigma & = beta (1 - delta + r^K), \
+              r^K & = B - 1 + delta, \
+  1 - delta + r^K & = B.
+$
+The gross return to holding physical capital equals $B$; its net return is
+$r^K - delta = B - 1$. The rental rate itself includes depreciation compensation.
+
+Human-capital accumulation fixes the allocation shares:
+$
+  frac(h_2, h) & = frac(gamma, B), \
+  frac(h_1, h) & = 1 - frac(gamma, B).
+$
+An interior growing BGP requires $gamma < B$, leaving human capital for goods
+production. For $sigma != 1$, this is also the finite-utility condition along
+the BGP:
+$
+  beta gamma^(1 - sigma) = frac(gamma, B) < 1.
+$
+With log utility, $gamma = beta B$ and $h_2/h = beta$.
+
+The constant physical-to-productive-human-capital ratio satisfies
+$
+  frac(k, h_1) & = (frac(alpha A, B - 1 + delta))^(1/(1 - alpha)), \
+    frac(k, h) & = (1 - frac(gamma, B))
+                 (frac(alpha A, B - 1 + delta))^(1/(1 - alpha)).
+$
+These ratios require $B - 1 + delta > 0$, which holds on a growing BGP.
+
+=== Growth and income differences
+
+- Growth is *endogenous*: $k$ and $h$ accumulate while $A$ and $B$ stay fixed.
+  The growth factor depends on learning productivity, patience, and preferences.
+- Along the BGP, higher $A$ changes capital ratios and income levels, but
+  drops out of $gamma = (beta B)^(1/sigma)$.
+- With common parameters, countries can have different income levels on
+  parallel BGPs. Proportional differences in $k$ and $h$ leave $k/h$, $gamma$,
+  and $r^K$ unchanged.
+- For a given human-capital path, a low initial $k/h$ creates transitional
+  capital deepening, as in Solow. Persistent human-capital gaps can instead
+  sustain different income levels.
+
+#lecture-addition("Postwar catch-up", source: "2026-10-13, 00:42:06 - 00:43:15")[
+  Germany and Japan in 1946 illustrate physical-capital destruction with
+  much of the workforce's knowledge intact. A low $k/h$ then predicts
+  rebuilding and catch-up, conditional on the human-capital path.
+  Countries with persistent skill gaps can instead remain on parallel BGPs.
+]
+
+
+== How much does human capital explain? Development accounting
+
+*Development accounting* decomposes cross-country differences in real GDP
+per worker into inputs and productivity. Lecture 5, slide 42.
+
+=== Output per worker
+
+For country $i$, let $N_i$ be the number of workers and $h_i$ human capital
+per worker. Write Hicks-neutral TFP as $T_i$, previously denoted by $A$,
+and use a common capital share $0 < alpha < 1$:
+$
+                    Y_i & = T_i K_i^alpha (h_i N_i)^(1 - alpha), \
+  y_i := frac(Y_i, N_i) & = T_i (frac(K_i, N_i))^alpha h_i^(1 - alpha).
+$
+Substitute $K_i/N_i = (K_i/Y_i) y_i$ and solve for $y_i$:
+$
+  y_i^(1 - alpha) & = T_i (frac(K_i, Y_i))^alpha h_i^(1 - alpha), \
+              y_i & = underbrace((frac(K_i, Y_i))^(alpha/(1 - alpha)), "capital intensity")
+                    quad underbrace(h_i, "human capital")
+                    quad underbrace(T_i^(1/(1 - alpha)), "productivity").
+$
+The slide calls $T_i^(1/(1 - alpha))$ simply $A_i$. Define
+$
+  x_(K,i) := (frac(K_i, Y_i))^(alpha/(1 - alpha)), quad
+  A_i := T_i^(1/(1 - alpha)).
+$
+Then $y_i = x_(K,i) h_i A_i$.
+
+- Measure $y_i$ and $K_i/Y_i$; construct $h_i$ from worker characteristics.
+- Back out productivity as the *residual*: $A_i = y_i/(x_(K,i) h_i)$.
+- At fixed $K_i/Y_i$ and $h_i$, higher $T_i$ raises output and capital per
+  worker. This decomposition assigns both effects to productivity.
+
+=== Each factor's contribution
+
+@klenow1997neoclassical: _assign each factor its covariance with log income,
+relative to the total variance of log income._
+
+Taking logs gives
+$
+  log y_i = log x_(K,i) + log h_i + log A_i.
+$
+For $x_i in {x_(K,i), h_i, A_i}$, define
+$
+  "share"_x := frac(
+    op("cov")(log x_i, log y_i),
+    op("var")(log y_i),
+  ).
+$
+Covary the log identity with $log y_i$:
+$
+                 op("var")(log y_i) & = op("cov")(log x_(K,i), log y_i)
+                                      + op("cov")(log h_i, log y_i) \
+                                    & quad + op("cov")(log A_i, log y_i), \
+  "share"_K + "share"_h + "share"_A & = 1.
+$
+The capital contribution uses $log x_(K,i) = alpha/(1 - alpha) log(K_i/Y_i)$,
+so it includes the production elasticity. These are *accounting shares*;
+they can be negative or exceed one and do not identify causal effects.
+
+=== Classic human-capital measure
+
+The lecture uses a schooling-based measure:
+$
+  h_i = exp(0.1 S_i), quad log h_i = 0.1 S_i,
+$
+where $S_i$ is average years of schooling. One extra year raises measured
+human capital by $exp(0.1) - 1 approx 10.5%$.
+
+- The coefficient $0.1$ comes from the log-wage return to schooling.
+  Interpreting wages as proportional to human capital links this return to $h_i$.
+- The same return is used across countries. School quality, experience,
+  and health are omitted from this measure.
+
+#lecture-addition("From wage returns to productive human capital", source: "2026-10-13, 00:46:29 - 00:46:52")[
+  The calculation assumes that schooling-related pay differences reflect
+  productivity. A wage return from signaling need not raise aggregate output.
+  Individual wage returns also need not remain unchanged when the supply
+  of educated workers increases.
+]
+
+@caselli2005accounting: _classic development accounting leaves large
+productivity differences after measuring physical capital and schooling-based
+human capital. The residual also absorbs omitted input quality and
+measurement error._
+
+
+== Development accounting revisited: Lagakos and Schoellman (2026)
+
+Lecture 5, slides 43 to 44.
+
+@lagakos2026accounting: _better measurement raises the contribution of
+inputs from about 30% under the classic specification to 55–70%, mainly
+through human capital. The paper is forthcoming in the JEL._
+
+=== The classic residual
+
+With schooling-only $h_i = exp(0.1 S_i)$, the capital-output specification
+still assigns about *70%* of cross-country income variation to $A_i$.
+The residual is much lower in poor countries than in the U.S.
+
+#block(width: 100%, sticky: true)[
+  #set align(center)
+  #figure(
+    image("figures/development_tfp.svg", width: 75%),
+    caption: [Productivity in the classic specification.],
+  )<fig:development-tfp>
+]
+#figure-note[
+  $A_i/A_("US")$: productivity residual, U.S. normalized to one;
+  $y_i$: real GDP per worker in thousands of PPP dollars. Both axes are
+  logarithmic. Vector crop from Lecture 5, slide 43, based on
+  @lagakos2026accounting; axis notation added.
+]
+
+Allow hours worked per worker, $ell_i$, to enter separately:
+$
+  y_i = x_(K,i) h_i ell_i A_i,
+  quad x_(K,i) = (frac(K_i, Y_i))^(alpha/(1 - alpha)).
+$
+The covariance contributions then satisfy
+$
+  "share"_("inputs") & = "share"_K + "share"_h + "share"_ell, \
+         "share"_A & = 1 - "share"_("inputs").
+$
+
+- *Hours:* about $-5%$. Poor-country workers work longer hours, so hours
+  offset part of the income gap; they do not account for low output per worker.
+- *Physical capital:* about $7%$ in this specification. Better measurement
+  changes this contribution little.
+- *Human capital:* about $58–66%$ across the approaches discussed. The
+  preferred overall input range is $55–70%$ across specifications and assumptions.
+
+=== More dimensions of human capital
+
+Schooling quantity alone misses school quality, experience and health.
+The lecture's quality adjustment is
+$
+  h_i^("school") = exp(0.1 S_i + 0.2 Q_i),
+$
+where $Q_i$ is a standardized test score, in standard-deviation units.
+At fixed $S_i$, one extra standard deviation raises this index by
+$exp(0.2) - 1 approx 22.1%$.
+
+#table(
+  columns: (2fr, 1fr),
+  inset: 6pt,
+  stroke: 0.4pt + luma(80%),
+  table.header([Human-capital measure], [Reported contribution]),
+  [Years of schooling], [23%],
+  [Schooling plus test-score quality], [37%],
+  [Experience alone], [15%],
+  [Health, proxied by height], [10%],
+  [Joint human-capital measure], [66%],
+)
+
+_These are the rounded figures in slide 44. The quality row already includes
+schooling. Component measures have different country coverage; the joint
+estimate is not the sum of these displayed rows._
+
+- Experience human capital reflects both years worked and what workers learn
+  on the job. Wage-experience profiles are steeper in richer countries.
+- Height proxies childhood nutrition and health, which affect adult productivity.
+- Test scores capture learning from schools and other environments; they are
+  not a measure of school inputs alone.
+
+#lecture-addition("Experience and demography", source: "2026-10-13, 00:50:38 - 00:51:10")[
+  Lower fertility and slower population growth produce an older workforce
+  with more years of experience. Cross-country experience gaps therefore
+  reflect demographic composition as well as differences in learning on the job.
+]
+
+#block(width: 100%, sticky: true)[
+  #set align(center)
+  #figure(
+    image("figures/development_human_capital.svg", width: 75%),
+    caption: [Human capital with broader measurement.],
+  )<fig:development-human-capital>
+]
+#figure-note[
+  $h_i$: constructed human-capital index per worker (efficiency units);
+  $y_i$: real GDP per worker in thousands of PPP dollars. Both axes are
+  logarithmic. Vector crop from Lecture 5, slide 44, based on
+  @lagakos2026accounting; axis notation added.
+]
+
+@manuelli2014human: _a structural human-capital model uses schooling and
+life-cycle earnings profiles to infer human-capital quantities and quality.
+It finds larger human-capital gaps and smaller TFP gaps than classic measures._
+
+For given $y_i$ and $x_(K,i)$, increasing measured $h_i ell_i$ lowers the
+inferred $A_i = y_i/(x_(K,i) h_i ell_i)$. This is a change in measurement
+and attribution; it does not mean a country's actual technology has changed.
+
+
+== Evidence from migrants
+
+#block(sticky: true)[Lecture 5, slide 45.]
+
+@hendricks2018human: _compare real, PPP-adjusted hourly wages of the same
+immigrants before and after moving to the U.S. The main data source is the
+New Immigrant Survey of new U.S. permanent residents._
+
+=== What changes when a worker moves?
+
+The migrant carries *human capital* $h_m$. The destination supplies its own
+capital intensity and productivity. In the benchmark, labor markets are
+competitive, workers are perfect substitutes, the capital share is common,
+and working hours and the migrant's human capital are held fixed.
+
+Let $q_i$ be the wage per unit of human capital in country $i$. From
+$y_i = x_(K,i) h_i A_i$,
+$
+  q_i & = (1 - alpha) x_(K,i) A_i, \
+  w_(m,i) & = q_i h_m.
+$
+The same person's human capital cancels from the wage ratio:
+$
+  G_i := frac(w_(m,"US"), w_(m,i))
+      = frac(q_("US"), q_i).
+$
+Thus *wage gains identify the country component*, combining capital intensity
+and productivity, under these assumptions.
+
+=== From wage gains to the human-capital contribution
+
+Define the income and human-capital gaps as
+$
+  D_i := frac(y_("US"), y_i), quad
+  H_i := frac(h_("US"), h_i).
+$
+With a common $alpha$,
+$
+  D_i & = G_i H_i, \
+  log D_i & = log G_i + log H_i, \
+  "share"_h^("migration") & = frac(log H_i, log D_i)
+                            = 1 - frac(log G_i, log D_i).
+$
+This is a *log-gap decomposition* relative to the U.S.; the previous section's
+covariance shares summarize variation across the whole country sample.
+
+For the poorest origin-country group in the lecture, $G_i = 3.2$ and
+$D_i = 31.8$:
+$
+  H_i & = frac(31.8, 3.2) approx 9.94, \
+  "share"_h^("migration") & = 1 - frac(log 3.2, log 31.8) approx 66%.
+$
+A threefold wage gain is large for the migrant, but small relative to the
+thirtyfold income gap. About two-thirds of this group's *log income gap*
+is attributed to human capital in the benchmark.
+
+#block(width: 100%, sticky: true)[
+  #set align(center)
+  #figure(
+    image("figures/migrant_wage_gains.svg", width: 75%),
+    caption: [Migrant wage gains and income gaps.],
+  )<fig:migrant-wage-gains>
+]
+#figure-note[
+  Origin-country bins use $y_i/y_("US")$. Bars show the income gap $D_i$,
+  wage gain $G_i$, and inferred human-capital gap $H_i = D_i/G_i$; all are
+  U.S.-to-origin multiples on a logarithmic vertical scale.
+  Cropped from Lecture 5, slide 45. Source: @lagakos2026accounting
+  (JEL, forthcoming), based on @hendricks2018human.
+]
+
+=== Selection and skill transfer
+
+- *Selection:* migrants need not represent their origin country's average
+  worker. Comparing the same person before and after migration cancels $h_m$
+  even when migrants are highly selected. Comparing only migrants' U.S. wages
+  across origins does not remove this selection.
+- *Skill transfer:* language barriers, unrecognized credentials, or occupational
+  downgrading can reduce effective $h_m$ after migration. Then $G_i$ understates
+  the country component and the formula overstates human capital's contribution.
+- *Different skill returns:* wage gains vary with education. Allowing imperfect
+  substitution across skill types gives a human-capital contribution between
+  one-half and two-thirds in the paper, with a benchmark estimate around 60%.
+  The lecture's 66% is the poorest-group calculation, not the full-sample estimate.
+
+
+== Skilled versus unskilled labor
+
+Lecture 5, slide 46.
+
+@rossi2022efficiency: _skilled workers are relatively scarce in poor countries,
+but their wage premium is not correspondingly higher. Matching quantities
+and wages requires large differences in relative skill efficiency; migrant
+evidence attributes most of these differences to skill-biased technology._
+
+=== CES labor input and the skill premium
+
+#block(sticky: true)[
+  For skill group $j in {u, s}$, let $N_(j,i)$ be workers and $h_(j,i)$ human
+  capital per worker. Effective labor is $L_(j,i) = N_(j,i) h_(j,i)$.
+  The labor aggregate is
+]
+$
+  L_i = (z_(u,i) L_(u,i)^((sigma - 1)/sigma)
+         + z_(s,i) L_(s,i)^((sigma - 1)/sigma))^(sigma/(sigma - 1)).
+$
+Here $z_(j,i) > 0$ are technology weights; $sigma$ is the *elasticity of
+substitution*, distinct from the CRRA parameter used earlier. The displayed
+formula uses $sigma > 1$; the lecture's benchmark is $sigma = 1.5$.
+A Cobb-Douglas limit at $sigma = 1$ requires normalized CES weights.
+
+With competitive factor pricing, the common marginal product of aggregate
+labor cancels from the wage ratio per efficiency unit:
+$
+  frac(w_(s,i)^e, w_(u,i)^e)
+  = frac(z_(s,i), z_(u,i)) (frac(L_(s,i), L_(u,i)))^(-1/sigma).
+$
+Observed pay per worker includes each group's human capital,
+$W_(j,i) = w_(j,i)^e h_(j,i)$. Thus the *skill premium* is
+$
+  omega_i := frac(W_(s,i), W_(u,i))
+  = frac(z_(s,i), z_(u,i))
+    (frac(h_(s,i), h_(u,i)))^((sigma - 1)/sigma)
+    (frac(N_(s,i), N_(u,i)))^(-1/sigma).
+$
+Define *relative skill efficiency*
+$
+  R_i := frac(z_(s,i), z_(u,i))
+         (frac(h_(s,i), h_(u,i)))^((sigma - 1)/sigma).
+$
+Solving the wage-premium equation gives
+$
+  R_i = omega_i (frac(N_(s,i), N_(u,i)))^(1/sigma).
+$
+If $omega_i$ varies little, greater relative skill supply in rich countries
+requires higher $R_i$. The lecture's calculation at $sigma = 1.5$ implies
+roughly a sixteenfold rich-poor difference.
+
+#block(width: 100%, sticky: true)[
+  #set align(center)
+  #figure(
+    image("figures/relative_skill_efficiency.svg", width: 75%),
+    caption: [Relative efficiency of skilled labor.],
+  )<fig:relative-skill-efficiency>
+]
+#figure-note[
+  $R_i/R_("US")$: relative skill efficiency, U.S. normalized to one;
+  $y_i$: real GDP per worker in thousands of PPP dollars. Both axes are
+  logarithmic. Calculations use $sigma = 1.5$. Vector crop from Lecture 5,
+  slide 46; source: @lagakos2026accounting and @rossi2022efficiency.
+]
+
+=== Technology versus human capital
+
+The observed premium and worker counts identify $R_i$, but cannot separately
+identify $z_(s,i)/z_(u,i)$ and $h_(s,i)/h_(u,i)$. Comparing foreign-educated
+workers in one destination holds destination technology fixed. Their returns
+to schooling provide additional information about human-capital quality,
+subject to selection and skill-transfer assumptions.
+
+*The CES labor aggregate combines skills and technology.* Its accounting
+contribution therefore includes skill bias. In the review's illustrative
+calculation, the contribution of $L_i/N_i$ depends strongly on $sigma$:
+
+#table(
+  columns: (1fr, 2fr),
+  inset: 6pt,
+  stroke: 0.4pt + luma(80%),
+  table.header([Elasticity $sigma$], [Accounting contribution of $L_i/N_i$]),
+  [1.2], [100.1%],
+  [1.5], [51.7%],
+  [2.0], [35.6%],
+)
+
+@lagakos2026accounting, Table 7: _the calculation normalizes unskilled
+technology and human capital to one and omits experience and health.
+The share above 100% is permitted by the covariance metric._
+
+== Human capital and the allocation of talent
+
+#block(sticky: true)[Lecture 5, slide 47.]
+
+@hsieh2019talent: _in 1960, 94% of U.S. doctors and lawyers were white men;
+by 2010, 62% were. A Roy model links changing occupational choices to declining
+barriers and estimates that better allocation accounts for 20–40% of growth
+in aggregate market output per person over 1960–2010._
+
+Individuals differ in their comparative advantage across occupations.
+Their choices also depend on group-specific forces:
+- Labor-market discrimination lowers pay relative to marginal product.
+- Barriers to acquiring human capital raise the cost of training for an occupation.
+- Preferences and social norms affect the utility of market and home occupations.
+
+The model assumes that relative distributions of innate talent across groups
+are stable over time. Human-capital barriers act through cohort investments;
+labor-market discrimination affects workers of different cohorts at a given date.
+Life-cycle wages and occupational shares help distinguish these forces.
+
+Lower barriers let more people enter occupations where their talents are
+productive and change incentives to acquire skills. Misallocation can therefore
+lower output even with substantial measured human capital, appearing in the
+TFP residual. The reported gains concern *market output*; welfare also depends
+on occupational preferences and home production.
+
+#lecture-addition("Firm-size barriers and misallocation", source: "2026-10-13, 00:57:57 - 00:59:13")[
+  Expanding a business may trigger taxes or compliance costs that can be
+  avoided by staying small. Productive firms then remain undersized, while
+  inputs stay in firms with lower marginal returns. Output falls for given
+  aggregate capital and skills, appearing as lower measured productivity.
+]
+
+== Human capital and ideas
+
+Lecture 5, slide 49.
+
+The lecture's simplified Lucas model has linear private human-capital
+accumulation. Learning from other people adds an aggregate object: the
+*distribution of knowledge*. Human capital is embodied in workers; an idea
+can be used by many workers simultaneously.
+
+- @lucasmoll2014knowledge: _people divide time between producing with their
+  current knowledge and meeting others to learn better ideas. The individual
+  state is productivity $z$; the aggregate state is its distribution $F_t$.
+  Search choices change knowledge diffusion and generate endogenous growth.
+  A planner also accounts for the external benefits of learning._
+- @lucas2015human: _learning is faster when people interact with more productive
+  people. The model connects individual earnings profiles to aggregate growth._
+- @delacroix2018clans: _apprenticeship institutions determine who learns from
+  whom. Knowledge spreads farther when training extends beyond family networks._
+
+#lecture-addition("Learning from different people", source: "2026-10-13, 01:08:49 - 01:12:23")[
+  Relatives trained by the same masters may hold similar knowledge.
+  Journeymanship exposes apprentices to different masters and ideas,
+  widening the opportunities to learn.
+
+  The modern example is a bank adopting AI by hiring workers who already
+  use it. Knowledge moves between firms with people. The lecture described
+  LinkedIn career histories as data for relating worker flows to technology
+  adoption; no causal identification strategy was discussed.
+]
+// END recording additions 2026-10-13
+
+=== From learning to innovation
+
+- @romer1990technological: _ideas are nonrival and partly excludable. Profit
+  incentives finance research; monopoly rights can reward innovation. The
+  resulting increasing returns require a departure from pure price taking._
+- @jones2022end: _in idea-based models, a persistently declining population can
+  eventually stop growth in living standards. The number of potential inventors
+  and the demographic response therefore matter for long-run growth._
+
+== Summary and outlook
+
+Lecture 5, slides 48 and 50.
+
+- The historical transition combines movement away from fixed-land production,
+  a demographic transition and faster productivity growth. Human-capital
+  investment links fertility choices to technological progress.
+- Modern measurement and migrant evidence assign roughly three-fifths of
+  cross-country income differences to human capital in the exercises discussed.
+  Schooling-only measures in @halljones1999output assigned about one-fifth.
+  These figures depend on the sample, production function and accounting metric.
+- Development accounting locates gaps in inputs and productivity. It does not
+  identify why countries accumulated different skills or which policy would
+  close the gaps. Skill-biased technology also complicates the boundary between
+  human capital and TFP.
+- Growth models give mechanisms for accumulation, learning and the transition.
+  Institutions shape investment and innovation incentives. The next lecture
+  turns to the creation of ideas and endogenous productivity growth.
