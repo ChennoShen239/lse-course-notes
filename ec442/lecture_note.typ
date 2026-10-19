@@ -2371,7 +2371,10 @@ Their children's education affects technological progress in $t + 2$.
 Fixed land holds down income per adult as population expands, unless
 technology and human capital grow fast enough to offset it.
 
-#lecture-addition("The population relevant for scale effects", source: "2026-10-13, 00:06:30 - 00:07:12; 00:22:37 - 00:23:43")[
+#lecture-addition(
+  "The population relevant for scale effects",
+  source: "2026-10-13, 00:06:30 - 00:07:12; 00:22:37 - 00:23:43",
+)[
   The relevant population is the network exchanging ideas. Small countries
   can use knowledge from abroad, so national population need not predict
   national technological progress. Kremer's historical comparisons concern
@@ -2750,7 +2753,7 @@ capacity.
   To see the role of *linearity*, hold the learning share $s = h_2/h$ fixed
   and compare a diminishing-returns technology:
   $
-    h' & = B h_2^eta, quad 0 < eta < 1, \
+             h' & = B h_2^eta, quad 0 < eta < 1, \
     frac(h', h) & = B s^eta h^(eta - 1).
   $
   This growth factor falls as $h$ rises. The linear case $eta = 1$ preserves
@@ -2984,7 +2987,7 @@ $
 The covariance contributions then satisfy
 $
   "share"_("inputs") & = "share"_K + "share"_h + "share"_ell, \
-         "share"_A & = 1 - "share"_("inputs").
+           "share"_A & = 1 - "share"_("inputs").
 $
 
 - *Hours:* about $-5%$. Poor-country workers work longer hours, so hours
@@ -3074,13 +3077,13 @@ and working hours and the migrant's human capital are held fixed.
 Let $q_i$ be the wage per unit of human capital in country $i$. From
 $y_i = x_(K,i) h_i A_i$,
 $
-  q_i & = (1 - alpha) x_(K,i) A_i, \
+      q_i & = (1 - alpha) x_(K,i) A_i, \
   w_(m,i) & = q_i h_m.
 $
 The same person's human capital cancels from the wage ratio:
 $
   G_i := frac(w_(m,"US"), w_(m,i))
-      = frac(q_("US"), q_i).
+  = frac(q_("US"), q_i).
 $
 Thus *wage gains identify the country component*, combining capital intensity
 and productivity, under these assumptions.
@@ -3094,8 +3097,8 @@ $
 $
 With a common $alpha$,
 $
-  D_i & = G_i H_i, \
-  log D_i & = log G_i + log H_i, \
+                      D_i & = G_i H_i, \
+                  log D_i & = log G_i + log H_i, \
   "share"_h^("migration") & = frac(log H_i, log D_i)
                             = 1 - frac(log G_i, log D_i).
 $
@@ -3105,7 +3108,7 @@ covariance shares summarize variation across the whole country sample.
 For the poorest origin-country group in the lecture, $G_i = 3.2$ and
 $D_i = 31.8$:
 $
-  H_i & = frac(31.8, 3.2) approx 9.94, \
+                      H_i & = frac(31.8, 3.2) approx 9.94, \
   "share"_h^("migration") & = 1 - frac(log 3.2, log 31.8) approx 66%.
 $
 A threefold wage gain is large for the migrant, but small relative to the
@@ -3160,7 +3163,7 @@ evidence attributes most of these differences to skill-biased technology._
 ]
 $
   L_i = (z_(u,i) L_(u,i)^((sigma - 1)/sigma)
-         + z_(s,i) L_(s,i)^((sigma - 1)/sigma))^(sigma/(sigma - 1)).
+    + z_(s,i) L_(s,i)^((sigma - 1)/sigma))^(sigma/(sigma - 1)).
 $
 Here $z_(j,i) > 0$ are technology weights; $sigma$ is the *elasticity of
 substitution*, distinct from the CRRA parameter used earlier. The displayed
@@ -3178,13 +3181,13 @@ $W_(j,i) = w_(j,i)^e h_(j,i)$. Thus the *skill premium* is
 $
   omega_i := frac(W_(s,i), W_(u,i))
   = frac(z_(s,i), z_(u,i))
-    (frac(h_(s,i), h_(u,i)))^((sigma - 1)/sigma)
-    (frac(N_(s,i), N_(u,i)))^(-1/sigma).
+  (frac(h_(s,i), h_(u,i)))^((sigma - 1)/sigma)
+  (frac(N_(s,i), N_(u,i)))^(-1/sigma).
 $
 Define *relative skill efficiency*
 $
   R_i := frac(z_(s,i), z_(u,i))
-         (frac(h_(s,i), h_(u,i)))^((sigma - 1)/sigma).
+  (frac(h_(s,i), h_(u,i)))^((sigma - 1)/sigma).
 $
 Solving the wage-premium equation gives
 $
@@ -3325,3 +3328,921 @@ Lecture 5, slides 48 and 50.
 - Growth models give mechanisms for accumulation, learning and the transition.
   Institutions shape investment and innovation incentives. The next lecture
   turns to the creation of ideas and endogenous productivity growth.
+
+
+= Lecture 6 Oct 19
+
+== Endogenous productivity
+
+Physical and human capital explain part of cross-country income differences.
+We also need to explain *productivity differences* across countries and
+*productivity growth* over time.
+
+Sources of productivity gains:
+- R&D creates new goods or improves existing ones.
+- Technology diffusion spreads ideas and production methods across firms
+  and countries.
+- Better allocation moves labor and capital toward more productive uses,
+  raising output for given aggregate inputs.
+
+This lecture focuses on *R&D-based growth*:
+- @romer1990technological: _growth through an expanding variety of
+  intermediate goods._
+- @aghion1992creative: _growth through quality improvements. New innovations
+  displace older technologies and their producers: creative destruction._
+
+#lecture-addition("Institutions and accumulation", source: "2026-10-19, 00:02:13 - 00:04:19")[
+  Explaining why human-capital stocks differ requires a further causal
+  theory. The lecturer pointed to institutions, while emphasizing that
+  this literature has no single canonical model comparable to the growth
+  models studied here.
+]
+
+== @romer1990technological: Expanding varieties
+
+=== Main idea
+
+Ideas are *nonrival*: using a blueprint does not prevent others from using
+it at the same time. Producing the physical good still uses resources.
+
+- Inventing a blueprint requires a *fixed R&D cost*. Once the idea exists,
+  it can be reused without repeating that cost.
+- With unrestricted imitation and competitive pricing, innovators may earn
+  too little profit to recover the R&D cost. Useful inventions need not be
+  privately profitable.
+- Patents make ideas *partly excludable*: the patent holder can restrict
+  others' use of the invention. In the model, each patent gives a monopoly
+  over one intermediate-good variety.
+- Monopoly profits reward innovation. Firms invest in R&D when the
+  expected value of these profits covers the cost of inventing a new variety.
+
+R&D expands the range of intermediate goods. More varieties raise output
+for given aggregate inputs, linking productivity growth to firms' innovation
+incentives.
+
+#lecture-addition("Access to ideas and research funding", source: "2026-10-19, 00:08:42 - 00:10:39; 00:17:28 - 00:18:16")[
+  Public funding of universities and research grants can finance invention
+  directly. Imitation delays can also create temporary first-mover rents:
+  copying an idea and building production capacity take time.
+
+  A patent can disclose the blueprint publicly while giving its owner
+  exclusive commercial rights. *Nonrivalry* and *excludability* describe
+  different properties of an idea.
+]
+
+=== Environment
+
+Time is discrete. The final good is the numeraire and can be consumed,
+used to produce intermediates, or spent on R&D.
+
+A competitive final-goods sector combines labor and a continuum of
+intermediate varieties:
+$
+  Y_t = A L^(1 - alpha) integral_0^(N_t) X_(i t)^alpha dif i,
+  quad A > 0, quad 0 < alpha < 1.
+$
+- $L > 0$: constant labor supply.
+- $N_t$: measure of varieties available at the start of period $t$.
+- $X_(i t) >= 0$: quantity of intermediate $i$ used in production.
+- $A$: constant technology parameter. Innovation increases $N_t$.
+
+One unit of the final good produces one unit of any existing intermediate,
+so *marginal cost is one*. Intermediates are used up within the period.
+Each variety is supplied by a monopolist holding a _permanent patent_.
+
+Inventing one new variety costs $eta > 0$ units of the final good. With R&D
+spending $R_t >= 0$,
+$
+  N_(t+1) = N_t + frac(R_t, eta).
+$
+*Timing:* varieties invented in $t$ become available for production in
+$t + 1$. Existing varieties remain available; blueprints accumulate.
+
+The aggregate resource constraint is
+$
+  Y_t = underbrace(C_t, "consumption")
+  + underbrace(integral_0^(N_t) X_(i t) dif i, "intermediate production")
+  + underbrace(R_t, "R&D"),
+$
+where $C_t >= 0$ is aggregate consumption. R&D uses goods today to expand
+tomorrow's production possibilities.
+
+#lecture-addition("Varieties and production timing", source: "2026-10-19, 00:19:39 - 00:23:31; 00:26:17 - 00:27:21")[
+  - Differentiated final goods can generate gains from variety in
+    consumption, providing another application of the variety mechanism.
+  - An integer number of varieties would make changes in $N_t$ discrete.
+    The continuum permits smooth variety expansion.
+  - Final goods and intermediates are produced simultaneously within the
+    period. Producing intermediates today for use tomorrow would add
+    inventories as state variables.
+]
+
+=== Growth through expanding varieties
+
+With symmetric quantities, $X_(i t) = X_t$ for all $i$. Define total
+intermediate use as $M_t$:
+$
+  M_t & = integral_0^(N_t) X_(i t) dif i = N_t X_t, \
+  Y_t & = A L^(1 - alpha) N_t X_t^alpha \
+      & = A L^(1 - alpha) M_t^alpha N_t^(1 - alpha).
+$
+- At fixed $L$ and $M_t$, *more varieties raise output* because
+  $1 - alpha > 0$. Each variety has diminishing returns; spreading a given
+  total input across more varieties raises production.
+- At fixed $L$ and quantity per variety $X_t$, output is *linear in $N_t$*.
+  Variety expansion can sustain growth without increasing $A$.
+- Old varieties remain in use: this model has *no creative destruction*.
+
+#lecture-addition("Output exhaustion under competitive factor pricing", source: "2026-10-19, 00:16:45 - 00:17:27")[
+  In the symmetric representation, write $Y = F(L, M, N)$. Then
+  $
+    L F_L + M F_M & = Y, \
+            N F_N & = (1 - alpha) Y > 0.
+  $
+  Paying labor and physical inputs their marginal products already
+  exhausts output. Paying knowledge its positive marginal product as well
+  would require payments exceeding output.
+]
+
+=== Problem of the final-goods firm
+
+The representative final-goods firm takes wage $w_t$ and intermediate
+prices $P_(i t)$ as given. Write its labor demand as $ell_t$; labor-market
+clearing requires $ell_t = L$.
+
+Each period it chooses nonnegative inputs to solve
+$
+  max_(ell_t, {X_(i t)}) [
+    A ell_t^(1 - alpha) integral_0^(N_t) X_(i t)^alpha dif i
+    - w_t ell_t - integral_0^(N_t) P_(i t) X_(i t) dif i
+  ].
+$
+#block(sticky: true)[The interior FOCs, evaluated at $ell_t = L$, are]
+$
+      w_t & = (1 - alpha) frac(Y_t, L), \
+  P_(i t) & = A alpha L^(1 - alpha) X_(i t)^(alpha - 1)
+            = A alpha (frac(L, X_(i t)))^(1 - alpha).
+$
+Each input is paid its *marginal product*. Solving the second FOC gives
+the demand faced by intermediate producer $i$:
+$
+  X_(i t) = L (frac(A alpha, P_(i t)))^(1/(1 - alpha)).
+$
+Demand has constant price elasticity $-1/(1 - alpha)$. For given $N_t$,
+constant returns and price taking imply zero final-goods profits.
+
+=== Problem of an intermediate-goods firm
+
+Each firm holds a permanent patent on one variety and has marginal cost
+one. The initial R&D cost is sunk. Pricing is *static*: today's price does
+not affect future demand.
+
+Let $epsilon = 1/(1 - alpha) > 1$ be the absolute demand elasticity.
+The firm chooses its price to maximize operating profit:
+$
+  max_(P > 0) (P - 1) X(P),
+  quad X(P) = L (frac(A alpha, P))^epsilon.
+$
+Since $X'(P) = -epsilon X(P)/P$, the FOC gives
+$
+  1 - epsilon frac(P - 1, P) & = 0, \
+                           P & = frac(epsilon, epsilon - 1)
+                               = frac(1, alpha) > 1.
+$
+The price is a *constant markup* over marginal cost. Quantity and
+per-period operating profit are
+$
+   X & = L (A alpha^2)^(1/(1 - alpha)), \
+  pi & = (P - 1) X
+       = frac(1 - alpha, alpha) L (A alpha^2)^(1/(1 - alpha)).
+$
+With $A$, $L$ and $alpha$ constant, $P$, $X$ and $pi$ are constant across
+varieties and over time. These profits exclude the initial R&D outlay.
+
+
+Hold $N_t$ fixed. Efficient production uses each intermediate until its
+marginal product falls to its production cost of one:
+
+$
+           X^* & = L (A alpha)^(1/(1 - alpha)), \
+  frac(X, X^*) & = alpha^(1/(1 - alpha)) < 1.
+$<eq:611>
+
+The second line of @eq:611 shows that the monopoly markup leaves each
+variety's quantity below the efficient level $X^*$, holding $N_t$ fixed.
+
+=== Value of a patent and free entry
+
+A patent created in $t$ earns $pi$ each period from $t + 1$ onward.
+With a constant net interest rate $r > 0$, its value at $t$ is
+$
+  V & = sum_(s=1)^infinity frac(pi, (1 + r)^s) \
+    & = pi frac(1/(1 + r), 1 - 1/(1 + r))
+      = frac(pi, r).
+$
+Inventing a patent costs $eta$, so net entry profit is $V - eta$.
+- If $V > eta$, the linear R&D technology implies unbounded desired entry
+  at those prices. This cannot be an equilibrium.
+- If $V < eta$, no firm invests in R&D.
+- With positive R&D, *free entry* requires $V = eta$. Net entry profit is
+  zero, while the patent continues to earn positive operating profits $pi$.
+
+The equilibrium conditions allow zero R&D even when $V = eta$:
+$
+  V <= eta, quad R_t >= 0, quad (eta - V) R_t = 0.
+$
+#block(sticky: true)[With *positive innovation*, $V = eta = pi/r$, hence]
+$
+  r = frac(pi, eta)
+  = frac(1 - alpha, alpha) frac(L, eta)
+  (A alpha^2)^(1/(1 - alpha)).
+$
+
+=== The household
+
+The representative household supplies $L$ inelastically and owns claims on
+patents. It takes wages and asset returns as given. Given $a_0$, its problem is
+$
+  max_({c_t, a_(t+1)}) sum_(t=0)^infinity beta^t u(c_t),
+  quad beta = frac(1, 1 + rho),
+$
+with $rho > 0$ and CRRA utility for $c > 0$:
+$
+  u(c) = cases(
+    frac(c^(1 - sigma), 1 - sigma) & "if" sigma != 1,
+    log c & "if" sigma = 1,
+  ), quad sigma > 0.
+$
+Here $rho$ is the rate of time preference and $1/sigma$ is the intertemporal
+elasticity of substitution. With one representative household, $c_t = C_t$.
+
+The household faces a no-Ponzi condition and the budget constraint
+$
+  c_t + a_(t+1) = (1 + r_t) a_t + w_t L.
+$
+Assets $a_t$ were chosen in $t - 1$
+and earn the return $r_t$ in period $t$; saving $a_(t+1)$ earns $r_(t+1)$.
+
+A patent bought for $V_t$ at the end of $t$ pays $pi$ and can be resold
+for $V_(t+1)$ next period. Its *total return* includes both profits and
+capital gains:
+$
+  1 + r_(t+1) = frac(pi + V_(t+1), V_t).
+$
+When the patent value is constant, $1 + r = (pi + V)/V$.
+Patent profits are already included in the asset return in the budget.
+
+
+At an interior optimum, saving equates the marginal utility cost today
+to the discounted marginal utility of its payoff:
+
+$
+                     u'(c_t) & = beta (1 + r_(t+1)) u'(c_(t+1)), \
+  (frac(c_(t+1), c_t))^sigma & = beta (1 + r_(t+1)).
+$
+
+=== Equilibrium growth
+
+With *positive innovation*, free entry fixes $V = eta$ and $r = pi/eta$.
+Substituting this return into the household Euler equation gives
+$
+  1 + g := frac(C_(t+1), C_t) & = [beta (1 + r)]^(1/sigma) \
+                              & = (frac(1 + pi/eta, 1 + rho))^(1/sigma).
+$<eq:romer-growth>
+Positive growth requires $r > rho$. If $pi/eta <= rho$, the stationary
+corner has $R_t = 0$,
+$r = rho$ and $V = pi/rho <= eta$.
+
+On the positive-innovation path, *asset-market clearing* and *goods-market
+clearing* require
+$
+  a_(t+1) & = V_t N_(t+1) = eta N_(t+1), \
+      Y_t & = C_t + N_t X + eta (N_(t+1) - N_t).
+$
+End-of-period assets include new patents, whose first profits arrive in $t + 1$.
+
+On the BGP, $N_(t+1) = (1 + g) N_t$. With $A$ and $X$ constant, output,
+consumption and R&D grow at rate $g$:
+$
+  frac(Y_t, N_t) & = A L^(1 - alpha) X^alpha, \
+  frac(R_t, N_t) & = eta g, \
+  frac(C_t, N_t) & = A L^(1 - alpha) X^alpha - X - eta g > 0.
+$
+
+#lecture-addition("Why indifference still determines aggregate R&D", source: "2026-10-19, 00:43:19 - 00:46:21")[
+  Free entry leaves each potential entrant indifferent. A higher proposed
+  BGP entry rate raises consumption growth. The Euler equation would then
+  require a higher $r$, but this would lower $V = pi/r$ below the invention
+  cost $eta$. Household saving and goods-market clearing select the
+  aggregate entry mass.
+
+  An extension with research labor and heterogeneous tastes for innovating
+  could yield a smooth aggregate supply of innovation.
+]
+
+#lecture-addition("Why there is no transition in this model", source: "2026-10-19, 00:47:17 - 00:47:40")[
+  The only aggregate production state is $N_t$. Its initial level scales
+  allocations while leaving $pi$, $r$ and $g$ unchanged. In the growing
+  equilibrium, consumption adjusts immediately to its BGP level relative
+  to $N_0$.
+]
+
+#block(sticky: true)[
+  Since assets grow at rate $g$, household transversality requires
+]
+$
+  beta (1 + g)^(1 - sigma)
+  = frac(1 + g, 1 + r) < 1
+  quad <=> quad g < r.
+$
+
+#block(width: 100%, sticky: true)[
+  #align(center)[
+    #figure(
+      image("figures/romer_equilibrium.svg", width: 85%),
+      caption: [Equilibrium growth.],
+    )<fig:romer-equilibrium>
+  ]
+]
+#figure-note[
+  Log-utility schematic ($sigma = 1$), redrawn from Lecture 6, slide 11.
+  *Free entry* fixes the return on R&D at $r = pi/eta$.
+  The *Euler equation*, $r = (1 + rho) (1 + g)^sigma - 1$, maps this return
+  into consumption growth $g_"eq"$ at the intersection.
+]
+
+=== Determinants of growth
+
+From @eq:romer-growth, holding other parameters fixed:
+- *Higher productivity $A$* raises patent profits and growth.
+- *A larger economy $L$* raises profits and growth through a larger market
+  (_scale effect_).
+- *A higher innovation cost $eta$* lowers the return $r = pi/eta$ and growth.
+- *Greater impatience $rho$* lowers saving and growth at a given return.
+
+#lecture-addition("Scale and the market for one variety", source: "2026-10-19, 00:39:18 - 00:42:28; 01:16:01 - 01:17:25")[
+  Increasing $L$ expands the market for each variety. Increasing $N_t$
+  adds varieties at unchanged demand per variety, so $N_t$ itself does not
+  raise the growth rate. With market integration, innovators can serve
+  customers beyond national borders; national population alone need not
+  measure their market size.
+]
+
+#block(width: 100%, sticky: true)[
+  #align(center)[
+    #figure(
+      image("figures/romer_equilibrium_scale_effect.svg", width: 85%),
+      caption: [A larger market or cheaper innovation.],
+    )<fig:romer-scale-effect>
+  ]
+]
+#figure-note[
+  Log-utility schematic ($sigma = 1$), redrawn from Lecture 6, slide 11.
+  Higher $L$ or lower $eta$ raises $pi/eta$, shifting the free-entry line
+  upward to $r_1$. Preferences are unchanged, so the Euler locus stays fixed
+  and growth rises from $g_"eq"$ to $g_1$.
+]
+
+=== The planner's problem
+
+Given $N_0 > 0$, the planner has the same preferences as the household and solves
+$
+  max_({C_t, X_t, N_(t+1)}) sum_(t=0)^infinity beta^t u(C_t)
+$
+subject to
+$
+  C_t + N_t X_t + eta (N_(t+1) - N_t)
+  = A L^(1 - alpha) N_t X_t^alpha,
+$
+with $C_t > 0$, $X_t >= 0$ and $N_(t+1) >= N_t$.
+
+*Static choice:* for given $N_t$, use each variety until its marginal
+product equals its marginal cost:
+$
+  A alpha L^(1 - alpha) (X^*)^(alpha - 1) & = 1, \
+                                      X^* & = L (A alpha)^(1/(1 - alpha)) > X.
+$
+#block(sticky: true)[
+  The *social return to innovation* is net output from a new variety divided
+  by its cost. Using the static FOC,
+]
+$
+  r^* & = frac(A L^(1 - alpha) (X^*)^alpha - X^*, eta) \
+      & = frac(1 - alpha, alpha eta) X^*
+        = frac(1 - alpha, alpha eta) L (A alpha)^(1/(1 - alpha)).
+$
+Blueprints persist, so the gross return is $1 + r^*$. The resource constraint becomes
+$
+  C_t + eta N_(t+1) = (1 + r^*) eta N_t.
+$
+*Dynamic choice:* investing $eta$ today adds a variety next period. At an
+interior optimum,
+$
+                        u'(C_t) & = beta (1 + r^*) u'(C_(t+1)), \
+  1 + g^* := frac(C_(t+1), C_t) & = (frac(1 + r^*, 1 + rho))^(1/sigma).
+$
+An interior growing path requires $r^* > rho$ and $g^* < r^*$.
+
+The markup reduces intermediate use and private innovation returns.
+When both paths have positive innovation, *equilibrium growth is too low*:
+$
+  frac(r, r^*) = frac(X, X^*) = alpha^(1/(1 - alpha)) < 1
+  quad => quad g < g^*.
+$
+
+#block(width: 100%, sticky: true)[
+  #align(center)[
+    #figure(
+      image("figures/romer_equilibrium_planner.svg", width: 85%),
+      caption: [Equilibrium and planner growth.],
+    )<fig:romer-planner-growth>
+  ]
+]
+#figure-note[
+  Log-utility schematic ($sigma = 1$), redrawn from Lecture 6, slide 11.
+  The planner comparison holds the baseline parameters fixed:
+  $r^* > pi/eta$ implies $g^* > g_"eq"$.
+  The middle line repeats the higher-$L$ or lower-$eta$ example above.
+]
+
+=== Policy implications
+
+In this model:
+- *No patent protection:* free imitation forces $P = 1$, so $pi = V = 0$.
+  Firms cannot recover the innovation cost $eta > 0$. Private R&D stops,
+  giving $g = 0$.
+- *Finite patent protection:* a patent lasting $T$ periods has value
+  $
+    V(T) = sum_(s=1)^T frac(pi, (1 + r)^s)
+    = frac(pi, r) [1 - (1 + r)^(-T)] < frac(pi, r).
+  $
+  At given $r > 0$ and $pi$, shorter protection lowers the reward to
+  innovation. Free entry then supports a lower return and growth rate
+  than with permanent patents, or no R&D if protection is too short.
+- *Subsidize intermediate purchases:* with subsidy rate $s_X$, the buyer
+  pays $(1 - s_X) P$. Since producers charge $P = 1/alpha$, setting
+  $s_X = 1 - alpha$ makes the buyer's price equal marginal cost, one.
+  This restores $X^*$ while preserving producers' innovation incentives.
+  Profits become $pi^* = frac(1 - alpha, alpha) X^*$, so free entry gives
+  $r = frac(pi^*, eta) = r^*$ and implements planner growth.
+- *Subsidize R&D:* a subsidy rate $s_R$ lowers the private invention cost to
+  $(1 - s_R) eta$. With positive innovation,
+  $r = pi/((1 - s_R) eta)$, raising growth. This can reduce underinvestment,
+  but the monopoly markup and low intermediate use remain.
+
+The subsidy comparisons assume *lump-sum financing*.
+
+== Quality ladders: main idea
+
+@aghion1992creative: _Growth comes from successive improvements in the
+quality of existing products._
+
+- *Quality improvements:* the number of sectors is fixed. A successful
+  innovation in sector $j$ raises quality from $A_(j t)$ to $gamma A_(j t)$,
+  where $gamma > 1$.
+- *Creative destruction:* the innovator becomes the new monopolist,
+  displacing the incumbent. The previous leader loses its future monopoly
+  rents.
+- *Business stealing:* part of the entrant's reward is taking over the
+  incumbent's rents. This transfer is a private gain without a corresponding
+  net gain to society, which can encourage excessive R&D.
+
+Quality gains persist after the innovator is replaced, so its profits
+capture only part of their social value. This can discourage R&D.
+Together with business stealing, this means *equilibrium innovation can be
+too high or too low* relative to the planner's choice.
+
+
+=== @aghion1992creative in discrete time: environment
+
+Time is discrete. There is a fixed continuum of intermediate sectors
+$j in [0, 1]$ and labor supply $L > 0$.
+
+*Final-good production* is competitive, with the final good as numeraire:
+$
+  Y_t = L^(1 - alpha) integral_0^1 A_(j t)^(1 - alpha) x_(j t)^alpha dif j,
+  quad 0 < alpha < 1.
+$
+Here $A_(j t) > 0$ is the leading quality in sector $j$, and $x_(j t) >= 0$
+is the quantity of its intermediate input.
+
+*Intermediate production:* the current leader produces one unit of
+$x_(j t)$ from one unit of the final good, so marginal cost is one.
+Quality steps are assumed large enough that older versions do not
+constrain the leader's monopoly price.
+
+*Innovation:* entrants spend $R_(j t) >= 0$ units of the final good on
+research. The probability of a quality improvement is
+$
+  mu_(j t) = frac(lambda R_(j t), gamma A_(j t)) in [0, 1],
+  quad lambda > 0, quad gamma > 1.
+$
+The parameter $lambda$ measures research productivity; $gamma$ is the
+quality step. Feasible spending satisfies $R_(j t) <= gamma A_(j t)/lambda$.
+Quality evolves according to
+$
+  A_(j,t+1) = cases(
+    gamma A_(j t) & "with probability" mu_(j t),
+    A_(j t) & "with probability" 1 - mu_(j t),
+  ).
+$
+Current leaders produce in $t$; research outcomes arrive at the end of
+$t$. A successful entrant replaces the incumbent and starts producing in
+$t + 1$. Without innovation, the incumbent remains the leader.
+
+*Resources and ownership:* the representative household supplies $L$
+inelastically, owns firms and has the same CRRA preferences as above.
+Final output covers consumption, intermediate production and research:
+$
+  Y_t = C_t
+  + underbrace(integral_0^1 x_(j t) dif j, "intermediate production")
+  + underbrace(integral_0^1 R_(j t) dif j, "R&D").
+$
+
+=== Monopoly profits
+
+*Intermediate demand:* the competitive final-good firm pays each input its
+marginal product. If $P_(j t)$ is the price of intermediate $j$,
+$
+  P_(j t) & = alpha L^(1 - alpha) A_(j t)^(1 - alpha) x_(j t)^(alpha - 1), \
+  x_(j t) & = A_(j t) L (frac(alpha, P_(j t)))^(1/(1 - alpha)).
+$
+Quality scales demand; its absolute price elasticity remains
+$epsilon = 1/(1 - alpha) > 1$.
+
+*Monopoly pricing:* with marginal cost one, the leader maximizes
+$(P - 1) x_(j t)(P)$. The constant-elasticity markup gives
+$
+  P_(j t) = frac(epsilon, epsilon - 1) = frac(1, alpha) > 1.
+$
+This uses the assumption that older versions do not constrain the price.
+Substituting into demand gives quantity and *operating profit*:
+$
+       x_(j t) & = alpha^(2/(1 - alpha)) A_(j t) L, \
+      pi_(j t) & = (P_(j t) - 1) x_(j t)
+                 = frac(1 - alpha, alpha) x_(j t)
+                 = overline(pi) A_(j t) L, \
+  overline(pi) & := (1 - alpha) alpha^((1 + alpha)/(1 - alpha)).
+$
+Profits exclude the initial R&D cost. A quality upgrade by factor $gamma$
+raises per-period profit by the same factor while the innovator remains
+the leader.
+
+*Aggregate output:* define average quality over the unit mass of sectors as
+$A_t := integral_0^1 A_(j t) dif j$. Substituting equilibrium quantities,
+$
+  Y_t & = L^(1 - alpha) integral_0^1 A_(j t)^(1 - alpha)
+        [alpha^(2/(1 - alpha)) A_(j t) L]^alpha dif j \
+      & = alpha^((2 alpha)/(1 - alpha)) A_t L.
+$
+With $L$ fixed, aggregate output grows at the same rate as average quality.
+
+=== Creative destruction and the value of innovation
+
+#block(sticky: true)[
+  *Innovation value:* take $r > 0$ and the common replacement probability
+  $mu in [0, 1]$ as constant. Let $V(A')$ be the end-of-period value of a
+  leader with quality $A'$, before its first profit next period.
+  It first receives $overline(pi) A' L$, then retains its continuation value
+  with probability $1 - mu$. Replacement leaves zero continuation value:
+]
+$
+           V(A') & = frac(
+                     overbrace(overline(pi) A' L, "next-period profit")
+                     + overbrace((1 - mu) V(A'), "surviving leader"),
+                     1 + r,
+                   ), \
+  (r + mu) V(A') & = overline(pi) A' L, \
+           V(A') & = frac(overline(pi) A' L, r + mu).
+$
+The *effective discount rate* is $r + mu$. Faster future innovation shortens
+the profit stream and lowers the patent's value, holding $A'$ and $r$ fixed.
+
+#lecture-addition("A patent's legal and economic life", source: "2026-10-19, 00:58:39 - 00:59:22")[
+  Legal protection can outlast a product's economic life. An incumbent may
+  retain the right to sell its old technology after customers have switched
+  to a better version. The displacement probability $mu$ ends its profit
+  stream through obsolescence.
+]
+
+*Free entry:* spending $R_(j t)$ in $t$ gives probability
+$mu_(j t) = lambda R_(j t)/(gamma A_(j t))$ of obtaining a new patent with
+end-of-$t$ value $V(gamma A_(j t))$. Expected net entry profit is
+$
+  mu_(j t) V(gamma A_(j t)) - R_(j t)
+  = R_(j t) [frac(lambda V(gamma A_(j t)), gamma A_(j t)) - 1].
+$
+For *interior positive R&D*, free entry sets the expected return per unit
+spent equal to one:
+$
+  frac(lambda V(gamma A_(j t)), gamma A_(j t)) & = frac(lambda overline(pi) L, r + mu) = 1, \
+                                        r + mu & = lambda overline(pi) L.
+$
+Quality cancels because both patent value and the cost of a given success
+probability scale with $gamma A_(j t)$. The *free-entry locus* is
+$r = lambda overline(pi) L - mu$: a higher innovation rate lowers the
+interest rate consistent with entry breaking even.
+=== Equilibrium growth
+
+*Aggregation:* with a common innovation probability $mu$ and diversified
+sectoral risk, aggregate quality evolves as
+$
+  A_(t+1) & = integral_0^1 [(1 - mu) A_(j t) + mu gamma A_(j t)] dif j \
+          & = [1 + mu (gamma - 1)] A_t, \
+        g & := frac(A_(t+1), A_t) - 1 = mu (gamma - 1).
+$
+#block(sticky: true)[
+  On a BGP, research spending and consumption are proportional to $A_t$:
+]
+$
+             R_t & := integral_0^1 R_(j t) dif j = frac(gamma mu, lambda) A_t, \
+  frac(C_t, A_t) & = L [alpha^((2 alpha)/(1 - alpha)) - alpha^(2/(1 - alpha))]
+                   - frac(gamma mu, lambda) > 0.
+$
+Thus quality, output and consumption all grow at rate $g$.
+
+*Equilibrium conditions:* the household Euler equation and free entry give
+$
+  [1 + mu (gamma - 1)]^sigma & = frac(1 + r, 1 + rho), \
+                           r & = lambda overline(pi) L - mu.
+$
+Combining them determines $mu$:
+$
+  (1 + rho) [1 + mu (gamma - 1)]^sigma
+  = 1 + lambda overline(pi) L - mu.
+$
+The left side increases in $mu$; the right side decreases. Any interior
+intersection is unique, with
+$rho < lambda overline(pi) L < (1 + rho) gamma^sigma$ ensuring $0 < mu < 1$.
+The BGP must also satisfy household transversality, $g < r$.
+
+*Log utility* ($sigma = 1$) gives
+$
+  mu [1 + (1 + rho) (gamma - 1)] & = lambda overline(pi) L - rho, \
+                              mu & = frac(lambda overline(pi) L - rho, 1 + (1 + rho) (gamma - 1)), \
+                               g & = (gamma - 1)
+                                   frac(lambda overline(pi) L - rho, 1 + (1 + rho) (gamma - 1)).
+$
+If $lambda overline(pi) L <= rho$, the *no-innovation corner* has
+$mu = g = 0$ and $r = rho$; the positive-entry equality no longer applies.
+
+#block(width: 100%, sticky: true)[
+  #align(center)[
+    #figure(
+      image("figures/aghion_equilibrium.svg", width: 85%),
+      caption: [Equilibrium innovation.],
+    )<fig:aghion-equilibrium>
+  ]
+]
+#figure-note[
+  Log-utility schematic ($sigma = 1$), redrawn from Lecture 6, slide 21.
+  Free entry gives the downward-sloping locus $r = lambda overline(pi) L - mu$.
+  The Euler locus $r = (1 + rho) [1 + mu (gamma - 1)]^sigma - 1$ slopes
+  upward. Their intersection determines $mu_"eq"$ and $r_"eq"$.
+]
+
+#block(width: 100%, sticky: true)[
+  #align(center)[
+    #figure(
+      image("figures/aghion_equilibrium_scale_effect.svg", width: 85%),
+      caption: [Market size and research productivity.],
+    )<fig:aghion-scale-effect>
+  ]
+]
+#figure-note[
+  Log-utility schematic ($sigma = 1$), redrawn from Lecture 6, slide 21.
+  Higher $L$ or $lambda$ shifts the free-entry locus upward; preferences
+  and $gamma$ are unchanged. The new intersection has higher $mu$ and $r$,
+  raising growth through $g = mu (gamma - 1)$.
+]
+
+
+=== Determinants of growth
+
+Using $mu = g/(gamma - 1)$, equilibrium growth satisfies
+$
+  (1 + rho) (1 + g)^sigma + frac(g, gamma - 1)
+  = 1 + lambda overline(pi) L.
+$
+The left side increases in $g$. Within an *interior positive-growth
+equilibrium*, holding other parameters fixed:
+- *A larger economy $L$* raises monopoly profits and shifts free entry
+  upward, increasing $mu$ and $g$. This is the _scale effect_.
+- *Higher research productivity $lambda$* raises the success probability
+  per unit of research spending, increasing $mu$ and $g$.
+- *Larger quality steps $gamma$* raise the gain from each successful
+  innovation. Growth $g$ rises even though innovation becomes less frequent:
+  the Euler equation implies higher $r$, so free entry requires lower $mu$.
+- *More patient households* (lower $rho$) shift the Euler locus downward,
+  increasing $mu$ and $g$.
+
+Sectoral quality rises in jumps. Successful entrants replace incumbents
+and take over production. Smooth aggregate growth can coexist with
+*firm entry, exit and reallocation*.
+
+#lecture-addition("Common research rates, different outcomes", source: "2026-10-19, 01:06:56 - 01:07:57")[
+  Sectors face the same $mu$, but their realized sequences of successes
+  differ. Some firms are displaced quickly; others survive for many
+  periods. Sectoral quality and firm ages can therefore differ under a
+  common research technology.
+]
+
+
+=== Is growth too fast or too slow?
+
+Private rewards to innovation differ from social returns in three ways:
+- *Appropriability:* the innovator captures monopoly profits, but not the
+  full surplus generated by higher quality. This pushes toward
+  *too little innovation*.
+- *Intertemporal spillover:* future innovators build on today's quality.
+  The current innovator receives no payment for these gains after being
+  replaced, pushing toward *too little innovation*.
+- *Business stealing:* the entrant gains rents that the incumbent loses.
+  This transfer adds no social surplus. Ignoring the incumbent's loss
+  pushes toward *too much innovation*.
+
+*The net effect is ambiguous:* equilibrium innovation and growth can be
+above or below the planner's choice. When quality improvements are small
+relative to the rents captured, business stealing can dominate and growth
+can be too fast.
+
+#lecture-addition("Innovation policy under full information", source: "2026-10-19, 01:10:42 - 01:14:04")[
+  These incentive wedges exist with commonly known research costs and
+  technology. Which wedge dominates must be assessed sector by sector.
+  Small persistent changes in growth compound into large differences in
+  future consumption.
+
+  Private information about research costs or opportunities would add
+  another policy constraint.
+]
+
+
+== Where has the literature gone since?
+
+#lecture-addition("Growth and industrial organization", source: "2026-10-19, 01:14:04 - 01:16:01")[
+  The lecture emphasized detailed empirical extensions of these baselines,
+  using firm-, industry- and sector-level data to study innovation
+  incentives. This connects growth theory with *industrial organization*.
+]
+
+_Supplementary reading._
+
+- *Scale effects and semi-endogenous growth.* @jones1995rnd:
+  _The scale-effect prediction conflicts with time-series evidence.
+  A semi-endogenous extension makes long-run growth depend on population
+  growth, even though technological progress comes from R&D._
+- *Firm dynamics.* @klette2004innovating:
+  _Heterogeneous firms innovate, enter and exit. Their model connects
+  firm-level evidence on R&D and patenting to aggregate innovation and
+  growth._
+- *Competition and innovation.* @aghion2005competition:
+  _Competition can encourage neck-and-neck firms to innovate and discourage
+  laggards. Their model and panel evidence yield an inverted-U relationship
+  between competition and innovation._
+- *The direction of innovation.* @acemoglu2012environment:
+  _Research can improve clean or dirty technologies. Carbon prices and
+  research subsidies redirect innovation; their model's optimal policy
+  uses both instruments._
+- *Research productivity.* @bloom2020ideas:
+  _They document falling measured research productivity across several
+  industries and firms. Maintaining a given rate of technological
+  improvement requires increasing research inputs in these cases._
+- *Innovation policy with heterogeneous firms.* @akcigit2022taxation:
+  _Firms differ in research productivity, which the government cannot
+  observe directly. Information constraints change the taxes and R&D
+  subsidies needed to address knowledge spillovers._
+
+
+== Scale effects and semi-endogenous growth
+
+*Empirical motivation.* @jones1995rnd: _Research employment rose in
+industrialized economies without the growth acceleration predicted by
+the early models' strong scale effects._
+
+=== Idea production
+
+#block(sticky: true)[
+  Use a discrete-time version of the idea-production block in @jones2005ideas:
+]
+$
+  A_(t+1) - A_t = chi L_(A,t)^eta A_t^phi,
+  quad chi > 0, quad 0 < eta <= 1, quad 0 <= phi < 1.
+$
+- $A_t > 0$: stock of ideas; $L_(A,t)$: researchers.
+- $chi$: research efficiency; $eta$: research-labor elasticity;
+  $phi$: elasticity with respect to existing knowledge.
+- Take a constant equilibrium research share $0 < s_A < 1$ and population
+  growth $n > 0$: $L_(A,t) = s_A L_t$, $L_(t+1) = (1 + n) L_t$.
+
+#block(sticky: true)[The proportional growth rate of ideas is]
+$
+  g_(A,t) := frac(A_(t+1) - A_t, A_t)
+  = frac(chi (s_A L_t)^eta, A_t^(1 - phi)).
+$
+With *$phi = 1$*, growth rises with the number of researchers.
+With *$phi < 1$*, a larger idea stock reduces proportional growth at a
+given research input.
+
+=== Balanced growth
+
+With $s_A$ fixed,
+$
+  frac(g_(A,t+1), g_(A,t))
+  = frac((1 + n)^eta, (1 + g_(A,t))^(1 - phi)).
+$
+On a BGP, $g_(A,t+1) = g_(A,t) = g_A > 0$, so
+$
+  (1 + g_A)^(1 - phi) & = (1 + n)^eta, \
+                 g_A & = (1 + n)^(eta/(1 - phi)) - 1
+                         approx frac(eta n, 1 - phi).
+$
+The approximation applies to small growth rates. This is
+*semi-endogenous growth*: R&D produces new ideas, while exogenous
+population growth and production elasticities pin down the BGP rate.
+With $n = 0$, ideas can keep accumulating, but their proportional growth
+rate tends to zero.
+
+=== Levels and policy
+
+For $n > 0$, the BGP satisfies
+$
+  frac(A_t, L_t^(eta/(1 - phi)))
+  = (frac(chi s_A^eta, g_A))^(1/(1 - phi)).
+$
+- *A level scale effect remains:* a larger population raises the BGP idea
+  stock, holding its growth rate $n$ fixed.
+- *A permanent rise in $s_A$* raises growth during the transition and
+  shifts the technology path upward. The BGP growth rate is unchanged.
+  Policies affecting research allocation can change income levels without
+  changing long-run growth, holding $n$, $eta$ and $phi$ fixed.
+- *Relevant scale:* $L_t$ is the population sharing the idea stock,
+  potentially global when ideas cross borders.
+
+#block(width: 100%, sticky: true)[
+  #align(center)[
+    #figure(
+      image("figures/semi_endogenous_policy.svg", width: 100%),
+      caption: [Research intensity: levels and growth.],
+    )<fig:semi-endogenous-policy>
+  ]
+]
+#figure-note[
+  Uncalibrated example with $n = 0.02$, $eta = 0.8$, $phi = 0.5$ and
+  $A_0 = L_0 = 1$. Research share rises from $0.05$ to $0.10$ in period
+  $40$; $chi$ puts the initial economy on its BGP. The idea-stock ratio
+  tends to $2^(eta/(1 - phi)) approx 3.03$, while growth returns to
+  $(1.02)^(1.6) - 1 approx 3.22%$ per period.
+]
+
+== Are ideas harder to find?
+
+@bloom2020ideas: _Maintaining a given rate of technological improvement
+requires rising research inputs in their case studies._
+
+=== Measuring research productivity
+
+Let $S_t$ denote effective research input. Define
+$
+  cal(P)_t := frac(g_(A,t), S_t),
+  quad g_(A,t) := frac(A_(t+1) - A_t, A_t).
+$
+_Output is a proportional improvement, such as TFP growth or chip-density
+growth. Effective researchers are research spending divided by a wage
+proxy, earnings of college-educated men, to adjust for rising researcher
+costs._
+
+=== Evidence
+
+- *US aggregate, since the 1930s:* _Effective research input rose about
+  23-fold; research productivity fell about 41-fold. Output is measured by
+  decadal TFP growth._
+- *Moore's law, 1971–2014:* _Chip density roughly doubled every two years.
+  Research input rose about 18-fold; research productivity fell about
+  6.8% per year._#footnote[
+    The lecture used roughly eighteen months. This paragraph follows the
+    paper's approximately two-year transistor-density benchmark
+    (recording, 2026-10-19, 01:19:44 - 01:20:10).
+  ]
+- *Other cases:* _Crop yields, medical advances and firm outcomes generally
+  show declining research productivity, with variation across cases and
+  measures._
+
+=== Connection to semi-endogenous growth
+
+#block(sticky: true)[
+  In the preceding model, taking $S_t = L_(A,t)$ gives
+  $
+    cal(P)_t = chi S_t^(eta - 1) A_t^(phi - 1).
+  $
+]
+At fixed $S_t$, *$phi < 1$* makes research productivity fall as knowledge
+accumulates. Maintaining constant positive $g_A$ therefore requires
+growing research effort. Falling measured productivity is consistent with
+this mechanism; the ratio alone does not identify $phi$.
+
+#lecture-addition("AI and the research technology", source: "2026-10-19, 01:19:11 - 01:19:29; 01:21:13 - 01:21:25")[
+  The lecturer left open how much AI changes research technology.
+  In the semi-endogenous block above, a permanent rise in $chi$ alone
+  raises BGP technology levels while leaving the long-run growth rate
+  $g_A$ unchanged.
+]
