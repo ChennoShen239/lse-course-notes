@@ -65,14 +65,13 @@
   }
 }
 
-// BEGIN lecture-addition environment
-// Supplementary lecture material; original theorem/equation counters unchanged.
+// Yellow boxes identify recording supplements; equations stay unnumbered.
 #let lecture-addition(title, source: none, body) = block(
   width: 100%,
   breakable: false,
-  inset: (x: 10pt, y: 8pt),
-  fill: rgb("#fff8ec"),
+  fill: rgb("#fff6cc"),
   stroke: (left: 1.5pt + rgb("#bc8736")),
+  inset: (x: 10pt, y: 8pt),
   radius: 2pt,
   above: 0.65em,
   below: 0.65em,
@@ -80,14 +79,13 @@
   #set par(justify: false)
   #set math.equation(numbering: none)
   #text(weight: "semibold", fill: rgb("#805719"))[Lecture addition: #title]
-  #v(0.25em)
+
   #body
+
   #if source != none [
-    #v(0.2em)
     #text(size: 8pt, fill: luma(40%))[Recording: #source]
   ]
 ]
-// END lecture-addition environment
 
 = Lecture 1 Sep. 29
 
@@ -112,7 +110,6 @@ Complete competitive markets under the welfare-theorem assumptions:
   idiosyncratic productivity increase raises labor supply, holding aggregate
   shadow prices fixed. The consumption share is unchanged.
 
-
 // BEGIN lecture addition G1
 #lecture-addition("Intuition for Complete Markets", source: "00:13:54, 00:16:04")[
   - *Example*: 18 students trade state-contingent claims before earnings risk
@@ -132,7 +129,6 @@ Complete competitive markets under the welfare-theorem assumptions:
   + e.g. limited commitment (participation constraints), private information.
   + deeper but harder to do
 
-
 // BEGIN lecture addition G4
 #lecture-addition("Course Roadmap", source: "00:31:25, 00:33:02")[
   - *Methods*: Dynamic programming, numerical methods.
@@ -141,7 +137,6 @@ Complete competitive markets under the welfare-theorem assumptions:
   - *Incomplete markets*: Endogenous (participation constraints/limited commitment), exogenous (asset structure), search models.
 ]
 // END lecture addition G4
-
 
 // BEGIN lecture addition G6
 #lecture-addition("Frictions for Endogenous Incompleteness", source: "00:22:10, 00:27:38")[
@@ -166,7 +161,7 @@ $
     cal(L) = sum_(t=0)^infinity beta^t
     [u(c_t) + lambda_t (f(k_t) + (1 - delta) k_t - c_t - k_(t+1))].
   $
-- #block(sticky: true)[*Interior FOCs*:]
+- *Interior FOCs*:
   $
         c_t: & u'(c_t) = lambda_t, \
     k_(t+1): & lambda_t = beta lambda_(t+1)
@@ -184,7 +179,6 @@ $
   Discounted shadow value of terminal capital $->$ 0.
 - Increasing, concave $u$; concave $f$; finite discounted utility:
   feasibility + FOCs + TVC $->$ global optimum. At corners, use KKT conditions.
-
 
 == Towards a recursive formulation
 - Sequence approach: infinitely many dated choices + optimality conditions.
@@ -236,8 +230,6 @@ Answer:
 - _Recursive Macroeconomic Theory_ (RMT), “Dynamic Programming”
   @ljungqvist2018rmt[ch. 3].
 
-
-
 // BEGIN lecture addition G2
 #lecture-addition("Computational Advantage of DP", source: "01:06:37, 01:07:39")[
   - *Lagrangian*: Euler conditions give a difference equation. Shooting starts
@@ -283,7 +275,6 @@ function space; assumptions matter.
   Here $T^n$ denotes $n$ successive applications of $T$, with $T^0$ the identity.
 ] <thm:cmt>
 
-
 // BEGIN lecture addition G5
 #lecture-addition("Intuition for Contraction Mapping", source: "00:59:06, 01:01:46")[
   - On a compact interval, $abs(g'(x)) <= beta < 1$ makes $g$ a contraction,
@@ -308,8 +299,6 @@ function space; assumptions matter.
     norm(T v - T w)_infinity <= beta norm(v - w)_infinity.
   $
   @thm:cmt $->$ unique fixed point in $S$; value iteration converges from any $v_0 in S$.
-
-
 
 // BEGIN lecture addition G3
 #lecture-addition("Economic Interpretation of VFI", source: "00:56:48, 00:58:31")[
@@ -403,7 +392,6 @@ This controls iteration error; grid approximation error remains.
 ]
 // END lecture addition G7
 
-
 // BEGIN lecture addition G8
 #lecture-addition("Curse of Dimensionality", source: "01:15:51, 01:16:53")[
   - Grid-based VFI suffers from *curse of dimensionality*: $n$ state variables $->$ $M^n$ grid points (exponential growth).
@@ -414,7 +402,6 @@ This controls iteration error; grid approximation error remains.
 ]
 // END lecture addition G8
 
-
 // BEGIN lecture addition G9
 #lecture-addition("Complexity vs. Reality", source: "01:17:25, 01:19:00")[
   - Model complexity driven by *expectation side*: agents anticipate others' actions $->$ complex fixed-point problems.
@@ -424,7 +411,6 @@ This controls iteration error; grid approximation error remains.
 // END lecture addition G9
 
 = Lecture 2 Oct 5
-
 
 == Recall
 
@@ -487,7 +473,6 @@ $
 $
 Both conditions hold; the self-map requirement $T: B(X) -> B(X)$
 must also be verified.
-
 
 == Blackwell's conditions for the standard model
 
@@ -554,7 +539,6 @@ $
                   [u(c(k, k')) + beta f(k') + underbrace(beta a, "constant in " k')] \
                 & = (T f)(k) + beta a.
 $
-
 
 === Boundedness and conclusion
 
@@ -631,14 +615,13 @@ The value function takes the state variables as its arguments.
 but different feasible choices, utility, or transition distributions,
 the summary is insufficient.
 
-
 === Example: standard model with two sectors
 
 Each period, allocate inherited capital $k$ and one unit of labor freely
 between consumption ($c$) and investment ($i$) sectors.
 Let $alpha, gamma in (0, 1)$.
 
-#block(sticky: true)[Feasibility:]
+Feasibility:
 $
           c & = underbrace(k_c^alpha n_c^(1 - alpha), "consumption output"), \
          k' & = underbrace((1 - delta) k, "remaining capital")
@@ -682,7 +665,7 @@ Capital is installed before the period and cannot move between sectors.
 Choose labor allocations and new investment $x_c, x_i$ today;
 investment becomes productive next period.
 
-#block(sticky: true)[Feasibility:]
+Feasibility:
 $
           c & = k_c^alpha n_c^(1 - alpha), \
   x_c + x_i & = underbrace(k_i^gamma n_i^(1 - gamma), "investment output"), \
@@ -747,7 +730,7 @@ subject to @eq:shock-resources. The expectation is over next period's shock $z'$
 
 ==== State $x$: total resources
 
-#block(sticky: true)[After observing $z$, define]
+After observing $z$, define
 $
   x = (1 - delta) k + z k^alpha.
 $
@@ -756,7 +739,7 @@ $
   w(x) = max_(c, k')
   [u(c) + beta bb(E)_(z')[w(x')]],
 $
-#block(sticky: true)[subject to]
+subject to
 $
   c + k' & = x, \
       x' & = (1 - delta) k' + z' (k')^alpha.
@@ -773,7 +756,6 @@ $z'$ is independent of $z$, so the transition of $x'$ requires only $k'$.
 ]
 // END lecture addition G16
 
-
 ==== State $k$: before the shock
 
 $V(k)$ is the value _before $z$ is observed._ Choices $c(z)$ and $k'(z)$
@@ -783,7 +765,6 @@ may _depend on its realization:_
 $c,k'$. Their policy functions are $c(k,z),k'(k,z)$ or $c(x),k'(x)$;
 state arguments are implicit. Option 3 maximizes over functions
 $c(z),k'(z)$ for every possible $z$._
-
 
 $
   V(k) = max_(c(z), k'(z))
@@ -811,7 +792,6 @@ depend on observed $z$ in all three formulations.
   over the information revealed between those stages.
 ]
 // END lecture addition G17
-
 
 == Equilibrium
 
@@ -864,7 +844,7 @@ $
   max_({c_t, k_(t+1)}_(t=0)^infinity)
   sum_(t=0)^infinity beta^t u(c_t),
 $
-#block(sticky: true)[subject to]
+subject to
 $
   c_t + k_(t+1) & = underbrace((1 + r_t) k_t, "capital payoff")
                   + underbrace(w_t n_t, "labor income"), \
@@ -917,7 +897,7 @@ $
 
 === No-Ponzi condition
 
-#block(sticky: true)[If borrowing is allowed, replace $k_(t+1) >= 0$ with]
+If borrowing is allowed, replace $k_(t+1) >= 0$ with
 $
   liminf_(t -> infinity)
   frac(k_(t+1), product_(s=1)^t (1 + r_s)) >= 0.
@@ -926,7 +906,7 @@ At an interior optimum with $u'(c_s) > 0$, the Euler equation gives
 $
   1 + r_s = frac(u'(c_(s-1)), beta u'(c_s)).
 $
-#block(sticky: true)[Multiplying from $s = 1$ to $t$, marginal utilities cancel:]
+Multiplying from $s = 1$ to $t$, marginal utilities cancel:
 $
   product_(s=1)^t (1 + r_s) & = product_(s=1)^t frac(u'(c_(s-1)), beta u'(c_s)), \
                             & = frac(u'(c_0), beta^t u'(c_t)).
@@ -968,7 +948,6 @@ $lr({p_t, r_t, w_t})_(t=0)^infinity$ satisfying the conditions below.
   delivered at date $t$, with $p_0 = 1$. It converts date-$t$ quantities into
   date-0 goods.
 ]
-
 
 The wage $w_t$ and capital rental rate $r_t + delta$ remain measured in
 date-$t$ goods. Their date-0 prices are $p_t w_t$ and $p_t (r_t + delta)$.
@@ -1035,7 +1014,7 @@ With $p_0 = 1$,
 $
   p_t = frac(1, product_(s=1)^t (1 + r_s)).
 $
-#block(sticky: true)[Capital purchases and their future payoffs cancel from the lifetime budget:]
+Capital purchases and their future payoffs cancel from the lifetime budget:
 $
   sum_(t=0)^infinity p_t c_t
   = underbrace((1 + r_0) k_0, "initial capital wealth")
@@ -1052,7 +1031,6 @@ The lifetime budget makes a separate no-Ponzi condition unnecessary.
   price. With uncertainty, use *state-contingent prices*. This is why
   Arrow-Debreu notation is convenient for asset pricing.
 ]
-
 
 == Recursive equilibrium
 
@@ -1109,15 +1087,15 @@ These functions satisfy four conditions:
   $
   Here $r(K)$ is the _net return_; the capital rental rate is $r(K) + delta$.
 
-+ #block(sticky: true)[*Market clearing.* For every admissible $K$,]
++ *Market clearing.* For every admissible $K$,
   $
     c(K, K) + k'(K, K) = (1 - delta) K + K^alpha.
   $
 
-+ #block(sticky: true)[
-    *Consistency.* The _perceived_ aggregate law must equal the law
-    _generated_ by optimal household saving:
-  ]
++
+  *Consistency.* The _perceived_ aggregate law must equal the law
+  _generated_ by optimal household saving:
+
   $
     g(K) = k'(K, K).
   $
@@ -1176,7 +1154,7 @@ can be inefficient.
     - *Weak improvement:* the bundle cannot cost less than $m_i$.
       With _budget slack_, local nonsatiation gives a nearby, strictly
       better bundle that remains affordable.
-    #block(sticky: true)[Either violation contradicts optimality. Hence]
+    Either violation contradicts optimality. Hence
     $
       p dot tilde(x_i) & >= m_i "for every" i, \
       p dot tilde(x_h) & > m_h "for the strictly improved consumer" h.
@@ -1188,10 +1166,10 @@ can be inefficient.
 
   + *Feasibility and firm optimality.*
     Consumption is bounded by endowments plus production.
-    #block(sticky: true)[
-      Profit maximization implies $p dot tilde(y_j) <= p dot y_j^star$
-      for each firm. Therefore
-    ]
+
+    Profit maximization implies $p dot tilde(y_j) <= p dot y_j^star$
+    for each firm. Therefore
+
     $
       sum_i p dot tilde(x_i) & <= p dot omega + sum_j p dot tilde(y_j) "(feasibility)", \
                              & <= p dot omega + sum_j p dot y_j^star "(profit maximization)", \
@@ -1230,10 +1208,10 @@ from firms' marginal products.
 - *Production:* the aggregate production set $Y = sum_j Y_j$ is convex.
 - *Separation:* the commodity space $S$ is finite-dimensional, or
   $Y$ has a nonempty interior.
-- #block(sticky: true)[
-    *Budget regularity:* at supporting prices $p$, each consumer has
-    a feasible bundle $x_i^0 in X_i$ with
-  ]
+-
+  *Budget regularity:* at supporting prices $p$, each consumer has
+  a feasible bundle $x_i^0 in X_i$ with
+
   $
     p dot x_i^0 < p dot x_i^star.
   $
@@ -1250,7 +1228,7 @@ preferred bundle may cost exactly the consumer's wealth.#footnote[
 
 At supporting prices, $m_i$ includes original endowments and profits at
 the target production plan.
-#block(sticky: true)[For target consumption $x_i^star$, choose *transfers* $T_i$:]
+For target consumption $x_i^star$, choose *transfers* $T_i$:
 $
         T_i & = underbrace(p dot x_i^star, "target wealth")
               - underbrace(m_i, "original wealth"), \
@@ -1352,7 +1330,7 @@ households instead choose saving optimally.
 
 === Capital per effective worker
 
-#block(sticky: true)[Normalize by effective labor:]
+Normalize by effective labor:
 $
   k_t & = frac(K_t, A_t N_t), \
   y_t & = frac(Y_t, A_t N_t) = k_t^alpha, \
@@ -1427,7 +1405,6 @@ productivity growth rates $g$.
 - Productivity growth is unexplained; the model also lacks a mechanism
   for the historical transition from long-run stagnation to sustained growth.
 
-
 == Malthus
 
 === Setup
@@ -1441,7 +1418,7 @@ Productivity grows exogenously at rate $g >= 0$:
 $
   A_(t+1) = (1 + g) A_t.
 $
-#block(sticky: true)[*Population growth responds to income per capita*:]
+*Population growth responds to income per capita*:
 $
   frac(N_(t+1), N_t) & = s frac(Y_t, N_t), \
              N_(t+1) & = s Y_t.
@@ -1464,7 +1441,7 @@ or reduces mortality. Population increases when $s Y_t / N_t > 1$.
 
 === Population per effective land unit
 
-#block(sticky: true)[Normalize by effective land $A_t X$:]
+Normalize by effective land $A_t X$:
 $
                n_t & = frac(N_t, A_t X), \
   frac(Y_t, A_t X) & = n_t^alpha, \
@@ -1480,7 +1457,7 @@ to effective land.
 
 === Balanced growth path
 
-#block(sticky: true)[On the BGP, $n_t = overline(n)$ is constant:]
+On the BGP, $n_t = overline(n)$ is constant:
 $
   overline(n) (1 + g) & = s overline(n)^alpha, \
           overline(n) & = (frac(s, 1 + g))^(1 / (1 - alpha)).
@@ -1488,7 +1465,7 @@ $
 For $n_0 > 0$, $n_t$ converges to $overline(n)$: it rises below the steady
 state and falls above it.
 
-#block(sticky: true)[BGP income per capita and population density are]
+BGP income per capita and population density are
 $
   frac(Y_t, N_t) & = overline(n)^(alpha - 1) = frac(1 + g, s), \
     frac(N_t, X) & = A_t overline(n).
@@ -1497,7 +1474,6 @@ $
 - #text(fill: red)[*Income per capita is constant*, even with positive productivity growth.]
 - Holding $s$ and $g$ fixed, higher productivity levels imply greater
   population density and the same BGP income per capita.
-
 
 A permanent increase in the _level_ of productivity initially raises
 income per person. Higher income accelerates population growth. As
@@ -1639,10 +1615,10 @@ $
   (frac(r_t^K, theta))^theta
   (frac(w_t, 1 - theta))^(1 - theta).
 $
-#block(sticky: true)[
-  To test entry, evaluate this cost at the *Malthus-only* factor prices
-  $r_(M,t)^K$ and $w_(M,t)$. Entry is profitable when
-]
+
+To test entry, evaluate this cost at the *Malthus-only* factor prices
+$r_(M,t)^K$ and $w_(M,t)$. Entry is profitable when
+
 $
   A_(S,t) >
   underbrace(
@@ -1781,12 +1757,11 @@ Figures from Lecture 5, slides 4--7.
 Income remains low for centuries, then takes off. Takeoff dates differ across
 countries; modern income gaps are large.
 
-#block(sticky: true)[
-  #figure(
-    image("figures/income_long_run.svg", width: 100%),
-    caption: [Income per capita over the long run.],
-  )<fig:long-run-income>
-]
+#figure(
+  image("figures/income_long_run.svg", width: 100%),
+  caption: [Income per capita over the long run.],
+)<fig:long-run-income>
+
 #figure-note[
   $y_t = Y_t / N_t$: income per capita in 2011 international dollars.
 ]
@@ -1796,31 +1771,27 @@ countries; modern income gaps are large.
 Population growth has a hump shape in many regions, with peaks at different
 dates. Births, deaths and migration all matter.
 
-#block(sticky: true)[
-  #figure(
-    image("figures/population_growth.svg", width: 100%),
-    caption: [Population growth by region.],
-  )<fig:population-growth>
-]
+#figure(
+  image("figures/population_growth.svg", width: 100%),
+  caption: [Population growth by region.],
+)<fig:population-growth>
+
 #figure-note[
   $g_N$: average annual population growth (% per year) between benchmark
   years, plotted at interval midpoints.
 ]
 
-#block(sticky: true)[
-  === Fertility over time
+=== Fertility over time
 
-  _Total fertility rate (TFR)_ is lifetime births per woman at current
-  age-specific fertility rates. Fertility declines at different times;
-  several countries fall below replacement.
-]
+_Total fertility rate (TFR)_ is lifetime births per woman at current
+age-specific fertility rates. Fertility declines at different times;
+several countries fall below replacement.
 
-#block(sticky: true)[
-  #figure(
-    image("figures/fertility_history.svg", width: 100%),
-    caption: [Fertility over time.],
-  )<fig:fertility-history>
-]
+#figure(
+  image("figures/fertility_history.svg", width: 100%),
+  caption: [Fertility over time.],
+)<fig:fertility-history>
+
 #figure-note[
   $"TFR"_t$: total fertility rate (births per woman).
   Dashed line: replacement benchmark, about 2.1 births per woman.
@@ -1831,12 +1802,11 @@ dates. Births, deaths and migration all matter.
 In 2022, richer countries generally have lower fertility. Israel lies
 above the high-income cluster.
 
-#block(sticky: true)[
-  #figure(
-    image("figures/fertility_income_2022.svg", width: 100%),
-    caption: [Fertility and income, 2022.],
-  )<fig:fertility-income>
-]
+#figure(
+  image("figures/fertility_income_2022.svg", width: 100%),
+  caption: [Fertility and income, 2022.],
+)<fig:fertility-income>
+
 #figure-note[
   $"TFR"$: births per woman; $y = Y / N$: income per capita in 2011
   international dollars (log scale). Countries with population above one million.
@@ -1844,12 +1814,11 @@ above the high-income cluster.
 
 == Malthus to Solow: simulated transition
 
-#block(sticky: true)[
-  #figure(
-    image("figures/malthus_solow_transition.svg", width: 100%),
-    caption: [Simulated transition from Malthus to Solow.],
-  )<fig:malthus-solow-transition>
-]
+#figure(
+  image("figures/malthus_solow_transition.svg", width: 100%),
+  caption: [Simulated transition from Malthus to Solow.],
+)<fig:malthus-solow-transition>
+
 #figure-note[
   Left: income per capita $y = Y / N$ (model units, log scale).
   Middle: Solow output share $Y_S / (Y_M + Y_S)$.
@@ -1896,7 +1865,6 @@ above the high-income cluster.
   workers back into the land-dependent sector. Feeding the population then
   becomes a constraint on the expansion of industry.
 ]
-
 
 == Becker, Murphy and Tamura (1990)
 
@@ -1979,12 +1947,11 @@ $
 
 More children raise the total cost of providing a given education per child.
 
-#block(sticky: true)[
-  === Optimal education: corner condition and Euler equation
+=== Optimal education: corner condition and Euler equation
 
-  At a differentiable optimum, the marginal benefit cannot exceed the marginal
-  cost at zero investment; they are equal at positive investment:
-]
+At a differentiable optimum, the marginal benefit cannot exceed the marginal
+cost at zero investment; they are equal at positive investment:
+
 $
                                   alpha n^(1 - epsilon) V'(H') & <= frac(n c^(sigma - 1), A), \
   H' [frac(n c^(sigma - 1), A) - alpha n^(1 - epsilon) V'(H')] & = 0.
@@ -2063,16 +2030,15 @@ $
   c_M & = H_0 - n_M (v H_0 + f) > 0.
 $
 
-#block(sticky: true)[With constant consumption and fertility,]
+With constant consumption and fertility,
 $
   V(0) & = frac(c_M^sigma, sigma) + alpha n_M^(1 - epsilon) V(0), \
        & = frac(c_M^sigma, sigma [1 - alpha n_M^(1 - epsilon)]).
 $
 
-#block(sticky: true)[
-  Finite utility requires $alpha n_M^(1 - epsilon) < 1$.
-  Fertility $n_M$ satisfies the FOC below; substituting $V(0)$ gives its second form:
-]
+Finite utility requires $alpha n_M^(1 - epsilon) < 1$.
+Fertility $n_M$ satisfies the FOC below; substituting $V(0)$ gives its second form:
+
 $
   (1 - epsilon) alpha n_M^(-epsilon) V(0)
   = c_M^(sigma - 1) (v H_0 + f).
@@ -2124,7 +2090,7 @@ $
   (1 - epsilon) alpha n^(-epsilon) V(H') & = c^(sigma - 1) (v + h) H.
 $
 
-#block(sticky: true)[Divide the first by the second, then multiply by $H'$:]
+Divide the first by the second, then multiply by $H'$:
 $
   frac(1, 1 - epsilon) frac(V'(H') H', V(H')) & = frac(H', A H(v + h)), \
                      frac(sigma, 1 - epsilon) & = frac(h, v + h), \
@@ -2176,8 +2142,8 @@ $
 
 === Two regimes and the transition threshold
 
-#block(width: 100%, sticky: true)[
-  #set align(center)
+#align(center)[
+
   #figure(
     image("figures/bmt_two_regimes.svg", width: 75%),
     caption: [Human capital and the two regimes.],
@@ -2202,9 +2168,6 @@ On the BGP, *growth rates and time allocation* stay constant while human capital
 keeps rising. The smooth threshold crossing is schematic: a nonconcave problem
 can have a policy jump or a kink in $V$. FOCs alone do not establish the global
 optimum.
-
-
-
 
 = Lecture 5 Oct 13
 
@@ -2266,11 +2229,10 @@ parent takes it as given, so it does not affect the choices.
   specification avoids solving the children's dynastic problem.
 ]
 
-#block(sticky: true)[
-  === Fertility and subsistence
+=== Fertility and subsistence
 
-  If the subsistence constraint is slack, the fertility FOC gives
-]
+If the subsistence constraint is slack, the fertility FOC gives
+
 $
   frac(gamma, n_t) & = frac((1 - gamma) z_t tau(e_(t+1)), c_t), \
   n_t tau(e_(t+1)) & = gamma, \
@@ -2329,9 +2291,8 @@ $
 $
 At $e = 0$, the left side is no larger than the right side.
 
-#block(sticky: true)[
-  Define $F(e, g) = tau(e) h_(e)(e, g) - tau^e h(e, g)$. At an interior optimum,
-]
+Define $F(e, g) = tau(e) h_(e)(e, g) - tau^e h(e, g)$. At an interior optimum,
+
 $
             F(e, g) & = 0, \
                 F_e & = tau(e) h_(e e) < 0, \
@@ -2426,7 +2387,6 @@ $(g, e)$ diagram. The low-education steady state eventually disappears.
   return to literacy and formal schooling.
 ]
 
-
 == Dynamics of education and technology
 
 Hold $L$ fixed within each panel:
@@ -2448,8 +2408,8 @@ the education-choice curve stays fixed.
 
 === Malthusian regime
 
-#block(width: 100%, sticky: true)[
-  #set align(center)
+#align(center)[
+
   #figure(
     image("figures/gw_malthusian.svg", width: 80%),
     caption: [Malthusian regime.],
@@ -2469,8 +2429,8 @@ the education-choice curve stays fixed.
 
 === Post-Malthusian regime
 
-#block(width: 100%, sticky: true)[
-  #set align(center)
+#align(center)[
+
   #figure(
     image("figures/gw_post_malthusian.svg", width: 80%),
     caption: [Post-Malthusian regime.],
@@ -2491,8 +2451,8 @@ the education-choice curve stays fixed.
 
 === Modern growth regime
 
-#block(width: 100%, sticky: true)[
-  #set align(center)
+#align(center)[
+
   #figure(
     image("figures/gw_modern.svg", width: 80%),
     caption: [Modern growth regime.],
@@ -2511,7 +2471,6 @@ the education-choice curve stays fixed.
   $n_t = gamma/(tau^q + tau^e e_(t+1))$: more education lowers fertility.
 - The population need not shrink when fertility falls. Income per adult
   grows as technology and human capital outpace the pressure on fixed land.
-
 
 == The transition: other contributions
 
@@ -2558,7 +2517,6 @@ Lecture 5, slide 34.
   fertility. Agricultural exporters face weaker incentives to educate and
   can have a delayed fertility transition. Trade can widen income and
   population-growth differences across countries._
-
 
 == The transition: recent research
 
@@ -2694,7 +2652,6 @@ _The relevant scarcity is now $K/(h N)$. At a common $A$, increasing $K/N$
 and $h$ by the same proportion raises income per worker by that proportion
 while leaving MPK unchanged._
 
-
 // END recording additions 2026-10-12
 
 == Main idea of Lucas (1988)
@@ -2730,12 +2687,12 @@ Here $sigma$ is relative risk aversion.
 
 === Bellman equation
 
-#block(sticky: true)[The social planner solves]
+The social planner solves
 $
   v(k, h) = max_(c, k', h_1, h_2)
   {u(c) + beta v(k', B h_2)}
 $
-#block(sticky: true)[subject to]
+subject to
 $
   c + k' & <= (1 - delta) k + A k^alpha h_1^(1 - alpha), \
       h' & = B h_2, \
@@ -2796,11 +2753,10 @@ Here $c'$ and $h'_1$ are next period's consumption and production allocation.
 The first equation governs physical investment; the second governs learning.
 The learning return includes the change in human capital's marginal product.
 
-#block(sticky: true)[
-  === Balanced growth path
+=== Balanced growth path
 
-  On a BGP, allocation shares and capital ratios are constant:
-]
+On a BGP, allocation shares and capital ratios are constant:
+
 $
   gamma = frac(c', c) = frac(k', k) = frac(h', h) = frac(h'_1, h_1).
 $
@@ -2862,7 +2818,6 @@ These ratios require $B - 1 + delta > 0$, which holds on a growing BGP.
   rebuilding and catch-up, conditional on the human-capital path.
   Countries with persistent skill gaps can instead remain on parallel BGPs.
 ]
-
 
 == How much does human capital explain? Development accounting
 
@@ -2950,7 +2905,6 @@ productivity differences after measuring physical capital and schooling-based
 human capital. The residual also absorbs omitted input quality and
 measurement error._
 
-
 == Development accounting revisited: Lagakos and Schoellman (2026)
 
 Lecture 5, slides 43 to 44.
@@ -2965,8 +2919,8 @@ With schooling-only $h_i = exp(0.1 S_i)$, the capital-output specification
 still assigns about *70%* of cross-country income variation to $A_i$.
 The residual is much lower in poor countries than in the U.S.
 
-#block(width: 100%, sticky: true)[
-  #set align(center)
+#align(center)[
+
   #figure(
     image("figures/development_tfp.svg", width: 75%),
     caption: [Productivity in the classic specification.],
@@ -3036,8 +2990,8 @@ estimate is not the sum of these displayed rows._
   reflect demographic composition as well as differences in learning on the job.
 ]
 
-#block(width: 100%, sticky: true)[
-  #set align(center)
+#align(center)[
+
   #figure(
     image("figures/development_human_capital.svg", width: 75%),
     caption: [Human capital with broader measurement.],
@@ -3058,10 +3012,9 @@ For given $y_i$ and $x_(K,i)$, increasing measured $h_i ell_i$ lowers the
 inferred $A_i = y_i/(x_(K,i) h_i ell_i)$. This is a change in measurement
 and attribution; it does not mean a country's actual technology has changed.
 
-
 == Evidence from migrants
 
-#block(sticky: true)[Lecture 5, slide 45.]
+Lecture 5, slide 45.
 
 @hendricks2018human: _compare real, PPP-adjusted hourly wages of the same
 immigrants before and after moving to the U.S. The main data source is the
@@ -3115,8 +3068,8 @@ A threefold wage gain is large for the migrant, but small relative to the
 thirtyfold income gap. About two-thirds of this group's *log income gap*
 is attributed to human capital in the benchmark.
 
-#block(width: 100%, sticky: true)[
-  #set align(center)
+#align(center)[
+
   #figure(
     image("figures/migrant_wage_gains.svg", width: 75%),
     caption: [Migrant wage gains and income gaps.],
@@ -3144,7 +3097,6 @@ is attributed to human capital in the benchmark.
   one-half and two-thirds in the paper, with a benchmark estimate around 60%.
   The lecture's 66% is the poorest-group calculation, not the full-sample estimate.
 
-
 == Skilled versus unskilled labor
 
 Lecture 5, slide 46.
@@ -3156,11 +3108,10 @@ evidence attributes most of these differences to skill-biased technology._
 
 === CES labor input and the skill premium
 
-#block(sticky: true)[
-  For skill group $j in {u, s}$, let $N_(j,i)$ be workers and $h_(j,i)$ human
-  capital per worker. Effective labor is $L_(j,i) = N_(j,i) h_(j,i)$.
-  The labor aggregate is
-]
+For skill group $j in {u, s}$, let $N_(j,i)$ be workers and $h_(j,i)$ human
+capital per worker. Effective labor is $L_(j,i) = N_(j,i) h_(j,i)$.
+The labor aggregate is
+
 $
   L_i = (z_(u,i) L_(u,i)^((sigma - 1)/sigma)
     + z_(s,i) L_(s,i)^((sigma - 1)/sigma))^(sigma/(sigma - 1)).
@@ -3197,8 +3148,8 @@ If $omega_i$ varies little, greater relative skill supply in rich countries
 requires higher $R_i$. The lecture's calculation at $sigma = 1.5$ implies
 roughly a sixteenfold rich-poor difference.
 
-#block(width: 100%, sticky: true)[
-  #set align(center)
+#align(center)[
+
   #figure(
     image("figures/relative_skill_efficiency.svg", width: 75%),
     caption: [Relative efficiency of skilled labor.],
@@ -3239,7 +3190,7 @@ The share above 100% is permitted by the covariance metric._
 
 == Human capital and the allocation of talent
 
-#block(sticky: true)[Lecture 5, slide 47.]
+Lecture 5, slide 47.
 
 @hsieh2019talent: _in 1960, 94% of U.S. doctors and lawyers were white men;
 by 2010, 62% were. A Roy model links changing occupational choices to declining
@@ -3329,7 +3280,6 @@ Lecture 5, slides 48 and 50.
   Institutions shape investment and innovation incentives. The next lecture
   turns to the creation of ideas and endogenous productivity growth.
 
-
 = Lecture 6 Oct 19
 
 == Endogenous productivity
@@ -3380,7 +3330,10 @@ R&D expands the range of intermediate goods. More varieties raise output
 for given aggregate inputs, linking productivity growth to firms' innovation
 incentives.
 
-#lecture-addition("Access to ideas and research funding", source: "2026-10-19, 00:08:42 - 00:10:39; 00:17:28 - 00:18:16")[
+#lecture-addition(
+  "Access to ideas and research funding",
+  source: "2026-10-19, 00:08:42 - 00:10:39; 00:17:28 - 00:18:16",
+)[
   Public funding of universities and research grants can finance invention
   directly. Imitation delays can also create temporary first-mover rents:
   copying an idea and building production capacity take time.
@@ -3477,7 +3430,7 @@ $
     - w_t ell_t - integral_0^(N_t) P_(i t) X_(i t) dif i
   ].
 $
-#block(sticky: true)[The interior FOCs, evaluated at $ell_t = L$, are]
+The interior FOCs, evaluated at $ell_t = L$, are
 $
       w_t & = (1 - alpha) frac(Y_t, L), \
   P_(i t) & = A alpha L^(1 - alpha) X_(i t)^(alpha - 1)
@@ -3519,7 +3472,6 @@ $
 With $A$, $L$ and $alpha$ constant, $P$, $X$ and $pi$ are constant across
 varieties and over time. These profits exclude the initial R&D outlay.
 
-
 Hold $N_t$ fixed. Efficient production uses each intermediate until its
 marginal product falls to its production cost of one:
 
@@ -3551,7 +3503,7 @@ The equilibrium conditions allow zero R&D even when $V = eta$:
 $
   V <= eta, quad R_t >= 0, quad (eta - V) R_t = 0.
 $
-#block(sticky: true)[With *positive innovation*, $V = eta = pi/r$, hence]
+With *positive innovation*, $V = eta = pi/r$, hence
 $
   r = frac(pi, eta)
   = frac(1 - alpha, alpha) frac(L, eta)
@@ -3591,7 +3543,6 @@ $
 $
 When the patent value is constant, $1 + r = (pi + V)/V$.
 Patent profits are already included in the asset return in the budget.
-
 
 At an interior optimum, saving equates the marginal utility cost today
 to the discounted marginal utility of its payoff:
@@ -3647,23 +3598,21 @@ $
   to $N_0$.
 ]
 
-#block(sticky: true)[
-  Since assets grow at rate $g$, household transversality requires
-]
+Since assets grow at rate $g$, household transversality requires
+
 $
   beta (1 + g)^(1 - sigma)
   = frac(1 + g, 1 + r) < 1
   quad <=> quad g < r.
 $
 
-#block(width: 100%, sticky: true)[
-  #align(center)[
-    #figure(
-      image("figures/romer_equilibrium.svg", width: 85%),
-      caption: [Equilibrium growth.],
-    )<fig:romer-equilibrium>
-  ]
+#align(center)[
+  #figure(
+    image("figures/romer_equilibrium.svg", width: 85%),
+    caption: [Equilibrium growth.],
+  )<fig:romer-equilibrium>
 ]
+
 #figure-note[
   Log-utility schematic ($sigma = 1$), redrawn from Lecture 6, slide 11.
   *Free entry* fixes the return on R&D at $r = pi/eta$.
@@ -3680,7 +3629,10 @@ From @eq:romer-growth, holding other parameters fixed:
 - *A higher innovation cost $eta$* lowers the return $r = pi/eta$ and growth.
 - *Greater impatience $rho$* lowers saving and growth at a given return.
 
-#lecture-addition("Scale and the market for one variety", source: "2026-10-19, 00:39:18 - 00:42:28; 01:16:01 - 01:17:25")[
+#lecture-addition(
+  "Scale and the market for one variety",
+  source: "2026-10-19, 00:39:18 - 00:42:28; 01:16:01 - 01:17:25",
+)[
   Increasing $L$ expands the market for each variety. Increasing $N_t$
   adds varieties at unchanged demand per variety, so $N_t$ itself does not
   raise the growth rate. With market integration, innovators can serve
@@ -3688,14 +3640,13 @@ From @eq:romer-growth, holding other parameters fixed:
   measure their market size.
 ]
 
-#block(width: 100%, sticky: true)[
-  #align(center)[
-    #figure(
-      image("figures/romer_equilibrium_scale_effect.svg", width: 85%),
-      caption: [A larger market or cheaper innovation.],
-    )<fig:romer-scale-effect>
-  ]
+#align(center)[
+  #figure(
+    image("figures/romer_equilibrium_scale_effect.svg", width: 85%),
+    caption: [A larger market or cheaper innovation.],
+  )<fig:romer-scale-effect>
 ]
+
 #figure-note[
   Log-utility schematic ($sigma = 1$), redrawn from Lecture 6, slide 11.
   Higher $L$ or lower $eta$ raises $pi/eta$, shifting the free-entry line
@@ -3722,10 +3673,10 @@ $
   A alpha L^(1 - alpha) (X^*)^(alpha - 1) & = 1, \
                                       X^* & = L (A alpha)^(1/(1 - alpha)) > X.
 $
-#block(sticky: true)[
-  The *social return to innovation* is net output from a new variety divided
-  by its cost. Using the static FOC,
-]
+
+The *social return to innovation* is net output from a new variety divided
+by its cost. Using the static FOC,
+
 $
   r^* & = frac(A L^(1 - alpha) (X^*)^alpha - X^*, eta) \
       & = frac(1 - alpha, alpha eta) X^*
@@ -3750,14 +3701,13 @@ $
   quad => quad g < g^*.
 $
 
-#block(width: 100%, sticky: true)[
-  #align(center)[
-    #figure(
-      image("figures/romer_equilibrium_planner.svg", width: 85%),
-      caption: [Equilibrium and planner growth.],
-    )<fig:romer-planner-growth>
-  ]
+#align(center)[
+  #figure(
+    image("figures/romer_equilibrium_planner.svg", width: 85%),
+    caption: [Equilibrium and planner growth.],
+  )<fig:romer-planner-growth>
 ]
+
 #figure-note[
   Log-utility schematic ($sigma = 1$), redrawn from Lecture 6, slide 11.
   The planner comparison holds the baseline parameters fixed:
@@ -3811,7 +3761,6 @@ Quality gains persist after the innovator is replaced, so its profits
 capture only part of their social value. This can discourage R&D.
 Together with business stealing, this means *equilibrium innovation can be
 too high or too low* relative to the planner's choice.
-
 
 === @aghion1992creative in discrete time: environment
 
@@ -3899,13 +3848,12 @@ With $L$ fixed, aggregate output grows at the same rate as average quality.
 
 === Creative destruction and the value of innovation
 
-#block(sticky: true)[
-  *Innovation value:* take $r > 0$ and the common replacement probability
-  $mu in [0, 1]$ as constant. Let $V(A')$ be the end-of-period value of a
-  leader with quality $A'$, before its first profit next period.
-  It first receives $overline(pi) A' L$, then retains its continuation value
-  with probability $1 - mu$. Replacement leaves zero continuation value:
-]
+*Innovation value:* take $r > 0$ and the common replacement probability
+$mu in [0, 1]$ as constant. Let $V(A')$ be the end-of-period value of a
+leader with quality $A'$, before its first profit next period.
+It first receives $overline(pi) A' L$, then retains its continuation value
+with probability $1 - mu$. Replacement leaves zero continuation value:
+
 $
            V(A') & = frac(
                      overbrace(overline(pi) A' L, "next-period profit")
@@ -3951,9 +3899,9 @@ $
           & = [1 + mu (gamma - 1)] A_t, \
         g & := frac(A_(t+1), A_t) - 1 = mu (gamma - 1).
 $
-#block(sticky: true)[
-  On a BGP, research spending and consumption are proportional to $A_t$:
-]
+
+On a BGP, research spending and consumption are proportional to $A_t$:
+
 $
              R_t & := integral_0^1 R_(j t) dif j = frac(gamma mu, lambda) A_t, \
   frac(C_t, A_t) & = L [alpha^((2 alpha)/(1 - alpha)) - alpha^(2/(1 - alpha))]
@@ -3986,14 +3934,13 @@ $
 If $lambda overline(pi) L <= rho$, the *no-innovation corner* has
 $mu = g = 0$ and $r = rho$; the positive-entry equality no longer applies.
 
-#block(width: 100%, sticky: true)[
-  #align(center)[
-    #figure(
-      image("figures/aghion_equilibrium.svg", width: 85%),
-      caption: [Equilibrium innovation.],
-    )<fig:aghion-equilibrium>
-  ]
+#align(center)[
+  #figure(
+    image("figures/aghion_equilibrium.svg", width: 85%),
+    caption: [Equilibrium innovation.],
+  )<fig:aghion-equilibrium>
 ]
+
 #figure-note[
   Log-utility schematic ($sigma = 1$), redrawn from Lecture 6, slide 21.
   Free entry gives the downward-sloping locus $r = lambda overline(pi) L - mu$.
@@ -4001,21 +3948,19 @@ $mu = g = 0$ and $r = rho$; the positive-entry equality no longer applies.
   upward. Their intersection determines $mu_"eq"$ and $r_"eq"$.
 ]
 
-#block(width: 100%, sticky: true)[
-  #align(center)[
-    #figure(
-      image("figures/aghion_equilibrium_scale_effect.svg", width: 85%),
-      caption: [Market size and research productivity.],
-    )<fig:aghion-scale-effect>
-  ]
+#align(center)[
+  #figure(
+    image("figures/aghion_equilibrium_scale_effect.svg", width: 85%),
+    caption: [Market size and research productivity.],
+  )<fig:aghion-scale-effect>
 ]
+
 #figure-note[
   Log-utility schematic ($sigma = 1$), redrawn from Lecture 6, slide 21.
   Higher $L$ or $lambda$ shifts the free-entry locus upward; preferences
   and $gamma$ are unchanged. The new intersection has higher $mu$ and $r$,
   raising growth through $g = mu (gamma - 1)$.
 ]
-
 
 === Determinants of growth
 
@@ -4047,7 +3992,6 @@ and take over production. Smooth aggregate growth can coexist with
   common research technology.
 ]
 
-
 === Is growth too fast or too slow?
 
 Private rewards to innovation differ from social returns in three ways:
@@ -4075,7 +4019,6 @@ can be too fast.
   Private information about research costs or opportunities would add
   another policy constraint.
 ]
-
 
 == Where has the literature gone since?
 
@@ -4112,7 +4055,6 @@ _Supplementary reading._
   observe directly. Information constraints change the taxes and R&D
   subsidies needed to address knowledge spillovers._
 
-
 == Scale effects and semi-endogenous growth
 
 *Empirical motivation.* @jones1995rnd: _Research employment rose in
@@ -4121,9 +4063,8 @@ the early models' strong scale effects._
 
 === Idea production
 
-#block(sticky: true)[
-  Use a discrete-time version of the idea-production block in @jones2005ideas:
-]
+Use a discrete-time version of the idea-production block in @jones2005ideas:
+
 $
   A_(t+1) - A_t = chi L_(A,t)^eta A_t^phi,
   quad chi > 0, quad 0 < eta <= 1, quad 0 <= phi < 1.
@@ -4134,7 +4075,7 @@ $
 - Take a constant equilibrium research share $0 < s_A < 1$ and population
   growth $n > 0$: $L_(A,t) = s_A L_t$, $L_(t+1) = (1 + n) L_t$.
 
-#block(sticky: true)[The proportional growth rate of ideas is]
+The proportional growth rate of ideas is
 $
   g_(A,t) := frac(A_(t+1) - A_t, A_t)
   = frac(chi (s_A L_t)^eta, A_t^(1 - phi)).
@@ -4153,8 +4094,8 @@ $
 On a BGP, $g_(A,t+1) = g_(A,t) = g_A > 0$, so
 $
   (1 + g_A)^(1 - phi) & = (1 + n)^eta, \
-                 g_A & = (1 + n)^(eta/(1 - phi)) - 1
-                         approx frac(eta n, 1 - phi).
+                  g_A & = (1 + n)^(eta/(1 - phi)) - 1
+                        approx frac(eta n, 1 - phi).
 $
 The approximation applies to small growth rates. This is
 *semi-endogenous growth*: R&D produces new ideas, while exogenous
@@ -4178,14 +4119,13 @@ $
 - *Relevant scale:* $L_t$ is the population sharing the idea stock,
   potentially global when ideas cross borders.
 
-#block(width: 100%, sticky: true)[
   #align(center)[
     #figure(
       image("figures/semi_endogenous_policy.svg", width: 100%),
       caption: [Research intensity: levels and growth.],
     )<fig:semi-endogenous-policy>
   ]
-]
+
 #figure-note[
   Uncalibrated example with $n = 0.02$, $eta = 0.8$, $phi = 0.5$ and
   $A_0 = L_0 = 1$. Research share rises from $0.05$ to $0.10$ in period
@@ -4229,12 +4169,11 @@ costs._
 
 === Connection to semi-endogenous growth
 
-#block(sticky: true)[
-  In the preceding model, taking $S_t = L_(A,t)$ gives
-  $
-    cal(P)_t = chi S_t^(eta - 1) A_t^(phi - 1).
-  $
-]
+In the preceding model, taking $S_t = L_(A,t)$ gives
+$
+  cal(P)_t = chi S_t^(eta - 1) A_t^(phi - 1).
+$
+
 At fixed $S_t$, *$phi < 1$* makes research productivity fall as knowledge
 accumulates. Maintaining constant positive $g_A$ therefore requires
 growing research effort. Falling measured productivity is consistent with
@@ -4245,4 +4184,677 @@ this mechanism; the ratio alone does not identify $phi$.
   In the semi-endogenous block above, a permanent rise in $chi$ alone
   raises BGP technology levels while leaving the long-run growth rate
   $g_A$ unchanged.
+]
+
+= Lecture 7 Oct 20
+
+== Directed technical change
+
+@acemoglu2002directed: _Firms choose which factors their inventions
+complement. Profit incentives determine the direction of technical change._
+
+Two forces shape those incentives:
+- *Market size:* more users make a technology more profitable. An abundant
+  factor offers a larger market for inventions that complement it.
+- *Price effect:* goods produced with scarce factors command higher prices,
+  attracting innovation toward those factors.
+
+The elasticity of substitution determines which force dominates. More
+skilled workers can induce skill-complementary inventions. If that response
+is strong enough, their relative wage can eventually rise despite the larger
+supply. Factor supplies therefore affect both current wages and future
+technology.
+
+#lecture-addition("The adjustment of the skill premium", source: "2026-10-20, 00:00:57 - 00:04:37")[
+  With technology fixed on impact, a larger supply of skilled workers lowers
+  their relative wage. Subsequent skill-complementary innovation can reverse
+  that response.
+]
+
+== Appropriate technology: @acemoglu2001productivity
+
+_A technology suited to a rich country's workforce may work poorly with a
+poorer country's skill mix. Equal access to inventions can coexist with
+large productivity gaps._
+
+Innovation targets the skill-abundant North because inventors earn their
+returns there. The South copies those technologies but has fewer skilled
+workers.
+
+- In some industries, Northern firms use skilled workers and specialized
+  machines; Southern firms instead use unskilled workers and machines
+  designed for them. The latter technology is less productive there.
+- This mismatch creates measured TFP differences even when Southern firms
+  choose optimally given their workers and available technologies.
+- The paper predicts larger *value-based industry TFP gaps* in less
+  skill-intensive sectors. Local prices matter: scarce skills raise the
+  prices of skill-intensive goods in the South.
+
+Technology diffusion alone need not close income gaps. The direction of
+invention and the skill mix of its users also matter.
+
+#lecture-addition("Agriculture and local conditions", source: "2026-10-20, 00:05:50 - 00:07:09")[
+  Agricultural technology depends on climate, soil and the crops that can be
+  grown locally. Seeds, pesticides and fertilizers developed for conditions
+  in high-income countries may fit other locations poorly. This matters
+  especially where agriculture accounts for a large share of production.
+]
+
+== Climate and directed technical change
+
+@acemoglu2012environment: _Policy can redirect innovation toward clean
+technology. Once clean technology is sufficiently advanced, private
+research incentives can sustain that direction._
+
+- *Dirty technology can reinforce its lead.* Its larger market and existing
+  knowledge attract further research. With a sufficiently large initial
+  dirty advantage, laissez-faire keeps innovation dirty and environmental
+  damage accumulates.
+- *Two policy instruments:* a carbon tax reduces current dirty production;
+  clean-research subsidies change what gets invented. Using both avoids
+  relying on a high carbon tax to do both jobs.
+- *Temporary intervention is conditional.* Temporary support can permanently
+  redirect research when clean and dirty inputs are substitutes. Avoiding
+  environmental disaster with temporary policy requires stronger
+  substitutability and sufficiently good initial environmental conditions.
+  Otherwise, permanent regulation may be necessary.
+
+Delay widens the technology gap. Clean technology then needs longer support,
+with a longer transition of slow growth. The result depends on how readily
+clean production can replace dirty production.
+
+== Automation and new tasks
+
+@acemoglu2019automation: _Technology changes which tasks workers perform.
+Automation displaces labor from existing tasks; new tasks can expand its
+role in production._
+
+A job bundles several tasks. Automating one task can change a job without
+eliminating the whole occupation. Three effects matter:
+
+- *Displacement:* machines take over tasks previously done by workers,
+  reducing labor's role and its share of income.
+- *Productivity:* lower production costs expand output and demand for labor
+  in remaining tasks. This can offset displacement, but need not.
+- *Reinstatement:* new tasks where workers have a comparative advantage
+  expand labor demand and its income share. Examples include new work in
+  software development and technical maintenance.
+
+Small cost savings can coexist with substantial displacement. The authors
+call this _so-so automation_: its productivity gain may be too weak to
+offset the loss of labor demand. A falling labor share can also coexist with rising real
+wages if productivity grows enough. Employment additionally depends on
+labor supply and adjustment frictions.
+
+@acemoglu2018race: _Automation and new-task creation are themselves research
+choices. Their relative profitability affects the long-run balance between
+machines and workers._
+
+Automation can lower labor's effective cost, making further automation less
+attractive relative to creating new labor tasks. Under suitable conditions,
+this supports a stable path with both kinds of innovation. It does not
+guarantee recovery: sufficiently cheap capital can instead lead to full
+automation. A permanent improvement in automation research can also lead
+to a new growth path with lower employment and a lower labor share.
+
+== Measuring innovation with patent data
+
+@griliches1990patents: _Patents provide detailed records of inventive
+activity, but inventions differ greatly in importance and in whether they
+are patented._
+
+R&D spending measures research input. Patent records provide an observable
+output that can be linked to inventors, firms, technology fields and places.
+
+- *Patent counts:* measure the volume of patented activity, giving each
+  patent the same weight.
+- *Forward citations:* later patents citing an invention provide a proxy
+  for its technological influence. Citation-weighted counts allow important
+  inventions to receive more weight.
+- *Technology classes and ownership:* show what firms invent and where
+  research is directed. Matching patents to firm data connects invention
+  to R&D, growth and market shares.
+
+Patent coverage and firms' willingness to patent differ across sectors.
+Trade secrets, process changes and organizational improvements may leave
+little trace in patent counts; strategic patenting can raise counts without
+equally large productivity gains.
+
+@hall2001patents: _Citation comparisons must account for technology fields,
+patent cohorts and the time available to accumulate citations._
+
+Recent patents have shorter citation histories. Citations can also reflect
+legal examination and citation practices, so a citation link alone does
+not establish a knowledge spillover.
+
+@kogan2017innovation: _Stock-market reactions around patent grants can be
+used to estimate inventions' private economic value for listed US firms._
+
+This measure links innovation to subsequent firm growth and resource
+reallocation, connecting patent data to Schumpeterian growth theory.
+It measures gains to the patent owner. Knowledge spillovers, consumer
+benefits and losses to competitors make the *social value* a different
+object.
+
+#lecture-addition("Interpreting patent events", source: "2026-10-20, 00:12:52 - 00:16:51")[
+  The technical information may already be public before a patent is
+  granted. A stock-market response at the grant date can therefore reflect
+  news about quality or enforceability, rather than the first disclosure of
+  an invention.
+
+  Responses at competitors, suppliers and customers can reveal how an
+  innovation affects connected firms. Patent text, inventor identities,
+  locations and citations also let researchers study connections across
+  technologies and inventor networks.
+]
+
+== Schumpeterian growth meets firm dynamics
+
+@klette2004innovating: _Creative destruction explains how firms enter,
+expand, shrink and exit, while their innovations drive aggregate growth._
+
+A firm owns a portfolio of product lines. Its size changes through
+innovation:
+
+- *Expansion:* a quality improvement lets it take a product line from
+  another producer.
+- *Contraction:* a competitor's innovation takes a line away.
+- *Entry and exit:* a new firm enters with its first line; an existing firm
+  exits after losing its last one.
+
+These products are new to the firm. The economy's set of product lines is
+fixed; *aggregate growth comes from improving their quality*. Firms can
+keep turning over while the distribution of firm sizes remains stable.
+
+Existing products also represent knowledge that supports further research.
+Larger firms therefore undertake more R&D in levels. The framework links
+firm size, R&D, patenting and survival to the economy's innovation rate,
+bringing firm-level data into growth theory.
+
+@acemoglu2018reallocation: _Growth also depends on which firms survive and
+where skilled workers are employed. Firms differ in their capacity to
+innovate._
+
+In their estimated model, supporting incumbent firms can keep weak
+innovators operating and tie up skilled workers that more innovative firms
+could use for research. Policy therefore affects growth through *selection
+and resource reallocation*, alongside its effect on firms' R&D incentives.
+
+== Declining business dynamism
+
+Business dynamism is the process of firms entering, expanding, shrinking
+and exiting, with jobs moving across businesses.
+
+@akcigit2021dynamism: _Several indicators point to weaker US business
+dynamism over the decades before the pandemic._
+
+- *Entry and young firms:* fewer new firms enter relative to the existing
+  business population; young firms account for less economic activity.
+- *Job reallocation:* jobs are created and destroyed at a slower rate.
+  These gross flows differ from net employment growth.
+- *Leading firms:* market concentration and markups rise, alongside wider
+  productivity gaps between frontier firms and followers.
+
+@akcigit2023dynamism: _Slower knowledge diffusion from leading firms to
+followers can jointly explain weaker dynamism and greater concentration._
+
+In their model, followers fall further behind and become less willing to
+innovate; entry also becomes less attractive. Leaders face less competitive
+pressure and eventually innovate less. The resulting slowdown in catch-up
+and creative destruction reduces productivity growth. This is a proposed
+structural explanation, supported by their model and patent evidence.
+
+@decker2020dynamism: _Businesses became less responsive to productivity
+changes, even as the dispersion of productivity shocks increased._
+
+Weaker expansion of productive businesses and weaker contraction of less
+productive ones reduce the gains from reallocating jobs. Their evidence
+suggests that this has contributed to slower aggregate productivity growth.
+
+Higher concentration can also arise when efficient firms gain market share.
+Entry, catch-up and responses to productivity changes help distinguish the
+underlying explanations.
+
+#lecture-addition(
+  "Innovation incentives and the technology gap",
+  source: "2026-10-20, 00:20:00 - 00:22:47",
+)[
+  In the leader-follower models discussed in class, a small technology gap
+  gives both firms an incentive to innovate: the follower can overtake, and
+  the leader wants to defend its position. A wider gap can discourage the
+  follower and reduce competitive pressure on the leader. Innovation then
+  falls on both sides. Harder-to-find ideas can affect growth partly through
+  these changes in competition.
+]
+
+== Summary
+
+- *From stagnation to growth:* technological progress, structural change,
+  fertility choices and investment in education jointly explain the
+  historical transition to sustained growth in income per person.
+- *Accumulation and productivity:* physical and human capital explain part
+  of cross-country income differences. Development accounting separates
+  their contributions from measured TFP; explaining why they differ requires
+  a theory of investment, technology and institutions.
+- *Innovation:* new varieties and quality improvements raise productivity.
+  Ideas are nonrival, while private profits help finance their creation.
+  Knowledge spillovers and creative destruction separate private innovation
+  returns from social returns.
+- *Innovation direction:* firms choose which workers, tasks and sectors
+  their inventions serve. Those choices affect technology's suitability,
+  income distribution and environmental damage.
+- *Firm dynamics:* entry, incumbent innovation, exit and knowledge diffusion
+  shape productivity growth. Growth also depends on whether labor and
+  capital move toward firms that can use them productively.
+- *Policy:* knowledge spillovers, market power, environmental damage and
+  barriers to entry call for different interventions. Whether policy changes
+  income levels or long-run growth depends on the research technology and
+  population dynamics. Its effect also depends on which firms expand and
+  where research resources go.
+
+== Endogenously incomplete markets
+
+The *traditional Chicago critique* asks why valuable insurance contracts
+remain unavailable. Assuming markets are missing leaves that question open.
+
+*Positive economics:*
+- If incomplete insurance creates large losses, households and firms have
+  incentives to develop contracts that capture those gains. Fire and life
+  insurance show that private markets can cover important risks.
+- If the losses are small, explain why market incompleteness matters for
+  the economic question being studied.
+
+*Normative economics:* public insurance can look too attractive if the
+government is simply allowed to implement contracts ruled out for private
+agents. Policy analysis must specify the government's information and
+enforcement abilities, including any advantage over private contracting.
+Policy can also change private financial arrangements, an extension of
+the Lucas critique.
+
+#lecture-addition(
+  "The friction also constrains public insurance",
+  source: "2026-10-20, 00:28:48 - 00:33:17",
+)[
+  If adverse selection undermines voluntary private health insurance, a
+  voluntary public plan facing the same information and participation
+  constraints can inherit the problem.
+
+  Exogenously incomplete markets can still be a useful modelling choice.
+  Endogenizing the friction makes the model more demanding and limits what
+  can be studied. Policy conclusions must account for the restrictions
+  imposed on private agents and the government.
+]
+
+*Endogenous incompleteness:* model the friction that prevents full insurance.
+The lecture focuses on *limited contract enforcement*:
+- *Participation constraints:* households can walk away. Staying must be at
+  least as attractive as leaving after each income history.
+- A household with high current income may want to stop making transfers.
+  Losing future insurance can give it a reason to stay.
+
+
+
+== Idiosyncratic income shocks with limited enforcement
+
+Based on @thomas1988self, _Self-Enforcing Wage Contracts_.
+
+
+A continuum of *ex ante identical households* has preferences
+$
+  E_0 sum_(t=0)^infinity beta^t u(c_t), quad 0 < beta < 1.
+$
+Utility is increasing, strictly concave and satisfies the Inada conditions.
+
+Each household receives *i.i.d. idiosyncratic income* across time and
+households:
+$
+            y_t & in cal(Y) = {y_1, dots, y_N}, quad y_1 < dots < y_N, \
+  Pr(y_t = y_n) & = pi_n, quad sum_(n=1)^N pi_n = 1.
+$
+By the law of large numbers, a fraction $pi_n$ receives $y_n$ each period.
+Average income is constant:
+$
+  overline(y) = sum_(n=1)^N pi_n y_n.
+$
+There is *individual income risk without aggregate income risk*.
+
+The household's income history is
+$
+  s^t = (y_0, y_1, dots, y_t).
+$
+Income is i.i.d., but an insurance contract can depend on $s^t$: past
+agreements can affect what the household is entitled to receive today.
+
+#lecture-addition("What income means here", source: "2026-10-20, 00:34:18 - 00:37:29")[
+  Treat $y_t$ as the household's realized goods endowment. Its source is
+  outside this partial-equilibrium model; there is no separate production
+  or labor-supply decision. General-equilibrium market clearing comes
+  later. The index $n$ labels possible income values, while $t$ labels dates.
+]
+
+== The complete markets benchmark
+
+For these ex ante identical households, *complete markets and enforceable
+contracts* deliver *full insurance*:
+$
+  c_t (s^t) = overline(y) quad "for all" t, s^t.
+$
+Strict concavity favors consumption smoothing. With no aggregate income
+risk, pooled income supports the same consumption at every date and history.
+
+The allocation requires transfers:
+- *High income* ($y_t > overline(y)$): pay $y_t - overline(y)$ as an
+  insurance premium.
+- *Low income* ($y_t < overline(y)$): receive $overline(y) - y_t$ as an
+  insurance payout.
+
+Premiums finance payouts each period because
+$sum_(n=1)^N pi_n (y_n - overline(y)) = 0$.
+
+*Enforcement matters:* after a high income realization, the household must
+honor its promise to pay. The limited-enforcement model allows it to walk away.
+
+== Introducing the enforcement friction
+
+Keep the same preferences and income process, but allow a household to
+*walk away from its insurance commitment* after observing current income.
+
+Exit leads to *permanent autarky*. The household cannot rejoin the
+arrangement and has no access to saving, borrowing or other insurance.
+If it exits at date $t$, consumption equals its own realized income:
+$
+  c_j = y_j, quad j >= t.
+$
+
+A high-income household can keep its current income by leaving, but loses
+future insurance against low-income realizations. To keep it participating,
+the arrangement must make *staying at least as attractive as autarky* after
+every income history.
+
+The questions are:
+- Can any insurance survive when households are free to leave?
+- If so, how much consumption smoothing can be sustained?
+
+
+== Limited enforcement in partial equilibrium
+
+A household contracts with a *risk-neutral insurer*:
+- The insurer can borrow and lend at the given gross return
+  $1 + r = 1 / beta$.
+- The insurer *can commit* to future payments. The household can leave.
+
+Borrowing and lending allow the insurer's receipts and payments to differ
+within a period.
+
+#lecture-addition("Why a risk-neutral insurer?", source: "2026-10-20, 00:43:39 - 00:45:17")[
+  Risk neutrality gives a simple starting point for the insurance problem.
+  Pooling a continuum of independent household risks also makes aggregate
+  income predictable. The insurer's fixed interest rate and ability to
+  commit are assumptions of this partial-equilibrium exercise.
+]
+
+=== The contract
+
+A contract specifies *history-dependent consumption* $c_t (s^t)$.
+If the household stays, it hands over income $y_t$ and receives
+$c_t (s^t)$.
+
+Before the initial income draw, the contract's values are
+$
+  P & = E_0 [sum_(t=0)^infinity beta^t (y_t - c_t (s^t))], \
+  v & = E_0 [sum_(t=0)^infinity beta^t u(c_t (s^t))].
+$
+Here $P$ is the insurer's expected discounted profit and $v$ is the
+household's expected discounted utility.
+
+=== The autarky value
+
+*Before current income is realized*, permanent autarky is worth
+$
+  v_("aut")
+  = E_0 [sum_(t=0)^infinity beta^t u(y_t)]
+  = frac(sum_(n=1)^N pi_n u(y_n), 1 - beta).
+$
+The expression is constant because income is i.i.d.
+
+*After observing $y_t$*, leaving gives current utility $u(y_t)$ plus future
+autarky utility:
+$
+  u(y_t) + beta v_("aut").
+$
+The household exits before making the current transfer, so it keeps $y_t$.
+
+=== The participation constraint
+
+At *every history* $s^t$, the contract must satisfy
+$
+  underbrace(
+    u(c_t (s^t))
+    + E_t [sum_(j=t+1)^infinity beta^(j-t) u(c_j (s^j))],
+    "stay",
+  )
+  >= underbrace(u(y_t) + beta v_("aut"), "leave").
+$
+The expectation $E_t$ conditions on $s^t$. A contract satisfying these
+constraints is *self-enforcing*: staying is optimal after every income
+history. The household's only decision is whether to stay or enter permanent
+autarky.
+
+== Finding the optimal contract
+
+We seek the contract that gives the household the highest utility while
+respecting *limited enforcement* and the insurer's *break-even requirement*.
+The primal and dual formulations trace the same constrained Pareto frontier.
+
+*Primal approach:* choose the consumption contract to maximize household
+utility $v$, subject to:
+- The household's participation constraint at *every history*.
+- Nonnegative expected discounted insurer profit, $P >= 0$.
+
+At the optimum, *$P = 0$*: any surplus could finance more consumption,
+raising household utility and relaxing participation constraints. Zero
+profit applies to the initial expected present value of the whole contract.
+
+*Dual approach:* fix a promised household utility $v$ and maximize the
+insurer's profit:
+$
+  P(v) = max_({c_t (s^t)})
+  E_0 [sum_(t=0)^infinity beta^t (y_t - c_t (s^t))],
+$
+subject to the same participation constraints and the *utility promise*
+$
+  E_0 [sum_(t=0)^infinity beta^t u(c_t (s^t))] >= v.
+$
+The promise sets a minimum utility before initial income is realized;
+participation constraints prevent exit after each income history.
+
+To recover the household-optimal contract, choose the *largest affordable
+promise*:
+$
+  v_0 = max {v : P(v) >= 0}.
+$
+A larger promise restricts the insurer's feasible contracts, so $P(v)$ is
+weakly decreasing. The optimum satisfies $P(v_0) = 0$.
+
+The dual approach lets us use *promised utility* as the state in a recursive
+problem. The insurer commits to continuation payments, including payments
+that may generate future losses.
+
+== A recursive dual approach
+
+=== The state: promised utility
+
+The sequential contract must satisfy participation constraints after every
+history. Use the household's *promised utility* as the recursive state:
+$
+  v_t = E [sum_(j=0)^infinity beta^j
+    u(c_(t+j) (s^(t+j))) | s^(t-1)].
+$
+This is expected utility *before $y_t$ is realized, from period $t$ onward*.
+At $t = 0$, the conditioning history is empty.
+
+Income is i.i.d., so past income adds no information about future draws.
+The promise $v$ summarizes the remaining utility owed under the contract.
+The insurer can choose how to deliver it through current consumption and
+future promises.
+
+=== Timing
+
++ Enter the period with promise $v$, *before* the income draw.
++ The insurer specifies $(c_n, v'_n)$ for each possible income $y_n$.
+  Here $v'_n$ is promised utility *before next period's income draw*.
++ Income $y_n$ is realized. The household chooses whether to stay or exit
+  into permanent autarky, before making any transfer.
++ If it stays, it gives $y_n$ to the insurer and consumes $c_n$.
++ Next period begins with promise $v'_n$.
+
+=== The insurer's Bellman equation
+
+Let $P(v)$ be the highest expected discounted profit from delivering promise
+$v$. The insurer chooses a consumption level and continuation promise for
+each income realization:
+$
+  P(v) = max_({c_n, v'_n}) sum_(n=1)^N pi_n
+  [y_n - c_n + beta P(v'_n)].
+$
+The constraints are:
+
++ *Promise keeping:* before income is realized, expected utility must cover
+  the inherited promise:
+  $
+    sum_(n=1)^N pi_n [u(c_n) + beta v'_n] >= v.
+  $
++ *Participation:* after each income realization, staying must be optimal:
+  $
+    u(c_n) + beta v'_n >= u(y_n) + beta v_("aut"),
+    quad n = 1, dots, N.
+  $
++ *Feasibility:* consumption is nonnegative and continuation promises must
+  themselves be feasible. In particular,
+  $
+    c_n >= 0, quad v'_n >= v_("aut"), quad n = 1, dots, N.
+  $
+  The lower bound follows from taking expectations of next period's
+  participation constraints.
+
+Promise keeping averages over today's income draw; participation must hold
+*separately in every income state*. Continuation promises carry these
+obligations into the next period, so the same problem repeats with state
+$v'_n$.
+
+== Why utility promises?
+
+After history $s^t$ with $y_t = y_n$, the continuation promise is
+$
+  v'_n = E_t [sum_(j=t+1)^infinity beta^(j-t-1) u(c_j (s^j))].
+$
+The whole future consumption plan enters today's participation decision
+through *expected discounted utility*. Staying gives $u(c_n) + beta v'_n$,
+which can be compared directly with $u(y_n) + beta v_("aut")$.
+
+- *Household:* at a given $c_n$, feasible continuation contracts delivering
+  the same $v'_n$ give the same value of staying today.
+- *Insurer:* those contracts can have different costs. It chooses the most
+  profitable way to deliver $v'_n$, summarized by $P(v'_n)$, while satisfying
+  participation constraints at every future history.
+
+Income is i.i.d., so past income adds no information about future draws.
+Past agreements matter through the *remaining utility promise*. This lets
+the insurer carry one state $v$ into the next optimization problem.
+
+
+== Solving the Bellman equation
+
+Let $mu >= 0$ be the multiplier on promise keeping and $lambda_n >= 0$ the
+multiplier on participation in income state $n$. The Lagrangian is
+$
+  cal(L) & = sum_(n=1)^N pi_n [y_n - c_n + beta P(v'_n)] \
+         & quad + mu (sum_(n=1)^N pi_n [u(c_n) + beta v'_n] - v) \
+         & quad + sum_(n=1)^N lambda_n
+           [u(c_n) + beta v'_n - u(y_n) - beta v_("aut")].
+$
+The participation terms are *not probability-weighted* here; this fixes
+the normalization of $lambda_n$.
+
+For positive-probability states, assume $P$ is differentiable and choices
+are interior: $c_n > 0$ and $v'_n > v_("aut")$. The *first-order and envelope
+conditions* are
+$
+  [c_n]: quad (lambda_n + mu pi_n) u'(c_n) & = pi_n, \
+           [v'_n]: quad lambda_n + mu pi_n & = -pi_n P'(v'_n), \
+                    "Envelope:" quad P'(v) & = -mu.
+$
+The factor $beta$ cancels from the first-order condition for $v'_n$.
+The envelope condition says that $mu$ is the *marginal profit cost* of an
+additional unit of promised utility; $P'(v) <= 0$.
+
+*Complementary slackness* also requires
+$
+           mu (sum_(n=1)^N pi_n [u(c_n) + beta v'_n] - v) & = 0, \
+  lambda_n [u(c_n) + beta v'_n - u(y_n) - beta v_("aut")] & = 0.
+$
+A slack participation constraint has $lambda_n = 0$; $lambda_n > 0$ implies
+that it binds. Equality alone allows a zero multiplier.
+
+Combining the first two first-order conditions gives
+$
+  -P'(v'_n) = frac(1, u'(c_n))
+  quad <=> quad u'(c_n) P'(v'_n) = -1.
+$
+The insurer equalizes the marginal cost of delivering utility through
+*current consumption* and through a *continuation promise*. At a feasibility
+boundary, the corresponding bound multiplier must be included in the
+first-order conditions.
+
+
+== The tradeoff between consumption and utility promises
+
+The profit function $P(v)$ is *decreasing and concave*: delivering more
+utility reduces profit, and the marginal cost $-P'(v)$ rises with the
+promise. At an interior optimum,
+$
+  -P'(v'_n) = frac(1, u'(c_n)).
+$
+Since $u'$ falls with consumption, optimal *current consumption and
+continuation utility move together*. The insurer smooths the delivery of
+utility between today and the future.
+
+Without participation constraints, the household and insurer have the
+same discount factor $beta$, and optimal consumption is constant over time.
+The continuation value of consuming $c$ every future period is
+$
+  v'(c) = sum_(j=0)^infinity beta^j u(c)
+  = frac(u(c), 1 - beta).
+$
+
+#align(center)[
+  #figure(
+    image("figures/limited_enforcement_tradeoff.svg", width: 80%),
+    caption: [Consumption and continuation promises.],
+  )<fig:limited-enforcement-tradeoff>
+]
+
+#figure-note[
+  Curves from Lecture 7, slide 20. Example: $u(c) = log c$, $beta = 0.7$;
+  income is uniform on 21 equally spaced points in $[0.5, 1.5]$.
+  Numerical ticks are omitted as in the lecture figure.
+]
+
+The *dashed curve* is the constant-consumption benchmark. The *blue curve*
+shows optimal pairs under limited enforcement. In this example, future
+high-income realizations can require higher payments to prevent exit,
+raising continuation utility above the value of keeping consumption fixed
+at today's level. The marginal-cost condition still governs the choice
+between current consumption and future utility.
+
+#lecture-addition("Backloading and retention", source: "2026-10-20, 01:13:07 - 01:15:36")[
+  Deferred rewards conditional on staying make continued participation more
+  valuable. An employment contract with stock options that vest only after
+  sufficient tenure illustrates the mechanism: leaving means losing future
+  compensation.
+
+  A larger continuation promise gives the household more to lose on exit.
+  Once inherited promises are sufficiently high, participation constraints
+  can cease to alter the optimal smoothing choices. This was the closing
+  intuition; the formal derivation was left for the next lecture.
 ]
