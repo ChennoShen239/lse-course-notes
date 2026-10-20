@@ -4829,7 +4829,7 @@ $
 
 #align(center)[
   #figure(
-    image("figures/limited_enforcement_tradeoff.svg", width: 80%),
+    image("figures/limited_enforcement_tradeoff.svg", width: 70%),
     caption: [Consumption and continuation promises.],
   )<fig:limited-enforcement-tradeoff>
 ]
