@@ -1691,9 +1691,9 @@ arbitrarily large, so allocating a small amount to this sector remains worthwhil
   a constant gross return $R$, $beta R = 1$ and quadratic utility
   $u'(c) = a - b c$, with $b > 0$. The Euler equation gives
   $
-                u'(c_t) & = beta R E_t [u'(c_(t+1))], \
-              a - b c_t & = a - b E_t [c_(t+1)], \
-    E_t [c_(t+1) - c_t] & = 0.
+                 u'(c_t) & = beta R EE_t [u'(c_(t+1))], \
+               a - b c_t & = a - b EE_t [c_(t+1)], \
+    EE_t [c_(t+1) - c_t] & = 0.
   $
   Quadratic utility gives certainty equivalence. Precautionary saving can
   break the exact random-walk result.
@@ -4601,8 +4601,8 @@ $c_t (s^t)$.
 
 Before the initial income draw, the contract's values are
 $
-  P & = E_0 [sum_(t=0)^infinity beta^t (y_t - c_t (s^t))], \
-  v & = E_0 [sum_(t=0)^infinity beta^t u(c_t (s^t))].
+  P & = EE_0 [sum_(t=0)^infinity beta^t (y_t - c_t (s^t))], \
+  v & = EE_0 [sum_(t=0)^infinity beta^t u(c_t (s^t))].
 $
 Here $P$ is the insurer's expected discounted profit and $v$ is the
 household's expected discounted utility.
@@ -4612,7 +4612,7 @@ household's expected discounted utility.
 *Before current income is realized*, permanent autarky is worth
 $
   v_("aut")
-  = E_0 [sum_(t=0)^infinity beta^t u(y_t)]
+  = EE_0 [sum_(t=0)^infinity beta^t u(y_t)]
   = frac(sum_(n=1)^N pi_n u(y_n), 1 - beta).
 $
 The expression is constant because income is i.i.d.
@@ -4630,12 +4630,12 @@ At *every history* $s^t$, the contract must satisfy
 $
   underbrace(
     u(c_t (s^t))
-    + E_t [sum_(j=t+1)^infinity beta^(j-t) u(c_j (s^j))],
+    + EE_t [sum_(j=t+1)^infinity beta^(j-t) u(c_j (s^j))],
     "stay",
   )
   >= underbrace(u(y_t) + beta v_("aut"), "leave").
 $
-The expectation $E_t$ conditions on $s^t$. A contract satisfying these
+The expectation $EE_t$ conditions on $s^t$. A contract satisfying these
 constraints is *self-enforcing*: staying is optimal after every income
 history. The household's only decision is whether to stay or enter permanent
 autarky.
@@ -4659,11 +4659,11 @@ profit applies to the initial expected present value of the whole contract.
 insurer's profit:
 $
   P(v) = max_({c_t (s^t)})
-  E_0 [sum_(t=0)^infinity beta^t (y_t - c_t (s^t))],
+  EE_0 [sum_(t=0)^infinity beta^t (y_t - c_t (s^t))],
 $
 subject to the same participation constraints and the *utility promise*
 $
-  E_0 [sum_(t=0)^infinity beta^t u(c_t (s^t))] >= v.
+  EE_0 [sum_(t=0)^infinity beta^t u(c_t (s^t))] >= v.
 $
 The promise sets a minimum utility before initial income is realized;
 participation constraints prevent exit after each income history.
@@ -4687,7 +4687,7 @@ that may generate future losses.
 The sequential contract must satisfy participation constraints after every
 history. Use the household's *promised utility* as the recursive state:
 $
-  v_t = E [sum_(j=0)^infinity beta^j
+  v_t = EE [sum_(j=0)^infinity beta^j
     u(c_(t+j) (s^(t+j))) | s^(t-1)].
 $
 This is expected utility *before $y_t$ is realized, from period $t$ onward*.
@@ -4746,7 +4746,7 @@ $v'_n$.
 
 After history $s^t$ with $y_t = y_n$, the continuation promise is
 $
-  v'_n = E_t [sum_(j=t+1)^infinity beta^(j-t-1) u(c_j (s^j))].
+  v'_n = EE_t [sum_(j=t+1)^infinity beta^(j-t-1) u(c_j (s^j))].
 $
 The whole future consumption plan enters today's participation decision
 through *expected discounted utility*. Staying gives $u(c_n) + beta v'_n$,
