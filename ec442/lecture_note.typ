@@ -1552,7 +1552,7 @@ The Malthus sector $M$ uses land; the Solow sector $S$ uses only capital
 and labor. Assume $alpha_1, alpha_2 > 0$, $alpha_1 + alpha_2 < 1$ and
 $0 < theta < 1$. Sectoral *TFP* grows exogenously:
 $
-  A_(j,t+1) = gamma_j A_(j,t), quad j in {M, S}.
+  A_(j,t+1) = gamma_j A_(j,t), j in {M, S}.
 $
 Here $gamma_M >= 1$ and $gamma_S > 1$ are gross growth factors.
 Competitive firms allocate capital and labor freely across sectors:
@@ -1718,7 +1718,7 @@ arbitrarily large, so allocating a small amount to this sector remains worthwhil
 #lecture-addition("Debt deflation", source: "2026-10-12, 00:32:24 - 00:34:35")[
   With fixed nominal debt $D$, a fall in the price level raises its real value:
   $
-    P' = P / 2 quad => quad frac(D, P') = 2 frac(D, P).
+    P' = P / 2 => frac(D, P') = 2 frac(D, P).
   $
   Bankruptcies can disrupt production and access to finance. The lecturer
   suggested this could be an important channel behind severe downturns,
@@ -1896,8 +1896,8 @@ productivity, distinct from the initial value of $H$.
 
 Parents value their own consumption and their children's utility:
 $
-  u(c) & = frac(c^sigma, sigma), quad 0 < sigma < 1, \
-  a(n) & = alpha n^(-epsilon), quad alpha > 0, quad 0 < epsilon < 1, \
+  u(c) & = frac(c^sigma, sigma), 0 < sigma < 1, \
+  a(n) & = alpha n^(-epsilon), alpha > 0, 0 < epsilon < 1, \
   V(H) & = u(c) + a(n) n V(H') \
        & = frac(c^sigma, sigma) + alpha n^(1 - epsilon) V(H').
 $
@@ -1925,7 +1925,7 @@ Assume finite dynastic utility. The continuation weight varies with $n$.
 Childcare and teaching leave $1 - n(v + h)$ units of working time:
 $
    c + f n & = [1 - n(v + h)] (H_0 + H), \
-        H' & = A h (H_0 + H), quad A > 0, \
+        H' & = A h (H_0 + H), A > 0, \
   n(v + h) & <= 1.
 $
 
@@ -1942,7 +1942,7 @@ The Bellman equation is
 $
   V(H) = max_(n > 0, H' >= 0)
   {frac(c(H, n, H')^sigma, sigma) + alpha n^(1 - epsilon) V(H')},
-  quad c(H, n, H') > 0.
+  c(H, n, H') > 0.
 $
 
 More children raise the total cost of providing a given education per child.
@@ -2012,7 +2012,7 @@ raises demand for children, so the net fertility response depends on both effect
   diverges as fertility approaches zero:
   $
     (1 - epsilon) alpha n^(-epsilon) V(H') -> infinity
-    quad "as" quad n -> 0.
+    ", as " n -> 0.
   $
   This supports positive fertility under the model's assumptions, even when
   teaching is zero.
@@ -2214,7 +2214,7 @@ Preferences and the budget constraint are
 $
                          u_t & = (1 - gamma) log c_t + gamma log(n_t h_(t+1)), \
   c_t + z_t n_t tau(e_(t+1)) & = z_t, \
-                         c_t & >= tilde(c) > 0, quad 0 < gamma < 1.
+                         c_t & >= tilde(c) > 0, 0 < gamma < 1.
 $
 
 Parents value the number and human capital of their children. Here $gamma$
@@ -2269,8 +2269,8 @@ $
 
 Children's human capital is
 $
-  h_(t+1) = h(e_(t+1), g_(t+1)), quad h > 0, \
-  h_e > 0, quad h_(e e) < 0, quad h_g < 0, quad h_(e g) > 0.
+  h_(t+1) = h(e_(t+1), g_(t+1)), h > 0, \
+  h_e > 0, h_(e e) < 0, h_g < 0, h_(e g) > 0.
 $
 
 Education raises human capital with diminishing returns. Technological
@@ -2303,8 +2303,8 @@ $
 The model assumes a threshold $hat(g)$ satisfying $F(0, hat(g)) = 0$:
 $
   e_(t+1) & = e(g_(t+1)), \
-     e(g) & = 0, quad "if" g <= hat(g), \
-     e(g) & > 0, quad e'(g) > 0, quad "if" g > hat(g).
+     e(g) & = 0, "if " g <= hat(g), \
+     e(g) & > 0, e'(g) > 0, "if " g > hat(g).
 $
 
 Slow technological change gives an *education corner*. Faster change makes
@@ -2347,7 +2347,7 @@ technology and human capital grow fast enough to offset it.
 
 Conditional on a fixed $L$, the education-technology intersections satisfy
 $
-  e^* = e(g^*), quad g^* = g(e^*, L).
+  e^* = e(g^*), g^* = g(e^*, L).
 $
 These are *conditional steady states* for $(e, g)$; technology levels and
 population need not be constant along the full transition.
@@ -2602,7 +2602,7 @@ Lecture 5, slides 36 to 37.
 
 The lecture keeps Cobb-Douglas production as the benchmark:
 $
-                Y & = A K^alpha N^(1 - alpha), quad 0 < alpha < 1, \
+                Y & = A K^alpha N^(1 - alpha), 0 < alpha < 1, \
   y := frac(Y, N) & = A (frac(K, N))^alpha, \
             "MPK" & = frac(partial Y, partial K)
                     = alpha A (frac(K, N))^(alpha - 1).
@@ -2680,7 +2680,7 @@ $
   u(c) = cases(
     frac(c^(1 - sigma), 1 - sigma) & "if" sigma != 1,
     log c & "if" sigma = 1,
-  ), quad sigma > 0.
+  ), sigma > 0.
 $
 Assume $0 < beta < 1$, $0 < alpha < 1$, $A > 0$, and $0 <= delta <= 1$.
 Here $sigma$ is relative risk aversion.
@@ -2697,7 +2697,7 @@ $
   c + k' & <= (1 - delta) k + A k^alpha h_1^(1 - alpha), \
       h' & = B h_2, \
        h & = h_1 + h_2, \
-       c & > 0, quad k', h_1, h_2 >= 0.
+       c & > 0, k', h_1, h_2 >= 0.
 $
 The goods constraint binds because utility is increasing in consumption.
 More $h_1$ raises current output; more $h_2$ raises next period's productive
@@ -2710,7 +2710,7 @@ capacity.
   To see the role of *linearity*, hold the learning share $s = h_2/h$ fixed
   and compare a diminishing-returns technology:
   $
-             h' & = B h_2^eta, quad 0 < eta < 1, \
+             h' & = B h_2^eta, 0 < eta < 1, \
     frac(h', h) & = B s^eta h^(eta - 1).
   $
   This growth factor falls as $h$ rises. The linear case $eta = 1$ preserves
@@ -2837,12 +2837,12 @@ Substitute $K_i/N_i = (K_i/Y_i) y_i$ and solve for $y_i$:
 $
   y_i^(1 - alpha) & = T_i (frac(K_i, Y_i))^alpha h_i^(1 - alpha), \
               y_i & = underbrace((frac(K_i, Y_i))^(alpha/(1 - alpha)), "capital intensity")
-                    quad underbrace(h_i, "human capital")
-                    quad underbrace(T_i^(1/(1 - alpha)), "productivity").
+                    dot underbrace(h_i, "human capital")
+                    dot underbrace(T_i^(1/(1 - alpha)), "productivity").
 $
 The slide calls $T_i^(1/(1 - alpha))$ simply $A_i$. Define
 $
-  x_(K,i) := (frac(K_i, Y_i))^(alpha/(1 - alpha)), quad
+  x_(K,i) := (frac(K_i, Y_i))^(alpha/(1 - alpha)),
   A_i := T_i^(1/(1 - alpha)).
 $
 Then $y_i = x_(K,i) h_i A_i$.
@@ -2872,7 +2872,7 @@ Covary the log identity with $log y_i$:
 $
                  op("var")(log y_i) & = op("cov")(log x_(K,i), log y_i)
                                       + op("cov")(log h_i, log y_i) \
-                                    & quad + op("cov")(log A_i, log y_i), \
+                                    & + op("cov")(log A_i, log y_i), \
   "share"_K + "share"_h + "share"_A & = 1.
 $
 The capital contribution uses $log x_(K,i) = alpha/(1 - alpha) log(K_i/Y_i)$,
@@ -2883,7 +2883,7 @@ they can be negative or exceed one and do not identify causal effects.
 
 The lecture uses a schooling-based measure:
 $
-  h_i = exp(0.1 S_i), quad log h_i = 0.1 S_i,
+  h_i = exp(0.1 S_i), log h_i = 0.1 S_i,
 $
 where $S_i$ is average years of schooling. One extra year raises measured
 human capital by $exp(0.1) - 1 approx 10.5%$.
@@ -2936,7 +2936,7 @@ The residual is much lower in poor countries than in the U.S.
 Allow hours worked per worker, $ell_i$, to enter separately:
 $
   y_i = x_(K,i) h_i ell_i A_i,
-  quad x_(K,i) = (frac(K_i, Y_i))^(alpha/(1 - alpha)).
+  x_(K,i) = (frac(K_i, Y_i))^(alpha/(1 - alpha)).
 $
 The covariance contributions then satisfy
 $
@@ -3045,7 +3045,7 @@ and productivity, under these assumptions.
 
 Define the income and human-capital gaps as
 $
-  D_i := frac(y_("US"), y_i), quad
+  D_i := frac(y_("US"), y_i),
   H_i := frac(h_("US"), h_i).
 $
 With a common $alpha$,
@@ -3352,7 +3352,7 @@ A competitive final-goods sector combines labor and a continuum of
 intermediate varieties:
 $
   Y_t = A L^(1 - alpha) integral_0^(N_t) X_(i t)^alpha dif i,
-  quad A > 0, quad 0 < alpha < 1.
+  A > 0, 0 < alpha < 1.
 $
 - $L > 0$: constant labor supply.
 - $N_t$: measure of varieties available at the start of period $t$.
@@ -3454,7 +3454,7 @@ Let $epsilon = 1/(1 - alpha) > 1$ be the absolute demand elasticity.
 The firm chooses its price to maximize operating profit:
 $
   max_(P > 0) (P - 1) X(P),
-  quad X(P) = L (frac(A alpha, P))^epsilon.
+  X(P) = L (frac(A alpha, P))^epsilon.
 $
 Since $X'(P) = -epsilon X(P)/P$, the FOC gives
 $
@@ -3501,7 +3501,7 @@ Inventing a patent costs $eta$, so net entry profit is $V - eta$.
 
 The equilibrium conditions allow zero R&D even when $V = eta$:
 $
-  V <= eta, quad R_t >= 0, quad (eta - V) R_t = 0.
+  V <= eta, R_t >= 0, (eta - V) R_t = 0.
 $
 With *positive innovation*, $V = eta = pi/r$, hence
 $
@@ -3516,14 +3516,14 @@ The representative household supplies $L$ inelastically and owns claims on
 patents. It takes wages and asset returns as given. Given $a_0$, its problem is
 $
   max_({c_t, a_(t+1)}) sum_(t=0)^infinity beta^t u(c_t),
-  quad beta = frac(1, 1 + rho),
+  beta = frac(1, 1 + rho),
 $
 with $rho > 0$ and CRRA utility for $c > 0$:
 $
   u(c) = cases(
     frac(c^(1 - sigma), 1 - sigma) & "if" sigma != 1,
     log c & "if" sigma = 1,
-  ), quad sigma > 0.
+  ), sigma > 0.
 $
 Here $rho$ is the rate of time preference and $1/sigma$ is the intertemporal
 elasticity of substitution. With one representative household, $c_t = C_t$.
@@ -3603,7 +3603,7 @@ Since assets grow at rate $g$, household transversality requires
 $
   beta (1 + g)^(1 - sigma)
   = frac(1 + g, 1 + r) < 1
-  quad <=> quad g < r.
+  <=> g < r.
 $
 
 #align(center)[
@@ -3698,7 +3698,7 @@ The markup reduces intermediate use and private innovation returns.
 When both paths have positive innovation, *equilibrium growth is too low*:
 $
   frac(r, r^*) = frac(X, X^*) = alpha^(1/(1 - alpha)) < 1
-  quad => quad g < g^*.
+  => g < g^*.
 $
 
 #align(center)[
@@ -3770,7 +3770,7 @@ $j in [0, 1]$ and labor supply $L > 0$.
 *Final-good production* is competitive, with the final good as numeraire:
 $
   Y_t = L^(1 - alpha) integral_0^1 A_(j t)^(1 - alpha) x_(j t)^alpha dif j,
-  quad 0 < alpha < 1.
+  0 < alpha < 1.
 $
 Here $A_(j t) > 0$ is the leading quality in sector $j$, and $x_(j t) >= 0$
 is the quantity of its intermediate input.
@@ -3784,7 +3784,7 @@ constrain the leader's monopoly price.
 research. The probability of a quality improvement is
 $
   mu_(j t) = frac(lambda R_(j t), gamma A_(j t)) in [0, 1],
-  quad lambda > 0, quad gamma > 1.
+  lambda > 0, gamma > 1.
 $
 The parameter $lambda$ measures research productivity; $gamma$ is the
 quality step. Feasible spending satisfies $R_(j t) <= gamma A_(j t)/lambda$.
@@ -4067,7 +4067,7 @@ Use a discrete-time version of the idea-production block in @jones2005ideas:
 
 $
   A_(t+1) - A_t = chi L_(A,t)^eta A_t^phi,
-  quad chi > 0, quad 0 < eta <= 1, quad 0 <= phi < 1.
+  chi > 0, 0 < eta <= 1, 0 <= phi < 1.
 $
 - $A_t > 0$: stock of ideas; $L_(A,t)$: researchers.
 - $chi$: research efficiency; $eta$: research-labor elasticity;
@@ -4144,7 +4144,7 @@ requires rising research inputs in their case studies._
 Let $S_t$ denote effective research input. Define
 $
   cal(P)_t := frac(g_(A,t), S_t),
-  quad g_(A,t) := frac(A_(t+1) - A_t, A_t).
+  g_(A,t) := frac(A_(t+1) - A_t, A_t).
 $
 _Output is a proportional improvement, such as TFP growth or chip-density
 growth. Effective researchers are research spending divided by a wage
@@ -4501,15 +4501,15 @@ Based on @thomas1988self, _Self-Enforcing Wage Contracts_.
 
 A continuum of *ex ante identical households* has preferences
 $
-  E_0 sum_(t=0)^infinity beta^t u(c_t), quad 0 < beta < 1.
+  E_0 sum_(t=0)^infinity beta^t u(c_t), 0 < beta < 1.
 $
 Utility is increasing, strictly concave and satisfies the Inada conditions.
 
 Each household receives *i.i.d. idiosyncratic income* across time and
 households:
 $
-            y_t & in cal(Y) = {y_1, dots, y_N}, quad y_1 < dots < y_N, \
-  Pr(y_t = y_n) & = pi_n, quad sum_(n=1)^N pi_n = 1.
+            y_t & in cal(Y) = {y_1, dots, y_N}, y_1 < dots < y_N, \
+  Pr(y_t = y_n) & = pi_n, sum_(n=1)^N pi_n = 1.
 $
 By the law of large numbers, a fraction $pi_n$ receives $y_n$ each period.
 Average income is constant:
@@ -4537,7 +4537,7 @@ agreements can affect what the household is entitled to receive today.
 For these ex ante identical households, *complete markets and enforceable
 contracts* deliver *full insurance*:
 $
-  c_t (s^t) = overline(y) quad "for all" t, s^t.
+  c_t (s^t) = overline(y), "for all " t, s^t.
 $
 Strict concavity favors consumption smoothing. With no aggregate income
 risk, pooled income supports the same consumption at every date and history.
@@ -4563,7 +4563,7 @@ Exit leads to *permanent autarky*. The household cannot rejoin the
 arrangement and has no access to saving, borrowing or other insurance.
 If it exits at date $t$, consumption equals its own realized income:
 $
-  c_j = y_j, quad j >= t.
+  c_j = y_j, j >= t.
 $
 
 A high-income household can keep its current income by leaving, but loses
@@ -4727,12 +4727,12 @@ The constraints are:
 + *Participation:* after each income realization, staying must be optimal:
   $
     u(c_n) + beta v'_n >= u(y_n) + beta v_("aut"),
-    quad n = 1, dots, N.
+    n = 1, dots, N.
   $
 + *Feasibility:* consumption is nonnegative and continuation promises must
   themselves be feasible. In particular,
   $
-    c_n >= 0, quad v'_n >= v_("aut"), quad n = 1, dots, N.
+    c_n >= 0, v'_n >= v_("aut"), n = 1, dots, N.
   $
   The lower bound follows from taking expectations of next period's
   participation constraints.
@@ -4769,8 +4769,8 @@ Let $mu >= 0$ be the multiplier on promise keeping and $lambda_n >= 0$ the
 multiplier on participation in income state $n$. The Lagrangian is
 $
   cal(L) & = sum_(n=1)^N pi_n [y_n - c_n + beta P(v'_n)] \
-         & quad + mu (sum_(n=1)^N pi_n [u(c_n) + beta v'_n] - v) \
-         & quad + sum_(n=1)^N lambda_n
+         & + mu (sum_(n=1)^N pi_n [u(c_n) + beta v'_n] - v) \
+         & + sum_(n=1)^N lambda_n
            [u(c_n) + beta v'_n - u(y_n) - beta v_("aut")].
 $
 The participation terms are *not probability-weighted* here; this fixes
@@ -4780,9 +4780,9 @@ For positive-probability states, assume $P$ is differentiable and choices
 are interior: $c_n > 0$ and $v'_n > v_("aut")$. The *first-order and envelope
 conditions* are
 $
-  [c_n]: quad (lambda_n + mu pi_n) u'(c_n) & = pi_n, \
-           [v'_n]: quad lambda_n + mu pi_n & = -pi_n P'(v'_n), \
-                    "Envelope:" quad P'(v) & = -mu.
+  [c_n]: (lambda_n + mu pi_n) u'(c_n) & = pi_n, \
+           [v'_n]: lambda_n + mu pi_n & = -pi_n P'(v'_n), \
+                   "Envelope: " P'(v) & = -mu.
 $
 The factor $beta$ cancels from the first-order condition for $v'_n$.
 The envelope condition says that $mu$ is the *marginal profit cost* of an
@@ -4799,7 +4799,7 @@ that it binds. Equality alone allows a zero multiplier.
 Combining the first two first-order conditions gives
 $
   -P'(v'_n) = frac(1, u'(c_n))
-  quad <=> quad u'(c_n) P'(v'_n) = -1.
+  <=> u'(c_n) P'(v'_n) = -1.
 $
 The insurer equalizes the marginal cost of delivering utility through
 *current consumption* and through a *continuation promise*. At a feasibility
@@ -4858,3 +4858,708 @@ between current consumption and future utility.
   can cease to alter the optimal smoothing choices. This was the closing
   intuition; the formal derivation was left for the next lecture.
 ]
+
+= Lecture 8 Oct 26
+
+== The impact of the participation constraint
+
+// Lecture 7, slides 22-25; recalled in Lecture 8, slide 2.
+For an interior solution with differentiable, strictly concave $P$,
+substitute $mu = -P'(v)$ into the FOC for $v'_n$:
+$
+  lambda_n - pi_n P'(v) & = -pi_n P'(v'_n), \
+               P'(v'_n) & = P'(v) - frac(lambda_n, pi_n).
+$
+
+*If $lambda_n > 0$,* concavity implies
+$
+  P'(v'_n) < P'(v) => v'_n > v.
+$
+The consumption FOC gives
+$
+  frac(1, u'(c_n)) = mu + frac(lambda_n, pi_n) > mu.
+$
+Since $u'$ decreases, consumption also exceeds the choice with
+$lambda_n = 0$ at the same promise $v$.
+
+The binding participation constraint and the intertemporal FOC determine
+$(c_n, v'_n)$:
+$
+  u(c_n) + beta v'_n & = u(y_n) + beta v_("aut"), \
+    u'(c_n) P'(v'_n) & = -1.
+$<eq:binding-allocation>
+When $lambda_n > 0$, $v'_n > v >= v_("aut")$, so
+$
+  u(c_n) & = u(y_n) - beta (v'_n - v_("aut")) < u(y_n), \
+     c_n & < y_n.
+$
+The household pays $y_n - c_n > 0$ today in return for future insurance.
+
+== Amnesia
+
+// Lecture 7, slide 24.
+When participation binds, @eq:binding-allocation determines
+$
+  c_n = c^b (y_n), v'_n = v^b (y_n).
+$
+Here $b$ denotes binding. The equations contain $y_n$ and the common
+continuation function $P$, but no inherited promise $v$. Thus two histories
+give the same allocation at $y_n$ if participation binds for both:
+*amnesia*. The promise $v$ still determines whether the constraint binds.
+
+== Nonbinding participation constraints
+
+// Lecture 7, slide 25.
+When the participation constraint is slack, $lambda_n = 0$. The FOC and
+strict concavity of $P$ give
+$
+  P'(v'_n) = P'(v) => v'_n = v.
+$
+The consumption policy is
+$
+  c_n = c^u (v), u'(c^u (v)) P'(v) = -1.
+$
+Here $u$ denotes the unconstrained choice. Consumption is the same across
+slack income states, and the promise remains $v$.
+
+== The optimal contract
+
+// Lecture 7, slides 26-27.
+Combining the two cases gives
+$
+   c_n & = max {c^b (y_n), c^u (v)}, \
+  v'_n & = max {v^b (y_n), v}.
+$<eq:optimal-contract>
+
+A higher $v$ raises the flat part of the consumption schedule and moves
+the income threshold right. Where both constraints bind, the schedules
+coincide at $c^b (y_n)$.
+
+#align(center)[
+  #figure(
+    image("figures/limited_enforcement_contract.svg", width: 70%),
+    caption: [Optimal consumption at two inherited promises.],
+  )<fig:limited-enforcement-contract>
+]
+
+#figure-note[
+  Curves from Lecture 7, slide 27. Log utility, $beta = 0.7$, and 21 equally
+  likely income levels in $[0.5, 1.5]$. Consumption tick values are omitted
+  in the source.
+]
+
+
+== Dynamics of consumption
+
+// Lecture 7, slides 28-34; recalled in Lecture 8, slide 2.
+The initial promise satisfies $P(v_0) = 0$. Let $v_t$ be the promise
+*before* income $y_t$ is realized. From @eq:optimal-contract,
+$
+  v_(t+1) & = max {v_t, v^b (y_t)}, \
+      c_t & = max {c^u (v_t), c^b (y_t)} = c^u (v_(t+1)).
+$
+The FOCs imply $c^b (y) = c^u (v^b (y))$. Promises and consumption are
+*nondecreasing*.
+
+Define the income threshold $overline(y) (v)$ by
+$
+  u(c^u (v)) + beta v = u(overline(y) (v)) + beta v_("aut").
+$
+- If $y_t <= overline(y) (v_t)$, keep $v_(t+1) = v_t$ and $c_t = c^u (v_t)$.
+- If $y_t > overline(y) (v_t)$, raise consumption and the promise until
+  participation holds with equality. The new threshold is
+  $overline(y) (v_(t+1)) = y_t$.
+
+Consumption therefore rises only when income exceeds the initial threshold
+and all previous draws. With $m_t = max {y_0, dots, y_t}$,
+$
+  v_(t+1) & = max {v_0, v^b (m_t)}, \
+      c_t & = max {c^u (v_0), c^b (m_t)}.
+$
+Income declines leave consumption unchanged.
+
+#align(center)[
+  #figure(
+    image("figures/limited_enforcement_dynamics.svg", width: 95%),
+    caption: [Consumption rises in steps.],
+  )<fig:limited-enforcement-dynamics>
+]
+
+#figure-note[
+  Paths from Lecture 7, slide 33. Log utility, $beta = 0.7$, and 21 equally
+  likely income levels in $[0.5, 1.5]$. Initial promise satisfies zero profit.
+]
+
+=== Once the highest income is reached
+
+When full insurance at mean income is infeasible,
+$
+  frac(u(EE y), 1 - beta) < u(y_N) + beta v_("aut"),
+$
+the first $y_N$ raises consumption to $overline(c)$ permanently. Constant
+consumption gives $overline(v) = u(overline(c))/(1 - beta)$. Substituting
+into the binding participation constraint yields
+$
+     overline(v) & = u(y_N) + beta v_("aut"), \
+  u(overline(c)) & = (1 - beta) [u(y_N) + beta v_("aut")].
+$
+With i.i.d. draws and $pi_N > 0$, $y_N$ is reached with probability one.
+Thereafter, participation can hold with equality at $y_N$ without requiring
+further increases.
+
+=== Solving backward
+
+Start from $(overline(c), overline(v))$ and work backward without computing $P$.
+At the binding allocation for $y_(N-1)$, consumption and the continuation
+promise $(tilde(c), tilde(v))$ satisfy
+$
+  u(tilde(c)) + beta tilde(v) & = u(y_(N-1)) + beta v_("aut"), \
+                     tilde(v) & = pi_N overline(v)
+                                + (1 - pi_N) [u(tilde(c)) + beta tilde(v)].
+$
+Next period, $y_N$ moves the household to $(overline(c), overline(v))$;
+lower draws preserve $(tilde(c), tilde(v))$. Repeat for lower income levels,
+then use $P(v_0) = 0$ to find the initial consumption floor.
+
+=== A two-state example
+
+Let $u(c) = log c$, $beta = 0.7$, and income be $y_L = 0.5$ or $y_H = 1.5$
+with equal probability $pi = 0.5$ of the high state. Then
+$
+  v_("aut") = frac((1 - pi) log y_L + pi log y_H, 1 - beta),
+  overline(c) approx 1.02.
+$
+Before the first high draw, consumption stays at $c_0$. Zero profit gives
+$
+  (1 - pi) (y_L - c_0)
+  + pi [y_H - overline(c) + frac(beta, 1 - beta) (EE y - overline(c))] = 0,
+$
+so $c_0 approx 0.93 < EE y = 1 < overline(c)$. The first high draw raises
+consumption permanently to $overline(c)$.
+
+This is *backloading*: initial expected profits finance later expected losses.
+The insurer commits to future payments and borrows or lends at
+$1 + r = 1/beta$.
+
+== Summary and next steps
+
+// Lecture 7, slides 34-35; Lecture 8, slides 2-4.
+- Rising consumption resembles PE results with exogenously incomplete
+  markets. Here it stops after the highest income is reached.
+- Next: impose aggregate feasibility and limited commitment on both sides.
+
+#lecture-addition("What does the friction let us study?", source: "2026-10-26, 00:25:53 - 00:26:57")[
+  A student asked why model limited commitment if precautionary saving
+  also produces rising consumption. Specifying the default option lets us
+  study how bankruptcy rules or public insurance change private contracts.
+  Similar consumption paths need not imply the same policy responses.
+]
+
+
+== What happens in GE?
+
+// Lecture 8, slides 3-5.
+In a closed economy with fixed resources, one consumer's increase requires
+another's decrease. Consumption cannot rise for everyone.
+
+Risk sharing now takes place between two risk-averse consumers who can
+both leave. The payer must value future insurance enough to make today's
+transfer. When the other consumer's participation constraint binds, one's
+own consumption can fall.
+
+== Two-sided limited commitment in a closed economy
+
+// Lecture 8, slides 4-5.
+Two *ex-ante identical consumers* share risk @kocherlakota1996risksharing.
+For each $i in {1, 2}$, preferences are
+$
+  EE_0 [sum_(t=0)^infinity beta^t u(c_(i t))],
+  0 < beta < 1, u' > 0, u'' < 0.
+$
+
+- Income $y_t in Y = {y_1, dots, y_N}$ is i.i.d. over time, with
+  $Pr(y_t = y_n) = pi_n$ and $sum_(n=1)^N pi_n = 1$.
+- Income states are ordered and *symmetric around one*:
+  $
+    y_1 < dots < y_N,
+    y_n = 2 - y_(N+1-n), pi_n = pi_(N+1-n).
+  $
+- The two endowments are perfectly negatively correlated within each
+  period:
+  $
+    y_(1t) = y_t, y_(2t) = 2 - y_t.
+  $
+  Each has mean income one; aggregate income is always two.
+
+All resources are consumed each period:
+$
+  c_(1t) + c_(2t) = 2.
+$
+Write $c_t = c_(1t)$, so consumer 2 receives $2 - c_t$.
+
+=== Exit into autarky
+
+After observing income, either consumer can leave permanently and consume
+their own endowment each period. The common autarky value before income is
+$
+  v_("aut") = frac(sum_(n=1)^N pi_n u(y_n), 1 - beta).
+$
+At income state $y_n$, exit gives consumer 1 $u(y_n) + beta v_("aut")$
+and consumer 2 $u(2 - y_n) + beta v_("aut")$. Both must receive at least
+their exit value after every history.
+
+=== Full-insurance benchmark
+
+With equal welfare weights, full commitment gives $c_(1t) = c_(2t) = 1$.
+Limited commitment permits this allocation iff
+$
+  frac(u(1), 1 - beta) >= u(y_N) + beta v_("aut").
+$
+The tightest participation constraint is the highest-income state, for
+either consumer.
+
+=== The planning problem
+
+// Lecture 8, slide 5; sequential formulation of the recursive problem on slide 6.
+After observing income at date $t$, define consumer $i$'s *utility above
+autarky*:
+$
+  W_(i t) = EE_t [sum_(j=0)^infinity beta^j
+    (u(c_(i,t+j)) - u(y_(i,t+j)))].
+$
+Subtracting autarky utility preserves the ranking of consumption plans
+and makes participation $W_(i t) >= 0$.
+
+The planner maximizes consumer 2's utility, subject to consumer 1's promised
+utility, both participation constraints at every history, and resource
+feasibility.
+
+== The recursive planning problem
+
+// Lecture 8, slide 6.
+After income $y_n$ is observed, the state is $(n, v)$:
+- $v$: consumer 1's promised utility above autarky.
+- $Q_n (v)$: the highest utility above autarky available to consumer 2.
+
+Choose current consumption $c$ for consumer 1 and promises $v'_j$ for each
+of next period's income states $j$. Consumer 2 consumes $2 - c$.
+$
+  Q_n (v) = max_(c, {v'_j}) [
+    u(2 - c) - u(2 - y_n)
+    + beta sum_(j=1)^N pi_j Q_j (v'_j)
+  ],
+$
+subject to
+$
+  u(c) - u(y_n) + beta sum_(j=1)^N pi_j v'_j >= v & " (promise keeping)", \
+                                        v'_j >= 0 & " (participation: consumer 1)", \
+                                  Q_j (v'_j) >= 0 & " (participation: consumer 2)", \
+                                      0 <= c <= 2 & " (feasibility)".
+$
+The participation constraints hold for every $j = 1, dots, N$.
+Admissible current states satisfy $v >= 0$ and $Q_n (v) >= 0$.
+Each $v'_j$ is measured after next period's income is observed.
+
+#lecture-addition("Promises must be credible on both sides", source: "2026-10-26, 00:37:51 - 00:38:43")[
+  Offering a million pounds tomorrow for a sandwich today works only if
+  the payment will actually be made. Consumer 2 must also prefer honoring
+  the contract to leaving: $Q_j (v'_j) >= 0$. Consumer 1 anticipates that
+  choice when accepting today's promise.
+]
+
+#lecture-addition("Where is today's participation constraint?", source: "2026-10-26, 00:39:11 - 00:40:42")[
+  Promise keeping and the restriction on the current state already give
+  $
+    u(c) - u(y_n) + beta sum_(j=1)^N pi_j v'_j >= v >= 0.
+  $
+  This ensures consumer 1 participates *today*. The separate restrictions
+  $v'_j >= 0$ ensure participation *tomorrow in every state*. These promises
+  are to consumer 1; $Q_j (v'_j)$ is consumer 2's resulting utility.
+]
+
+== The Lagrangian
+
+// Lecture 8, slide 7.
+$Q_n$ is decreasing, differentiable, and strictly concave. Both consumers'
+participation constraints restrict promises to
+$
+  v'_j in [0, overline(v)_j], Q_j (overline(v)_j) = 0.
+$
+
+#lecture-addition("Why is the frontier concave?", source: "2026-10-26, 00:41:58 - 00:42:33")[
+  Giving consumer 1 more utility costs consumer 2 utility, so $Q_n$ falls.
+  As transfers rise, consumer 1's marginal utility falls while consumer 2's
+  rises. Each extra unit of promised utility becomes more costly, making
+  the frontier concave.
+]
+
+Use $mu >= 0$ for promise keeping, $lambda_j >= 0$ for consumer 1's
+participation, and $theta_j >= 0$ for consumer 2's participation:
+$
+  cal(L) & = u(2 - c) - u(2 - y_n)
+           + beta sum_(j=1)^N pi_j Q_j (v'_j) \
+         & + mu [u(c) - u(y_n) + beta sum_(j=1)^N pi_j v'_j - v] \
+         & + beta sum_(j=1)^N pi_j lambda_j v'_j
+           + beta sum_(j=1)^N pi_j theta_j Q_j (v'_j).
+$
+The participation multipliers are scaled by $beta pi_j$, which cancels
+from the continuation FOC.
+
+== First-order conditions
+
+// Lecture 8, slide 8.
+For $0 < c < 2$ and $pi_j > 0$,
+$
+                         [c]: -u'(2 - c) + mu u'(c) & = 0, \
+  [v'_j]: (1 + theta_j) Q'_j (v'_j) + mu + lambda_j & = 0.
+$
+The envelope condition is
+$
+  Q'_n (v) = -mu.
+$
+Substituting for $mu$ gives
+$
+  Q'_n (v) & = -frac(u'(2 - c), u'(c)), \
+  Q'_n (v) & = (1 + theta_j) Q'_j (v'_j) + lambda_j.
+$<eq:two-sided-focs>
+Complementary slackness requires
+$
+  mu [u(c) - u(y_n) + beta sum_(j=1)^N pi_j v'_j - v] & = 0, \
+                                        lambda_j v'_j & = 0, \
+                                   theta_j Q_j (v'_j) & = 0.
+$
+
+
+
+== Consumption dynamics
+
+// Lecture 8, slides 9-16.
+In income state $n$, feasible promises $v in [0, overline(v)_n]$ imply a
+*consumption band* $[underline(c)_n, overline(c)_n]$, whose endpoints satisfy
+$
+              Q'_n (0) & = -frac(u'(2 - underline(c)_n), u'(underline(c)_n)), \
+  Q'_n (overline(v)_n) & = -frac(u'(2 - overline(c)_n), u'(overline(c)_n)).
+$
+The lower bound protects consumer 1's participation; the upper bound
+protects consumer 2's.
+
+Let $c'_j$ be consumer 1's consumption next period if income state $j$
+occurs. Since $frac(u'(2 - c), u'(c))$ increases with $c$, @eq:two-sided-focs
+gives three cases:
+
+- *Within the next state's band:* $lambda_j = theta_j = 0$, so
+  $Q'_j (v'_j) = Q'_n (v)$ and $c'_j = c$.
+- *Below the band:* $lambda_j > 0$ and $theta_j = 0$. Consumer 1 would
+  leave, so raise consumption to $c'_j = underline(c)_j$, with $v'_j = 0$.
+- *Above the band:* $theta_j > 0$ and $lambda_j = 0$. Consumer 2 would
+  leave, so lower consumer 1's consumption to $c'_j = overline(c)_j$, with
+  $v'_j = overline(v)_j$ and $Q_j (v'_j) = 0$.
+
+Thus consumption changes only enough to meet the next state's bounds:
+$
+  c'_j = cases(
+    underline(c)_j & "if " c < underline(c)_j,
+    c & "if " underline(c)_j <= c <= overline(c)_j,
+    overline(c)_j & "if " c > overline(c)_j.
+  )
+$<eq:two-sided-consumption-dynamics>
+At a boundary, a participation constraint can hold with equality while its
+multiplier is zero; no adjustment is needed.
+
+== Consumption bands
+
+// Lecture 8, slide 14.
+Each income state has a fixed band. Consumption stays unchanged while it
+lies inside the realized state's band; otherwise it moves to the nearest
+endpoint, as in @eq:two-sided-consumption-dynamics.
+
+#align(center)[
+  #figure(
+    image("figures/consumption_bands.svg", width: 95%),
+    caption: [Consumption bands with and without overlap.],
+  )<fig:consumption-bands>
+]
+
+#figure-note[
+  Schematic, redrawn from Lecture 8, slide 14. Each vertical segment is
+  $[underline(c)_n, overline(c)_n]$; the shaded range is their intersection.
+]
+
+Constant consumption is sustainable in every state iff
+$
+  max_n underline(c)_n <= min_n overline(c)_n.
+$
+
+== Dynamics when feasible intervals do not overlap
+
+// Lecture 8, slide 15.
+For two income states $y_1 < y_2$, suppose
+$
+  underline(c)_1 < overline(c)_1 < underline(c)_2 < overline(c)_2.
+$
+- *Low to high:* consumption in the low-state band is below
+  $underline(c)_2$. Consumer 1's participation requires a rise to
+  $underline(c)_2$.
+- *High to low:* consumption in the high-state band exceeds
+  $overline(c)_1$. Consumer 2's participation requires a fall to
+  $overline(c)_1$.
+- If the income state repeats, consumption stays unchanged.
+
+After the first switch between income states,
+$
+  c_t = cases(
+    overline(c)_1 & "if " y_t = y_1,
+    underline(c)_2 & "if " y_t = y_2.
+  )
+$
+The initial promise affects consumption during the initial spell. After
+that, consumption depends only on current income. Insurance remains
+*partial*: consumption fluctuates between the two inner bounds.
+
+#align(center)[
+  #figure(
+    image("figures/consumption_nonoverlap.svg", width: 100%),
+    caption: [Consumption dynamics without overlap.],
+  )<fig:consumption-nonoverlap>
+]
+
+#figure-note[
+  Paths from Lecture 8, slide 15. The point at $0$ is initial consumption;
+  $L$ and $H$ denote income $y_1$ and $y_2$. Dashed lines mark the four bounds.
+]
+
+== Dynamics with overlapping intervals
+
+// Lecture 8, slide 16.
+Now suppose
+$
+  underline(c)_1 < underline(c)_2 < overline(c)_1 < overline(c)_2.
+$
+The common interval is $[underline(c)_2, overline(c)_1]$:
+- Below it, the first high-income realization raises consumption to
+  $underline(c)_2$.
+- Above it, the first low-income realization lowers consumption to
+  $overline(c)_1$.
+- Inside it, either income state permits the same consumption, so no
+  further adjustment occurs.
+
+Once consumption enters the intersection, *full insurance* persists.
+Different initial promises can lead to different permanent consumption
+levels, as the two paths show.
+
+#align(center)[
+  #figure(
+    image("figures/consumption_overlap.svg", width: 100%),
+    caption: [Consumption dynamics with overlap.],
+  )<fig:consumption-overlap>
+]
+
+#figure-note[
+  Paths from Lecture 8, slide 16, with the same income histories as
+  @fig:consumption-nonoverlap. The shaded interval is
+  $[underline(c)_2, overline(c)_1]$.
+]
+
+#lecture-addition("Why move to the boundary?", source: "2026-10-26, 01:00:53 - 01:02:23")[
+  A student asked whether we could give less consumption today and promise
+  more tomorrow. These bands describe the *optimal contract*. Another
+  contract could make that trade, but it would add consumption variation.
+  The optimum adjusts only enough to satisfy participation.
+
+  A zero promise means *zero utility above autarky*. The consumer still
+  receives consumption and continuation utility worth as much as the exit
+  option.
+]
+
+== Example: @krueger2006income
+
+// Lecture 8, slides 17-29.
+_More income risk can support more insurance by making future autarky
+less attractive._
+
+=== Setup and the planner's choice
+
+Keep the two equal-mass types, perfectly negatively correlated incomes,
+and aggregate endowment two. Preferences and i.i.d. income are
+$
+  EE_0 sum_(t=0)^infinity beta^t log c_t,
+$
+$
+  y_t = cases(
+    1 + epsilon & "with probability " 1/2,
+    1 - epsilon & "with probability " 1/2.
+  )
+$
+Here $0 < epsilon < 1$. Consider the equal-weight planner *before income
+is realized*. The symmetric allocation after period 0 has the form
+$
+  c_t = cases(
+    1 + gamma & "if " y_t = 1 + epsilon,
+    1 - gamma & "if " y_t = 1 - epsilon,
+  ),
+  0 <= gamma <= epsilon.
+$
+Both means are one, so $epsilon$ and $gamma$ are the standard deviations
+of income and consumption in levels. The planner chooses the smallest
+feasible $gamma$: expected period utility is $frac(1, 2) log(1 - gamma^2)$.
+
+- $gamma = epsilon$: autarky, no insurance.
+- $0 < gamma < epsilon$: partial insurance.
+- $gamma = 0$: full insurance, $c_t = 1$.
+
+The connection to the consumption bands is
+$
+  1 + gamma & = max {underline(c)_H, 1}, \
+  1 - gamma & = min {overline(c)_L, 1}.
+$
+
+=== Participation and the value of autarky
+
+For an income spread $x$, define the exit value *after observing high income*:
+$
+  V_("aut") (x) = log(1 + x)
+  + frac(beta, 2(1 - beta)) log(1 - x^2).
+$<eq:kp-autarky>
+The first term is today's high income; the second is expected utility
+from future income draws. The high-income consumer's participation
+constraint becomes
+$
+  log(1 + gamma) + frac(beta, 2(1 - beta)) log(1 - gamma^2)
+  >= V_("aut") (epsilon),
+$
+or $V_("aut") (gamma) >= V_("aut") (epsilon)$. The low-income consumer's
+constraint holds for $gamma <= epsilon$: both current consumption and
+expected continuation utility weakly exceed autarky. Thus
+$
+  gamma(epsilon) = min {x in [0, epsilon] :
+    V_("aut") (x) >= V_("aut") (epsilon)}.
+$<eq:kp-min-risk>
+
+Full insurance gives $V_("FB") = log(1)/(1 - beta) = 0$. It is feasible iff
+$
+  V_("aut") (epsilon) <= 0.
+$
+
+=== When is full insurance feasible?
+
+Differentiating @eq:kp-autarky,
+$
+   V'_("aut") (epsilon) & = frac(1 - beta - epsilon, (1 - beta)(1 - epsilon^2)), \
+  V''_("aut") (epsilon) & = -frac(1, (1 + epsilon)^2)
+                          - frac(beta(1 + epsilon^2), (1 - beta)(1 - epsilon^2)^2) < 0.
+$
+The exit value peaks at $epsilon^m = 1 - beta$. It starts at
+$V_("aut") (0) = 0$ and tends to $-infinity$ as $epsilon -> 1$.
+There is therefore a unique positive threshold $overline(epsilon) > epsilon^m$
+such that
+$
+  V_("aut") (overline(epsilon)) = 0.
+$
+Full insurance is feasible for $epsilon >= overline(epsilon)$.
+
+#lecture-addition("Why does a little risk encourage exit?", source: "2026-10-26, 01:14:14 - 01:14:56")[
+  Starting at $epsilon = 0$, a larger spread raises today's high income
+  with a first-order utility gain. The expected loss from future risk is
+  initially second order. Hence $V'_("aut") (0) = 1$: small increases in
+  risk make leaving more attractive.
+]
+
+#align(center)[
+  #figure(
+    image("figures/krueger_perri_autarky.svg", width: 90%),
+    caption: [The high-income consumer's exit value.],
+  )<fig:kp-autarky>
+]
+
+#figure-note[
+  Lecture 8, slide 23. Computed from @eq:kp-autarky with $beta = 0.5$:
+  $epsilon^m = 0.5$ and $overline(epsilon) approx 0.839$.
+]
+
+=== From income risk to consumption risk
+
+The solution to @eq:kp-min-risk has three regions:
+$
+  gamma(epsilon) = cases(
+    epsilon & "if " 0 < epsilon <= epsilon^m,
+    epsilon^* & "if " epsilon^m < epsilon < overline(epsilon),
+    0 & "if " overline(epsilon) <= epsilon < 1.
+  )
+$
+In the middle region, $epsilon^*$ is the unique point in $(0, epsilon^m)$
+with $V_("aut") (epsilon^*) = V_("aut") (epsilon)$.
+
+#align(center)[
+  #figure(
+    image("figures/krueger_perri_mechanism.svg", width: 95%),
+    caption: [Higher income risk, lower consumption risk.],
+  )<fig:kp-mechanism>
+]
+
+#figure-note[
+  $beta = 0.5$. Both examples lie in the partial-insurance region.
+]
+
+Read @fig:kp-mechanism from right to left. The same curve gives the exit
+value at $x = epsilon$ and the high-income consumer's contract value at
+$x = gamma$:
+
++ Start at the *right intersection*, $epsilon_A = 0.60$. Its height is
+  the utility the high-income consumer can get by leaving.
++ Follow the blue horizontal line left to $gamma_A approx 0.390$.
+  This is the *smallest feasible consumption risk*: any smaller $gamma$
+  gives less utility than the exit option and violates participation.
++ Raise income risk to $epsilon_B = 0.80$. The exit value falls to the
+  orange line, so the left intersection moves to $gamma_B approx 0.084$.
+  The consumer now accepts more insurance because future autarky is worse.
+
+Differentiating this binding constraint gives
+$
+  gamma'(epsilon) = frac(V'_("aut") (epsilon), V'_("aut") (gamma(epsilon))) < 0.
+$
+Consumption risk first rises with income risk, then falls, then stays at zero.
+
+#align(center)[
+  #figure(
+    image("figures/krueger_perri_risk.svg", width: 90%),
+    caption: [Income risk and consumption risk.],
+  )<fig:kp-risk>
+]
+
+#figure-note[
+  Lecture 8, slide 26, with $beta = 0.5$. The middle branch solves
+  $V_("aut") (gamma) = V_("aut") (epsilon)$ on $gamma in (0, epsilon^m)$.
+]
+
+Higher $epsilon$ raises today's payoff from leaving when income is high,
+but makes future autarky riskier. At low risk, the current gain dominates;
+at higher risk, the loss of future insurance dominates. Larger transfers
+can then be sustained without either consumer leaving.
+
+=== Evidence and interpretation
+
+// Slides 28-29; the recording ends after the risk comparison on slide 26.
+The slides report that, over 1972-1998 in the U.S., the standard deviation
+of log after-tax labor income rose by about 20%, while that of log
+consumption rose by less than 2% @krueger2006income. The proposed mechanism
+is that greater income risk supports more credit and risk sharing.
+
+Contracts prevent default in equilibrium, yet the assumed payoff after
+default determines how much insurance is sustainable. Models with
+endogenous default allow these exit incentives to be studied using
+observed default behavior.
+
+== Summary and next steps
+
+// Lecture 8, slides 30-31.
+- With two-sided limited commitment, consumption moves to the nearest
+  bound when the current allocation violates participation. Fixed aggregate
+  resources rule out an upward drift for everyone.
+- Overlapping bands permit full insurance. Without overlap, consumption
+  continues to move with income.
+- Greater income risk can make autarky less attractive and support more
+  insurance, as in @krueger2006income.
+
+Next: decentralize the constrained-efficient allocation using endogenous
+borrowing limits, then study asset prices. The references are
+@kehoe1993debt and @alvarez2000efficiency.
