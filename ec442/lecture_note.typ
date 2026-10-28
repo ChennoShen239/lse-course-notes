@@ -5,6 +5,11 @@
 
 #show: thmrules.with(qed-symbol: $square$)
 #show link: set text(fill: orange)
+#show cite: set text(fill: blue)
+#show cite.where(form: "prose"): it => {
+  show "&": "and"
+  it
+}
 #show math.equation: set text(font: "Libertinus Math")
 #set text(lang: "en", font: "Libertinus Serif")
 
@@ -2476,27 +2481,27 @@ the education-choice curve stays fixed.
 
 Lecture 5, slide 34.
 
-- @kremer1993population: _more people generate more
+- #cite(<kremer1993population>, form: "prose"): _more people generate more
   nonrival ideas; better technology supports a larger population under the
   Malthusian land constraint. The model predicts population growth increasing
   with population size over much of history. Historical population data and
   comparisons of technologically isolated societies support this scale effect._
 
-- @jones2001industrial: _combines idea production,
+- #cite(<jones2001industrial>, form: "prose") _combines idea production,
   endogenous fertility and mortality, and fixed land. Under suitable returns
   to accumulable factors, population and ideas can generate a takeoff followed
   by a demographic transition. In the quantitative model, stronger rewards to
   inventors, interpreted as improvements in innovation-promoting institutions,
   substantially advance the takeoff. Its timing depends on these incentives._
 
-- @galor2002selection: _preferences for child quality
+- #cite(<galor2002selection>, form: "prose"): _preferences for child quality
   differ across heritable types. In the Malthusian regime, quality-oriented
   families can earn more and afford more children, giving their
   type an evolutionary advantage. Their growing population share raises
   investment in human capital and technological progress. The distribution
   of preferences therefore evolves within the model._
 
-- @greenwood2002demographic: _a quantitative model of
+- #cite(<greenwood2002demographic>, form: "prose"): _a quantitative model of
   the U.S. demographic transition with agriculture and manufacturing.
   Productivity growth raises wages and the time cost of children. As
   agriculture contracts, parents increasingly educate children for skilled
@@ -2504,14 +2509,14 @@ Lecture 5, slide 34.
   high-fertility rural households to lower-fertility urban households also
   reduces aggregate fertility._
 
-- @doepke2004fertility: _a quantitative transition model
+- #cite(<doepke2004fertility>, form: "prose"): _a quantitative transition model
   linking structural change, fertility, education, and child labor. Restricting
   child labor removes children's potential earnings, raising the net cost of
   having many children. In the calibrated model, child labor restrictions have
   much larger effects on fertility decline than education subsidies. Policies
   also affect the evolving income distribution._
 
-- @galor2008trading: _trade changes the returns to child
+- #cite(<galor2008trading>, form: "prose"): _trade changes the returns to child
   quantity and quality through specialization. Industrial economies specialize
   in goods intensive in human capital, encouraging education and lower
   fertility. Agricultural exporters face weaker incentives to educate and
@@ -2524,27 +2529,27 @@ Lecture 5, slide 35.
 
 === Human capital and the Industrial Revolution
 
-- @squicciarini2015human: _distinguishes average literacy
+- #cite(<squicciarini2015human>, form: "prose") _distinguish average literacy
   from upper-tail knowledge. Subscriptions to the eighteenth-century
   Encyclopédie proxy the presence of knowledge elites in French cities.
   Subscriber density predicts growth after industrialization begins. Initial
   literacy is associated with development levels, but does not predict growth.
   The mechanism is higher productivity in innovative industrial technology._
 
-- @delacroix2018clans: _emphasizes tacit knowledge
+- #cite(<delacroix2018clans>, form: "prose") _emphasize tacit knowledge
   passed from master to apprentice. Institutions determine who can learn
   from whom. Their model shows how guilds, journeymanship, and apprenticeship
   markets spread skills beyond closed family or clan networks, helping explain
   Europe's preindustrial technological advantage._
 
-- @kelly2023mechanics: _studies English counties between
+- #cite(<kelly2023mechanics>, form: "prose") _study English counties between
   the 1760s and 1830s. High initial mechanical skills and low wages predict
   industrialization. Literacy, banks, and proximity to coal have little
   explanatory power in their regressions._
 
 === Unified growth and cross-country evidence
 
-@cervellati2023empirics
+#cite(<cervellati2023empirics>, form: "prose")
 
 #emph[
   The model combines endogenous physical capital, human capital, population,
@@ -2562,7 +2567,7 @@ Lecture 5, slide 35.
 
 === Demographic transitions across time and space
 
-@delventhal2024demographic
+#cite(<delventhal2024demographic>, form: "prose")
 
 #emph[
   The study covers birth and death rates for *186 countries over more than
@@ -2854,7 +2859,7 @@ Then $y_i = x_(K,i) h_i A_i$.
 
 === Each factor's contribution
 
-@klenow1997neoclassical: _assign each factor its covariance with log income,
+#cite(<klenow1997neoclassical>, form: "prose") _assign each factor its covariance with log income,
 relative to the total variance of log income._
 
 Taking logs gives
@@ -2900,7 +2905,7 @@ human capital by $exp(0.1) - 1 approx 10.5%$.
   of educated workers increases.
 ]
 
-@caselli2005accounting: _classic development accounting leaves large
+#cite(<caselli2005accounting>, form: "prose"): _classic development accounting leaves large
 productivity differences after measuring physical capital and schooling-based
 human capital. The residual also absorbs omitted input quality and
 measurement error._
@@ -2909,7 +2914,7 @@ measurement error._
 
 Lecture 5, slides 43 to 44.
 
-@lagakos2026accounting: _better measurement raises the contribution of
+#cite(<lagakos2026accounting>, form: "prose"): _better measurement raises the contribution of
 inputs from about 30% under the classic specification to 55–70%, mainly
 through human capital. The paper is forthcoming in the JEL._
 
@@ -3004,7 +3009,7 @@ estimate is not the sum of these displayed rows._
   @lagakos2026accounting; axis notation added.
 ]
 
-@manuelli2014human: _a structural human-capital model uses schooling and
+#cite(<manuelli2014human>, form: "prose"): _a structural human-capital model uses schooling and
 life-cycle earnings profiles to infer human-capital quantities and quality.
 It finds larger human-capital gaps and smaller TFP gaps than classic measures._
 
@@ -3016,7 +3021,7 @@ and attribution; it does not mean a country's actual technology has changed.
 
 Lecture 5, slide 45.
 
-@hendricks2018human: _compare real, PPP-adjusted hourly wages of the same
+#cite(<hendricks2018human>, form: "prose") _compare real, PPP-adjusted hourly wages of the same
 immigrants before and after moving to the U.S. The main data source is the
 New Immigrant Survey of new U.S. permanent residents._
 
@@ -3080,7 +3085,7 @@ is attributed to human capital in the benchmark.
   wage gain $G_i$, and inferred human-capital gap $H_i = D_i/G_i$; all are
   U.S.-to-origin multiples on a logarithmic vertical scale.
   Cropped from Lecture 5, slide 45. Source: @lagakos2026accounting
-  (JEL, forthcoming), based on @hendricks2018human.
+  (JEL, forthcoming), based on #cite(<hendricks2018human>, form: "prose").
 ]
 
 === Selection and skill transfer
@@ -3101,7 +3106,7 @@ is attributed to human capital in the benchmark.
 
 Lecture 5, slide 46.
 
-@rossi2022efficiency: _skilled workers are relatively scarce in poor countries,
+#cite(<rossi2022efficiency>, form: "prose"): _skilled workers are relatively scarce in poor countries,
 but their wage premium is not correspondingly higher. Matching quantities
 and wages requires large differences in relative skill efficiency; migrant
 evidence attributes most of these differences to skill-biased technology._
@@ -3184,15 +3189,15 @@ calculation, the contribution of $L_i/N_i$ depends strongly on $sigma$:
   [2.0], [35.6%],
 )
 
-@lagakos2026accounting, Table 7: _the calculation normalizes unskilled
-technology and human capital to one and omits experience and health.
-The share above 100% is permitted by the covariance metric._
+_The calculation normalizes unskilled technology and human capital to one
+and omits experience and health. The share above 100% is permitted by the
+covariance metric_ @lagakos2026accounting[Table 7].
 
 == Human capital and the allocation of talent
 
 Lecture 5, slide 47.
 
-@hsieh2019talent: _in 1960, 94% of U.S. doctors and lawyers were white men;
+#cite(<hsieh2019talent>, form: "prose"): _in 1960, 94% of U.S. doctors and lawyers were white men;
 by 2010, 62% were. A Roy model links changing occupational choices to declining
 barriers and estimates that better allocation accounts for 20–40% of growth
 in aggregate market output per person over 1960–2010._
@@ -3230,14 +3235,14 @@ accumulation. Learning from other people adds an aggregate object: the
 *distribution of knowledge*. Human capital is embodied in workers; an idea
 can be used by many workers simultaneously.
 
-- @lucasmoll2014knowledge: _people divide time between producing with their
+- #cite(<lucasmoll2014knowledge>, form: "prose"): _people divide time between producing with their
   current knowledge and meeting others to learn better ideas. The individual
   state is productivity $z$; the aggregate state is its distribution $F_t$.
   Search choices change knowledge diffusion and generate endogenous growth.
   A planner also accounts for the external benefits of learning._
-- @lucas2015human: _learning is faster when people interact with more productive
+- #cite(<lucas2015human>, form: "prose"): _learning is faster when people interact with more productive
   people. The model connects individual earnings profiles to aggregate growth._
-- @delacroix2018clans: _apprenticeship institutions determine who learns from
+- #cite(<delacroix2018clans>, form: "prose") _apprenticeship institutions determine who learns from
   whom. Knowledge spreads farther when training extends beyond family networks._
 
 #lecture-addition("Learning from different people", source: "2026-10-13, 01:08:49 - 01:12:23")[
@@ -3254,10 +3259,10 @@ can be used by many workers simultaneously.
 
 === From learning to innovation
 
-- @romer1990technological: _ideas are nonrival and partly excludable. Profit
+- #cite(<romer1990technological>, form: "prose"): _ideas are nonrival and partly excludable. Profit
   incentives finance research; monopoly rights can reward innovation. The
   resulting increasing returns require a departure from pure price taking._
-- @jones2022end: _in idea-based models, a persistently declining population can
+- #cite(<jones2022end>, form: "prose"): _in idea-based models, a persistently declining population can
   eventually stop growth in living standards. The number of potential inventors
   and the demographic response therefore matter for long-run growth._
 
@@ -3270,7 +3275,7 @@ Lecture 5, slides 48 and 50.
   investment links fertility choices to technological progress.
 - Modern measurement and migrant evidence assign roughly three-fifths of
   cross-country income differences to human capital in the exercises discussed.
-  Schooling-only measures in @halljones1999output assigned about one-fifth.
+  Schooling-only measures in #cite(<halljones1999output>, form: "prose") assigned about one-fifth.
   These figures depend on the sample, production function and accounting metric.
 - Development accounting locates gaps in inputs and productivity. It does not
   identify why countries accumulated different skills or which policy would
@@ -3296,9 +3301,9 @@ Sources of productivity gains:
   raising output for given aggregate inputs.
 
 This lecture focuses on *R&D-based growth*:
-- @romer1990technological: _growth through an expanding variety of
+- #cite(<romer1990technological>, form: "prose"): _growth through an expanding variety of
   intermediate goods._
-- @aghion1992creative: _growth through quality improvements. New innovations
+- #cite(<aghion1992creative>, form: "prose"): _growth through quality improvements. New innovations
   displace older technologies and their producers: creative destruction._
 
 #lecture-addition("Institutions and accumulation", source: "2026-10-19, 00:02:13 - 00:04:19")[
@@ -3308,7 +3313,7 @@ This lecture focuses on *R&D-based growth*:
   models studied here.
 ]
 
-== @romer1990technological: Expanding varieties
+== #cite(<romer1990technological>, form: "prose"): Expanding varieties
 
 === Main idea
 
@@ -3744,7 +3749,7 @@ The subsidy comparisons assume *lump-sum financing*.
 
 == Quality ladders: main idea
 
-@aghion1992creative: _Growth comes from successive improvements in the
+#cite(<aghion1992creative>, form: "prose"): _Growth comes from successive improvements in the
 quality of existing products._
 
 - *Quality improvements:* the number of sectors is fixed. A successful
@@ -3762,7 +3767,7 @@ capture only part of their social value. This can discourage R&D.
 Together with business stealing, this means *equilibrium innovation can be
 too high or too low* relative to the planner's choice.
 
-=== @aghion1992creative in discrete time: environment
+=== #cite(<aghion1992creative>, form: "prose") in discrete time: environment
 
 Time is discrete. There is a fixed continuum of intermediate sectors
 $j in [0, 1]$ and labor supply $L > 0$.
@@ -4030,40 +4035,40 @@ can be too fast.
 
 _Supplementary reading._
 
-- *Scale effects and semi-endogenous growth.* @jones1995rnd:
+- *Scale effects and semi-endogenous growth.* #cite(<jones1995rnd>, form: "prose"):
   _The scale-effect prediction conflicts with time-series evidence.
   A semi-endogenous extension makes long-run growth depend on population
   growth, even though technological progress comes from R&D._
-- *Firm dynamics.* @klette2004innovating:
+- *Firm dynamics.* #cite(<klette2004innovating>, form: "prose"):
   _Heterogeneous firms innovate, enter and exit. Their model connects
   firm-level evidence on R&D and patenting to aggregate innovation and
   growth._
-- *Competition and innovation.* @aghion2005competition:
+- *Competition and innovation.* #cite(<aghion2005competition>, form: "prose"):
   _Competition can encourage neck-and-neck firms to innovate and discourage
   laggards. Their model and panel evidence yield an inverted-U relationship
   between competition and innovation._
-- *The direction of innovation.* @acemoglu2012environment:
+- *The direction of innovation.* #cite(<acemoglu2012environment>, form: "prose"):
   _Research can improve clean or dirty technologies. Carbon prices and
   research subsidies redirect innovation; their model's optimal policy
   uses both instruments._
-- *Research productivity.* @bloom2020ideas:
+- *Research productivity.* #cite(<bloom2020ideas>, form: "prose"):
   _They document falling measured research productivity across several
   industries and firms. Maintaining a given rate of technological
   improvement requires increasing research inputs in these cases._
-- *Innovation policy with heterogeneous firms.* @akcigit2022taxation:
+- *Innovation policy with heterogeneous firms.* #cite(<akcigit2022taxation>, form: "prose"):
   _Firms differ in research productivity, which the government cannot
   observe directly. Information constraints change the taxes and R&D
   subsidies needed to address knowledge spillovers._
 
 == Scale effects and semi-endogenous growth
 
-*Empirical motivation.* @jones1995rnd: _Research employment rose in
+*Empirical motivation.* #cite(<jones1995rnd>, form: "prose"): _Research employment rose in
 industrialized economies without the growth acceleration predicted by
 the early models' strong scale effects._
 
 === Idea production
 
-Use a discrete-time version of the idea-production block in @jones2005ideas:
+Use a discrete-time version of the idea-production block in #cite(<jones2005ideas>, form: "prose"):
 
 $
   A_(t+1) - A_t = chi L_(A,t)^eta A_t^phi,
@@ -4136,7 +4141,7 @@ $
 
 == Are ideas harder to find?
 
-@bloom2020ideas: _Maintaining a given rate of technological improvement
+#cite(<bloom2020ideas>, form: "prose"): _Maintaining a given rate of technological improvement
 requires rising research inputs in their case studies._
 
 === Measuring research productivity
@@ -4190,7 +4195,7 @@ this mechanism; the ratio alone does not identify $phi$.
 
 == Directed technical change
 
-@acemoglu2002directed: _Firms choose which factors their inventions
+#cite(<acemoglu2002directed>, form: "prose"): _Firms choose which factors their inventions
 complement. Profit incentives determine the direction of technical change._
 
 Two forces shape those incentives:
@@ -4211,7 +4216,7 @@ technology.
   that response.
 ]
 
-== Appropriate technology: @acemoglu2001productivity
+== Appropriate technology: #cite(<acemoglu2001productivity>, form: "prose")
 
 _A technology suited to a rich country's workforce may work poorly with a
 poorer country's skill mix. Equal access to inventions can coexist with
@@ -4242,7 +4247,7 @@ invention and the skill mix of its users also matter.
 
 == Climate and directed technical change
 
-@acemoglu2012environment: _Policy can redirect innovation toward clean
+#cite(<acemoglu2012environment>, form: "prose"): _Policy can redirect innovation toward clean
 technology. Once clean technology is sufficiently advanced, private
 research incentives can sustain that direction._
 
@@ -4265,7 +4270,7 @@ clean production can replace dirty production.
 
 == Automation and new tasks
 
-@acemoglu2019automation: _Technology changes which tasks workers perform.
+#cite(<acemoglu2019automation>, form: "prose"): _Technology changes which tasks workers perform.
 Automation displaces labor from existing tasks; new tasks can expand its
 role in production._
 
@@ -4286,7 +4291,7 @@ offset the loss of labor demand. A falling labor share can also coexist with ris
 wages if productivity grows enough. Employment additionally depends on
 labor supply and adjustment frictions.
 
-@acemoglu2018race: _Automation and new-task creation are themselves research
+#cite(<acemoglu2018race>, form: "prose"): _Automation and new-task creation are themselves research
 choices. Their relative profitability affects the long-run balance between
 machines and workers._
 
@@ -4299,7 +4304,7 @@ to a new growth path with lower employment and a lower labor share.
 
 == Measuring innovation with patent data
 
-@griliches1990patents: _Patents provide detailed records of inventive
+#cite(<griliches1990patents>, form: "prose"): _Patents provide detailed records of inventive
 activity, but inventions differ greatly in importance and in whether they
 are patented._
 
@@ -4320,14 +4325,14 @@ Trade secrets, process changes and organizational improvements may leave
 little trace in patent counts; strategic patenting can raise counts without
 equally large productivity gains.
 
-@hall2001patents: _Citation comparisons must account for technology fields,
+#cite(<hall2001patents>, form: "prose"): _Citation comparisons must account for technology fields,
 patent cohorts and the time available to accumulate citations._
 
 Recent patents have shorter citation histories. Citations can also reflect
 legal examination and citation practices, so a citation link alone does
 not establish a knowledge spillover.
 
-@kogan2017innovation: _Stock-market reactions around patent grants can be
+#cite(<kogan2017innovation>, form: "prose"): _Stock-market reactions around patent grants can be
 used to estimate inventions' private economic value for listed US firms._
 
 This measure links innovation to subsequent firm growth and resource
@@ -4350,7 +4355,7 @@ object.
 
 == Schumpeterian growth meets firm dynamics
 
-@klette2004innovating: _Creative destruction explains how firms enter,
+#cite(<klette2004innovating>, form: "prose"): _Creative destruction explains how firms enter,
 expand, shrink and exit, while their innovations drive aggregate growth._
 
 A firm owns a portfolio of product lines. Its size changes through
@@ -4371,7 +4376,7 @@ Larger firms therefore undertake more R&D in levels. The framework links
 firm size, R&D, patenting and survival to the economy's innovation rate,
 bringing firm-level data into growth theory.
 
-@acemoglu2018reallocation: _Growth also depends on which firms survive and
+#cite(<acemoglu2018reallocation>, form: "prose"): _Growth also depends on which firms survive and
 where skilled workers are employed. Firms differ in their capacity to
 innovate._
 
@@ -4385,7 +4390,7 @@ and resource reallocation*, alongside its effect on firms' R&D incentives.
 Business dynamism is the process of firms entering, expanding, shrinking
 and exiting, with jobs moving across businesses.
 
-@akcigit2021dynamism: _Several indicators point to weaker US business
+#cite(<akcigit2021dynamism>, form: "prose"): _Several indicators point to weaker US business
 dynamism over the decades before the pandemic._
 
 - *Entry and young firms:* fewer new firms enter relative to the existing
@@ -4395,7 +4400,7 @@ dynamism over the decades before the pandemic._
 - *Leading firms:* market concentration and markups rise, alongside wider
   productivity gaps between frontier firms and followers.
 
-@akcigit2023dynamism: _Slower knowledge diffusion from leading firms to
+#cite(<akcigit2023dynamism>, form: "prose"): _Slower knowledge diffusion from leading firms to
 followers can jointly explain weaker dynamism and greater concentration._
 
 In their model, followers fall further behind and become less willing to
@@ -4404,7 +4409,7 @@ pressure and eventually innovate less. The resulting slowdown in catch-up
 and creative destruction reduces productivity growth. This is a proposed
 structural explanation, supported by their model and patent evidence.
 
-@decker2020dynamism: _Businesses became less responsive to productivity
+#cite(<decker2020dynamism>, form: "prose"): _Businesses became less responsive to productivity
 changes, even as the dispersion of productivity shocks increased._
 
 Weaker expansion of productive businesses and weaker contraction of less
@@ -4496,7 +4501,7 @@ The lecture focuses on *limited contract enforcement*:
 
 == Idiosyncratic income shocks with limited enforcement
 
-Based on @thomas1988self, _Self-Enforcing Wage Contracts_.
+Based on #cite(<thomas1988self>, form: "prose"), _Self-Enforcing Wage Contracts_.
 
 
 A continuum of *ex ante identical households* has preferences
@@ -5371,7 +5376,7 @@ levels, as the two paths show.
   option.
 ]
 
-== Example: @krueger2006income
+== Example: #cite(<krueger2006income>, form: "prose")
 
 // Lecture 8, slides 17-29.
 _More income risk can support more insurance by making future autarky
@@ -5531,35 +5536,202 @@ Consumption risk first rises with income risk, then falls, then stays at zero.
   $V_("aut") (gamma) = V_("aut") (epsilon)$ on $gamma in (0, epsilon^m)$.
 ]
 
-Higher $epsilon$ raises today's payoff from leaving when income is high,
-but makes future autarky riskier. At low risk, the current gain dominates;
-at higher risk, the loss of future insurance dominates. Larger transfers
-can then be sustained without either consumer leaving.
+= Lecture 9 Oct 27
 
-=== Evidence and interpretation
+== Risk sharing: recap
 
-// Slides 28-29; the recording ends after the risk comparison on slide 26.
-The slides report that, over 1972-1998 in the U.S., the standard deviation
-of log after-tax labor income rose by about 20%, while that of log
-consumption rose by less than 2% @krueger2006income. The proposed mechanism
-is that greater income risk supports more credit and risk sharing.
+// Lecture 8, slides 27-31; Lecture 9, slide 2.
+Higher income risk raises today's high-income exit payoff and lowers
+expected future autarky utility. The first effect dominates at low risk;
+the second can support more insurance at higher risk.
 
-Contracts prevent default in equilibrium, yet the assumed payoff after
-default determines how much insurance is sustainable. Models with
-endogenous default allow these exit incentives to be studied using
-observed default behavior.
+U.S. standard deviations of log after-tax labor income and log consumption
+rose about 20% and less than 2%, respectively, over 1972-1998. Within
+education groups, consumption dispersion fell slightly @krueger2006income.
 
-== Summary and next steps
+- Consumption stays within state-dependent bands. Full insurance is
+  feasible iff all bands intersect.
+- A positive participation multiplier raises that consumer's welfare
+  weight; weights stay fixed when participation is slack.
 
-// Lecture 8, slides 30-31.
-- With two-sided limited commitment, consumption moves to the nearest
-  bound when the current allocation violates participation. Fixed aggregate
-  resources rule out an upward drift for everyone.
-- Overlapping bands permit full insurance. Without overlap, consumption
-  continues to move with income.
-- Greater income risk can make autarky less attractive and support more
-  insurance, as in @krueger2006income.
+== Sequential markets
 
-Next: decentralize the constrained-efficient allocation using endogenous
-borrowing limits, then study asset prices. The references are
-@kehoe1993debt and @alvarez2000efficiency.
+// Lecture 9, slides 3-5.
+Date-zero trade in event-contingent consumption claims implements the
+constrained-efficient allocation @kehoe1993debt.
+Let $s^t$ be a history, $pi(s^t)$ its probability, and $p_(t) (s^t)$ its
+date-zero price. Consumer $i$ chooses nonnegative consumption to maximize
+$
+  sum_(t=0)^infinity beta^t sum_(s^t) pi(s^t) u(c_(t)^(i) (s^t)),
+$
+#block(breakable: false)[
+  subject to the present-value budget
+  $
+    sum_(t=0)^infinity sum_(s^t) p_(t) (s^t) c_(t)^(i) (s^t)
+    <= sum_(t=0)^infinity sum_(s^t) p_(t) (s^t) y_(t)^(i) (s^t).
+  $<eq:kl-budget>
+]
+After every observed history $s^j$, participation requires
+$
+  sum_(t=j)^infinity beta^(t-j)
+  sum_(s^t in cal(S)_(t) (s^j)) pi(s^t | s^j)
+  [u(c_(t)^(i) (s^t)) - u(y_(t)^(i) (s^t))] >= 0.
+$<eq:kl-participation>
+Here $cal(S)_(t) (s^j)$ contains histories extending $s^j$.
+Market clearing: $c_(t)^(1) (s^t) + c_(t)^(2) (s^t) = 2$.
+Each participation constraint involves the entire continuation plan.
+
+== Recursive markets and borrowing limits
+
+// Lecture 9, slides 6-7.
+One-period Arrow securities implement participation through endogenous
+borrowing limits @alvarez2000efficiency. Keep the i.i.d. endowments:
+common event $n$ gives incomes
+$y_1 (n) = y_n$ and $y_2 (n) = 2 - y_n$; tomorrow's event $j$ has
+probability $pi_j$.
+
+After observing $n$, consumer $i$ receives asset payoff $a_i$ from last
+period's portfolio and chooses consumption $c_i$ and next-period payoffs
+$a'_(i j)$. The claim paying one unit in event $j$ costs $q_j$ today.
+Suppress common equilibrium-state arguments; continuation objects use
+the corresponding next state.
+
+#block(breakable: false)[
+  $V_i (a_i, n)$ is total utility; Lecture 8's promise $v$ was utility
+  above autarky:
+  $
+    V_i (a_i, n) = max_(c_i >= 0, {a'_(i j)}) [
+      u(c_i) + beta sum_(j=1)^N pi_j V_i (a'_(i j), j)
+    ],
+  $
+]
+subject to
+$
+  c_i + sum_(j=1)^N q_j a'_(i j) & <= y_i (n) + a_i, \
+                        a'_(i j) & >= B_i (j), quad j = 1, dots, N.
+$<eq:aj-household-budget>
+Negative asset payoffs are debt. Prices and limits are taken as given
+by households and determined jointly in equilibrium.
+
+The *not-too-tight* limits satisfy
+$
+         V_i^A (n) & = u(y_i (n))
+                     + frac(beta, 1 - beta) sum_(j=1)^N pi_j u(y_i (j)), \
+  V_i (B_i (n), n) & = V_i^A (n).
+$<eq:aj-borrowing-limit>
+At the limit, repayment and autarky are equivalent. Since $V_i$ increases
+with assets, larger payoffs satisfy participation. Market clearing is
+$
+          a_1 + a_2 & = 0, \
+  a'_(1j) + a'_(2j) & = 0 quad "for every " j, \
+          c_1 + c_2 & = 2.
+$
+
+== Asset prices
+
+// Lecture 9, slides 8-9.
+For interior consumption, let $mu_(i j) >= 0$ be the borrowing multiplier:
+$
+                    q_j u'(c_i) & = beta pi_j V_(i,a) (a'_(i j), j) + mu_(i j), \
+               V_(i,a) (a_i, n) & = u'(c_i), \
+  mu_(i j) [a'_(i j) - B_i (j)] & = 0.
+$
+Thus, with next-period consumption $c'_(i j)$,
+$
+  q_j >= beta pi_j frac(u'(c'_(i j)), u'(c_i)),
+$<eq:aj-euler>
+with equality when $mu_(i j) = 0$. If each event has at least one such
+consumer,
+$
+  q_j & = max_(i in {1, 2}) {
+          beta pi_j frac(u'(c'_(i j)), u'(c_i))
+        }, \
+  q_j & = beta pi_j max_i (frac(c'_(i j), c_i))^(-sigma)
+        quad "under CRRA, " sigma > 0.
+$<eq:aj-arrow-price>
+The consumer with the lowest consumption growth sets the CRRA price.
+Others' borrowing constraints restrict this consumer's saving, raising
+prices and lowering returns.
+
+#figure(
+  grid(
+    columns: (1fr, 1fr),
+    gutter: 10pt,
+    image("figures/borrowing_limit.svg", width: 100%), image("figures/arrow_price.svg", width: 100%),
+  ),
+  caption: [Borrowing limits and Arrow prices.],
+)<fig:lecture9-mechanisms>
+#figure-note[
+  Left: schematic $Delta V_i = V_i (a_i, n) - V_i^A (n)$ at fixed $n$.
+  Right: conditional pricing with $c_1 = c_2 = 1$,
+  $c'_(1j) = 1 + d$, $c'_(2j) = 1 - d$, and at least one zero borrowing
+  multiplier @alvarez2000efficiency.
+]
+
+=== The risk-free rate
+
+A portfolio of one claim per event pays one unit for sure:
+$
+  Q_f & = sum_(j=1)^N q_j, \
+  R_f & = 1 / Q_f, \
+  r_f & = R_f - 1.
+$
+Fixed total consumption implies $c'_(i j) <= c_i$ for at least one
+consumer in every event. Hence
+$
+  q_j >= beta pi_j => Q_f >= beta => R_f <= 1 / beta.
+$<eq:aj-risk-free-rate>
+The last inequality is strict if consumption changes in a positive-probability
+event. Full commitment and constant individual consumption give equality.
+
+== Equilibrium default
+
+// Lecture 9, slide 10.
+The limits above prevent default in equilibrium, while the unobserved
+autarky payoff determines insurance.
+Non-contingent debt permits default in equilibrium, followed by credit
+exclusion or other costs @eaton1981debt. Let $b' > 0$ be debt face value,
+$p(b', y)$ next period's default probability, and $r$ the funding rate.
+Competitive risk-neutral lenders with zero recovery charge
+$
+  q(b', y) = frac(1 - p(b', y), 1 + r).
+$<eq:defaultable-bond-price>
+Borrowing raises $q(b', y)b'$ today and requires repayment $b'$ tomorrow.
+Default incentives determine credit access and spreads.
+
+== Applications
+
+// Lecture 9, slides 11-13.
+=== Sovereign debt
+
+- Recession defaults and countercyclical spreads @arellano2008default;
+  long-term debt @chatterjee2012maturity; maturity choice @aguiar2019short.
+- Fundamental and self-fulfilling rollover crises @bocola2019crises;
+  efficient default and restructuring @dovis2019efficient;
+  partial default @arellano2023partial.
+- Fiscal stimulus under sovereign risk @bianchi2023fiscal;
+  monetary policy with sovereign risk in a New Keynesian model
+  @arellano2026monetary.
+
+=== Household bankruptcy
+
+- Unsecured credit and default @chatterjee2007unsecured;
+  fresh-start insurance versus cheaper credit @livshits2007bankruptcy.
+- Broader credit access and rising bankruptcies @livshits2016democratization;
+  bankruptcy and foreclosure policy @mitman2016bankruptcy;
+  credit scores as reputation @chatterjee2023credit.
+- Borrowing during unemployment and optimal unemployment insurance
+  @braxton2024unemployed; bankruptcy protection as stabilization during
+  the Great Recession @auclert2019debt.
+
+=== Other settings
+
+- Firm dynamics with limited enforcement @albuquerque2004lending
+  @cooley2004enforceability. Most US nonfinancial corporate debt is
+  cash-flow based @lian2021borrowing.
+- Village insurance @ligon2002insurance; migration as an outside option
+  @morten2019migration.
+- Household sharing, commitment and divorce law @mazzocco2007household
+  @voena2015divorce @lise2019sharing.
+- Long-term labor contracts and productivity-to-wage pass-through
+  @balke2022productivity.
