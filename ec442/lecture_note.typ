@@ -36,6 +36,7 @@
 #let lemma = thmbox("lemma", "Lemma", fill: orange.lighten(90%), base_level: 2)
 #let definition = thmbox("definition", "Definition", base_level: 2, fill: teal.lighten(80%))
 #let example = thmbox("example", "Example", titlefmt: strong, fill: green.lighten(90%), base_level: 2)
+#let remark = thmbox("remark", "Remark", fill: luma(96%), base_level: 2)
 #let proof = thmproof("proof", "Proof")
 #let algorithm = thmbox("algorithm", "Algorithm", fill: blue.lighten(95%), base_level: 2)
 
@@ -2292,11 +2293,11 @@ $
 For positive education, the marginal gain in child quality equals the
 proportional increase in the time cost per child:
 $
-  frac(h_(e)(e, g), h(e, g)) = frac(tau^e, tau^q + tau^e e).
+  frac(h_(e) (e, g), h(e, g)) = frac(tau^e, tau^q + tau^e e).
 $
 At $e = 0$, the left side is no larger than the right side.
 
-Define $F(e, g) = tau(e) h_(e)(e, g) - tau^e h(e, g)$. At an interior optimum,
+Define $F(e, g) = tau(e) h_(e) (e, g) - tau^e h(e, g)$. At an interior optimum,
 
 $
             F(e, g) & = 0, \
@@ -2405,7 +2406,7 @@ $
 $
 At a positive-education intersection, the response to a small change in $e_t$ is
 $
-  frac(d e_(t+1), d e_t) = e'(g^*) g_(e)(e^*, L).
+  frac(d e_(t+1), d e_t) = e'(g^*) g_(e) (e^*, L).
 $
 The steady state is locally stable if this response is below one, unstable if
 it exceeds one. A larger population shifts the technology locus right;
@@ -2726,24 +2727,24 @@ capacity.
 
 Write goods production and its marginal products as
 $
-        f(k, h_1) & = A k^alpha h_1^(1 - alpha), \
-    f_(k)(k, h_1) & = alpha A (frac(h_1, k))^(1 - alpha), \
-  f_(h_1)(k, h_1) & = (1 - alpha) A (frac(k, h_1))^alpha.
+         f(k, h_1) & = A k^alpha h_1^(1 - alpha), \
+    f_(k) (k, h_1) & = alpha A (frac(h_1, k))^(1 - alpha), \
+  f_(h_1) (k, h_1) & = (1 - alpha) A (frac(k, h_1))^alpha.
 $
 
 Eliminating $h_2$ gives $h_1 = h - h'/B$. At an interior optimum, the FOCs
 for $k'$ and $h'$ are
 $
-                  u'(c) & = beta v_(k)(k', h'), \
-  u'(c) f_(h_1)(k, h_1) & = beta B v_(h)(k', h').
+                   u'(c) & = beta v_(k) (k', h'), \
+  u'(c) f_(h_1) (k, h_1) & = beta B v_(h) (k', h').
 $
 The second condition equates the output lost by shifting human capital into
 learning with the discounted value of the human capital it creates.
 
 The envelope conditions are
 $
-  v_(k)(k, h) & = u'(c) [1 - delta + f_(k)(k, h_1)], \
-  v_(h)(k, h) & = u'(c) f_(h_1)(k, h_1).
+  v_(k) (k, h) & = u'(c) [1 - delta + f_(k) (k, h_1)], \
+  v_(h) (k, h) & = u'(c) f_(h_1) (k, h_1).
 $
 
 Substitute next period's envelope conditions into the FOCs and use
@@ -2773,7 +2774,7 @@ $
 $
 Sustained positive growth requires $beta B > 1$.
 
-Let $r^K = f_(k)(k, h_1)$ be the capital rental rate, written as $r$ on
+Let $r^K = f_(k) (k, h_1)$ be the capital rental rate, written as $r$ on
 slide 40. The physical-capital Euler equation implies
 $
       gamma^sigma & = beta (1 - delta + r^K), \
@@ -3825,7 +3826,7 @@ Quality scales demand; its absolute price elasticity remains
 $epsilon = 1/(1 - alpha) > 1$.
 
 *Monopoly pricing:* with marginal cost one, the leader maximizes
-$(P - 1) x_(j t)(P)$. The constant-elasticity markup gives
+$(P - 1) x_(j t) (P)$. The constant-elasticity markup gives
 $
   P_(j t) = frac(epsilon, epsilon - 1) = frac(1, alpha) > 1.
 $
@@ -5608,7 +5609,7 @@ the corresponding next state.
 subject to
 $
   c_i + sum_(j=1)^N q_j a'_(i j) & <= y_i (n) + a_i, \
-                        a'_(i j) & >= B_i (j), quad j = 1, dots, N.
+                        a'_(i j) & >= B_i (j), j = 1, dots, N.
 $<eq:aj-household-budget>
 Negative asset payoffs are debt. Prices and limits are taken as given
 by households and determined jointly in equilibrium.
@@ -5623,7 +5624,7 @@ At the limit, repayment and autarky are equivalent. Since $V_i$ increases
 with assets, larger payoffs satisfy participation. Market clearing is
 $
           a_1 + a_2 & = 0, \
-  a'_(1j) + a'_(2j) & = 0 quad "for every " j, \
+  a'_(1j) + a'_(2j) & = 0 " for every " j, \
           c_1 + c_2 & = 2.
 $
 
@@ -5647,7 +5648,7 @@ $
           beta pi_j frac(u'(c'_(i j)), u'(c_i))
         }, \
   q_j & = beta pi_j max_i (frac(c'_(i j), c_i))^(-sigma)
-        quad "under CRRA, " sigma > 0.
+        " under CRRA, " sigma > 0.
 $<eq:aj-arrow-price>
 The consumer with the lowest consumption growth sets the CRRA price.
 Others' borrowing constraints restrict this consumer's saving, raising
@@ -5735,3 +5736,599 @@ Default incentives determine credit access and spreads.
   @voena2015divorce @lise2019sharing.
 - Long-term labor contracts and productivity-to-wage pass-through
   @balke2022productivity.
+
+= Consumption and risk sharing with complete markets
+
+// Ethan Ilzetzki, EC442 1.1, slides 1-12.
+== Framework
+
+$I$ households receive endowments $y_t^i$ and have common preferences
+$
+  U_t^i = bb(E)_t [sum_(tau=t)^infinity beta^(tau-t) u(c_tau^i)],
+  0 < beta < 1, u' > 0, u'' < 0.
+$
+In this *pure exchange economy*, households consume the aggregate
+endowment each period.
+
+- $s_t$: current state, e.g. the income vector $(y_t^1, dots, y_t^I)$.
+- $s^t = (s_0, dots, s_t)$: history through date $t$.
+- $pi(s^t)$: probability of that history; $s_0$ is given.
+- $pi(s_(t+1) | s^t)$: conditional probability of the next state.
+
+Consumption $c_t^i (s^t)$ and endowments $y_t^i (s^t)$ are
+*measurable with respect to $s^t$*: they depend only on
+information available by $t$.
+
+== Complete markets
+
+Households can trade enforceable claims for every future date and event.
+Two equivalent arrangements:
+
+- *Arrow-Debreu securities:* traded at date 0. A claim to one unit of
+  consumption at history $s^t$ costs $q^0 (s^t)$; household $i$ holds
+  $a^i (s^t)$ units.
+- *Arrow securities:* traded each period. At history $s^t$, a claim to one
+  unit next period if $s_(t+1)$ occurs costs $Q(s_(t+1) | s^t)$; holdings
+  are $A^i (s_(t+1) | s^t)$.
+
+*Prices* $q^0$ and $Q$ are measured in goods at the trading date.
+*Probabilities* $pi$ weight utility across possible histories.
+
+=== Four solution methods
+
++ Arrow-Debreu markets: one lifetime budget.
++ A social planner's weighted welfare problem.
++ Sequential Arrow markets: a budget at every history.
++ Recursive Arrow markets: a Bellman equation.
+
+== Arrow-Debreu equilibrium
+
+=== Date-zero trade
+
+Households choose contingent consumption plans at date 0. Net claims give
+$
+  c_t^i (s^t) = y_t^i (s^t) + a^i (s^t).
+$
+Positive $a^i$ means receiving goods; negative $a^i$ means delivering goods.
+The contingent plans are fixed before the history is realized.
+
+=== The household's problem
+
+Given positive prices, household $i$ chooses nonnegative consumption:
+$
+  max_({c_t^i (s^t)})
+  sum_(t=0)^infinity sum_(s^t) beta^t pi(s^t) u(c_t^i (s^t)),
+$
+subject to
+$
+  sum_(t=0)^infinity sum_(s^t) q^0 (s^t)
+  [c_t^i (s^t) - y_t^i (s^t)] <= 0.
+$<eq:cm-ad-budget>
+Normalize $q^0 (s^0) = 1$. Assume finite expected utility and present-value
+wealth. The household sells its endowment stream and buys a consumption
+stream at the same prices. Since utility increases with consumption, the
+budget binds.
+
+Let $lambda^i > 0$ be the multiplier on this *single lifetime budget*:
+$
+  cal(L)^i & = sum_(t=0)^infinity sum_(s^t)
+             beta^t pi(s^t) u(c_t^i (s^t)) \
+           & - lambda^i sum_(t=0)^infinity sum_(s^t)
+             q^0 (s^t) [c_t^i (s^t) - y_t^i (s^t)].
+$
+At an interior choice in a positive-probability history,
+$
+  beta^t pi(s^t) u'(c_t^i (s^t)) = lambda^i q^0 (s^t).
+$<eq:cm-ad-foc>
+$lambda^i$ is constant across dates and histories.
+
+=== Market clearing
+
+#definition("Arrow-Debreu equilibrium")[
+  An allocation $lr({c_t^i (s^t)})$ and positive prices
+  $lr({q^0 (s^t)})$ such that:
+  + Each household maximizes utility subject to @eq:cm-ad-budget.
+  + Goods markets clear at every date and history:
+    $
+      sum_(i=1)^I c_t^i (s^t) = sum_(i=1)^I y_t^i (s^t) = Y_t (s^t).
+    $
+]
+
+Claim markets then clear: $sum_(i=1)^I a^i (s^t) = 0$.
+With concave utility and interior consumption, @eq:cm-ad-foc and a binding
+budget characterize the household's optimum.
+
+== Perfect risk sharing
+
+Divide @eq:cm-ad-foc across households at the same history:
+$
+  frac(u'(c_t^i (s^t)), u'(c_t^j (s^t))) = frac(lambda^i, lambda^j).
+$<eq:cm-sharing>
+The *marginal-utility ratio is constant* across dates and histories.
+Using the inverse marginal utility function,
+$
+  c_t^i (s^t) = (u')^(-1) (frac(lambda^i, lambda^j) u'(c_t^j (s^t))).
+$
+Summing over $i$ determines $c_t^j$ from aggregate endowment:
+$
+  sum_(i=1)^I (u')^(-1)
+  (frac(lambda^i, lambda^j) u'(c_t^j (s^t))) = Y_t (s^t).
+$
+
+- For fixed $lambda^i$, histories with the same $Y_t$ give the same
+  consumption allocation: *history independence*.
+- Idiosyncratic income risk is fully insured; aggregate risk remains
+  through $Y_t$.
+
+With common CRRA utility, $u'(c) = c^(-sigma)$, $sigma > 0$:
+$
+  c_t^i (s^t)
+  = frac((lambda^i)^(-1/sigma), sum_(j=1)^I (lambda^j)^(-1/sigma)) Y_t (s^t).
+$
+Constant $Y_t$ gives constant individual consumption; wealth determines
+the shares through $lambda^i$.
+
+== Consumption smoothing and tilting
+
+Divide the same household's FOCs across two date-history pairs:
+$
+  beta^(t-tau) frac(pi(s^t), pi(s^tau))
+  frac(u'(c_t^i (s^t)), u'(c_tau^i (s^tau)))
+  = frac(q^0 (s^t), q^0 (s^tau)).
+$<eq:cm-smoothing>
+Treat consumption at each date and event as a distinct good. Their price
+ratio equals the household's discounted, probability-weighted
+marginal-utility ratio.
+
+For a one-period extension $s^(t+1) = (s^t, s_(t+1))$, the Arrow price is
+$
+  frac(q^0 (s^(t+1)), q^0 (s^t))
+  = beta pi(s_(t+1) | s^t)
+  frac(u'(c_(t+1)^i (s^(t+1))), u'(c_t^i (s^t)))
+  = Q(s_(t+1) | s^t).
+$
+== The social planner's problem
+
+// Ilzetzki 1.1, slide 10.
+- *First welfare theorem:* competitive allocations are Pareto efficient.
+- *Second welfare theorem:* under convexity, Pareto-efficient allocations
+  can be decentralized with suitable date-zero lump-sum transfers.
+
+Given fixed Pareto weights $mu^i > 0$, the planner solves
+$
+  max_({c_t^i (s^t) >= 0})
+  sum_(t=0)^infinity sum_(s^t) beta^t pi(s^t)
+  sum_(i=1)^I mu^i u(c_t^i (s^t)),
+$
+subject to resource feasibility at every $s^t$:
+$
+  sum_(i=1)^I c_t^i (s^t) <= Y_t (s^t).
+$
+Let $theta(s^t) >= 0$ be the resource multiplier. The Lagrangian is
+$
+  cal(L) & = sum_(t=0)^infinity sum_(s^t)
+           beta^t pi(s^t) sum_(i=1)^I mu^i u(c_t^i (s^t)) \
+         & + sum_(t=0)^infinity sum_(s^t)
+           theta(s^t) (Y_t (s^t) - sum_(i=1)^I c_t^i (s^t)).
+$
+The interior FOCs give
+$
+     beta^t pi(s^t) mu^i u'(c_t^i (s^t)) & = theta(s^t), \
+  frac(u'(c_t^i (s^t)), u'(c_t^j (s^t))) & = frac(mu^j, mu^i).
+$<eq:cm-planner-foc>
+The planner equalizes *weighted marginal utilities* at each history.
+
+Compare @eq:cm-planner-foc with @eq:cm-ad-foc. Choosing
+$
+  mu^i = frac(1, lambda^i), theta(s^t) = q^0 (s^t)
+$
+gives the same consumption allocation and resource shadow prices.
+
+#remark("Budget multipliers and Pareto weights")[
+  + $lambda^i$ is household $i$'s *marginal utility of date-zero wealth*:
+    an extra unit of wealth raises its maximized lifetime utility by
+    $lambda^i$. At given prices, wealthier households have lower $lambda^i$.
+  + $mu^i$ is the planner's *weight on household $i$'s utility*. A higher
+    relative weight gives it more consumption. Only relative weights
+    matter; the normalization above gives $mu^i = 1 / lambda^i$.
+]
+
+#lecture-addition("Efficiency and distribution", source: "2026-10-30, 00:07:30 - 00:09:59")[
+  *Pareto efficiency is compatible with highly unequal consumption.*
+  The Pareto weights that reproduce a market equilibrium reflect initial
+  wealth. Choosing social welfare weights is a distributional judgment.
+  Date-zero transfers change which efficient allocation markets implement.
+]
+
+#lecture-addition("Markets, planning and distributional choices", source: "2026-10-30, 00:10:10 - 00:15:57")[
+  Markets start from the existing ownership of endowments; a planner
+  chooses welfare weights. Who chooses those weights is a political
+  question.
+  - Public economics examines how missing markets and information
+    problems affect efficiency.
+  - Political economy studies how collective decisions resolve competing
+    distributional objectives.
+  - Behavioral economics studies how departures from optimization change
+    choices and equilibrium outcomes.
+]
+
+== Arrow securities
+
+// Ilzetzki 1.1, slide 11.
+#definition("Arrow security")[
+  A one-period claim bought at history $s^t$ that pays *one unit of
+  consumption if next period's state is $j$*, and zero otherwise.
+  Its price $Q(j | s^t)$ is paid in current goods.
+]
+
+At $s^t$, household $i$ receives its endowment and the payoff
+$A^i (s^t)$ from last period's portfolio.
+It chooses consumption and a portfolio $lr({A^i (s^(t+1))})$, one payoff
+for each possible next state. Positive holdings receive goods; negative
+holdings promise payment.
+
+=== The household's problem
+
+Given prices, choose a contingent consumption and asset plan:
+$
+  max_({c_t^i (s^t), A^i (s^(t+1))})
+  sum_(t=0)^infinity sum_(s^t) beta^t pi(s^t) u(c_t^i (s^t)),
+$
+subject to a *budget at every history*:
+$
+  c_t^i (s^t)
+  + sum_(s_(t+1)) Q(s_(t+1) | s^t) A^i (s^(t+1))
+  <= y_t^i (s^t) + A^i (s^t),
+$<eq:cm-arrow-budget>
+and $c_t^i (s^t) >= 0$, with given initial assets $A^i (s^0) = 0$.
+The *natural debt limit*
+$
+  A^i (s^t) >= underline(A)^i (s^t)
+$
+caps how much the household can owe. #footnote[Here $A^i (s^t) < 0$ means debt.
+  The limit caps debt at the value of current and future income. Below it,
+  repayment is infeasible even if all that income is used for debt payments.]
+
+#lecture-addition("Why the natural debt limit stays slack", source: "2026-10-30, 00:24:59 - 00:29:10")[
+  At the natural limit, repayment exhausts remaining resources, forcing
+  zero consumption in the continuation. If
+  $lim_(c -> 0^+) u'(c) = infinity$ and a positive-consumption plan is
+  feasible, shifting resources toward that continuation has an unbounded
+  marginal utility gain. The optimum therefore stays above the limit
+  in positive-probability histories.
+]
+
+=== First-order conditions
+
+Let $gamma^i (s^t)$ be the date-zero multiplier on the budget at $s^t$.
+For interior consumption and slack debt limits, the consumption and
+portfolio FOCs are
+$
+  beta^t pi(s^t) u'(c_t^i (s^t)) & = gamma^i (s^t), \
+  gamma^i (s^t) Q(s_(t+1) | s^t) & = gamma^i (s^(t+1)).
+$
+The second condition equates the utility cost of buying a claim today
+with the utility value of its payoff tomorrow. Combining them gives
+$
+  Q(s_(t+1) | s^t)
+  = beta pi(s_(t+1) | s^t)
+  frac(u'(c_(t+1)^i (s^(t+1))), u'(c_t^i (s^t))).
+$<eq:cm-arrow-euler>
+
+=== Market clearing and equivalence
+
+At every history, goods and claims clear:
+$
+  sum_(i=1)^I c_t^i (s^t) & = Y_t (s^t), \
+    sum_(i=1)^I A^i (s^t) & = 0.
+$
+The price and multiplier mappings are
+$
+     gamma^i (s^t) & = lambda^i q^0 (s^t), \
+  Q(s_(t+1) | s^t) & = frac(q^0 (s^(t+1)), q^0 (s^t)).
+$
+
+#remark("Isomorphic to Arrow-Debreu")[
+  With complete, enforceable claims, the same initial wealth and the
+  natural debt limit in sequential markets, the two formulations support
+  *the same equilibrium consumption plans*.
+]
+
+== Recursive formulation
+
+// Ilzetzki 1.1, slide 12.
+Assume the exogenous state follows a *time-homogeneous Markov process*:
+$
+  Pr(s_(t+1) = s' | s^t) = pi(s' | s_t).
+$
+Write endowments as $y^i (s)$, prices as $Q(s' | s)$, and debt limits as
+$underline(A)^i (s)$. The household's state is $(A^i, s)$:
+- $A^i$: inherited asset payoff, summarizing past trades.
+- $s$: current state, determining income, prices and the distribution of
+  next period's state.
+
+#lecture-addition("How much history must the state retain?", source: "2026-10-30, 00:39:31 - 00:44:31")[
+  A second-order income process becomes first-order Markov under
+  $s_t = (y_t, y_(t-1))$. The state dimension stays fixed as time passes.
+  Old shocks can still affect predictions through the current state.
+
+  A stationary value function also uses time-invariant preferences,
+  endowments and prices. When these depend on calendar time, use $V_t$
+  or include time in the state.
+]
+
+=== Bellman equation
+
+Given $(A^i, s)$, choose consumption $c^i$ and a payoff $A'^i (s')$ for
+each next state:
+$
+  V^i (A^i, s) = max_(c^i, {A'^i (s')}) [
+    u(c^i) + beta sum_(s') pi(s' | s) V^i (A'^i (s'), s')
+  ],
+$<eq:cm-recursive-bellman>
+subject to
+$
+  c^i + sum_(s') Q(s' | s) A'^i (s') & <= y^i (s) + A^i, \
+                           A'^i (s') & >= underline(A)^i (s') " for every " s', \
+                                 c^i & >= 0.
+$
+$A'^i (s')$ is chosen today; it becomes next period's inherited payoff
+if $s'$ occurs.
+
+=== First-order and envelope conditions
+
+Let $gamma_R^i$ be the multiplier on the recursive budget. For interior
+consumption and slack debt limits,
+$
+                    [c^i]: u'(c^i) & = gamma_R^i, \
+  [A'^i (s')]: gamma_R^i Q(s' | s) & = beta pi(s' | s) V_A^i (A'^i (s'), s').
+$
+An extra unit of inherited assets relaxes the current budget by one unit.
+The *Benveniste-Scheinkman envelope condition* is
+$
+  V_A^i (A^i, s) = gamma_R^i = u'(c^i).
+$
+Apply the envelope condition next period to recover @eq:cm-arrow-euler
+from the portfolio FOC. With the same budget and debt constraints, this
+gives the sequential problem's consumption and portfolio choices.
+
+= Asset pricing
+
+// Ethan Ilzetzki, EC442 1.2, slides 1-15.
+== Outline
+
++ *Pricing any asset*
+  - Complete-market state prices.
+  - Synthetic assets: risk-free bonds, consols and dividend-paying stocks.
++ *The Lucas tree model*
+  - Environment and the household's problem.
+  - Asset pricing, the Euler equation and risk premia.
+  - Equilibrium and the procedure for pricing assets.
++ *Applications*
+  - Do stock prices follow a random walk?
+  - The yield curve.
+  - The equity premium puzzle and proposed explanations: separating risk
+    aversion from intertemporal substitution, habit formation, myopic loss
+    aversion, rare disasters and aggregation.
+
+== Asset pricing with complete markets
+
+// Ilzetzki 1.2, slide 3.
+Normalize $q^0 (s^0) = 1$. From @eq:cm-ad-foc,
+$lambda^i = u'(c_0^i)$, so the *date-zero state price* is
+$
+  q^0 (s^t) = beta^t pi(s^t)
+  frac(u'(c_t^i (s^t)), u'(c_0^i)).
+$<eq:ap-state-price>
+The claim pays one unit of consumption at date $t$ if history $s^t$
+occurs, and zero otherwise. With complete risk sharing, every household's
+marginal-utility ratio gives the same state price. At the same date and
+probability, a payoff when consumption is low is worth more.
+
+At date $tau < t$, suppose $s^t$ *extends the observed history* $s^tau$.
+The same claim's price, in date-$tau$ goods, is
+$
+  frac(q^0 (s^t), q^0 (s^tau))
+  = beta^(t-tau) pi(s^t | s^tau)
+  frac(u'(c_t^i (s^t)), u'(c_tau^i (s^tau))).
+$<eq:ap-conditional-price>
+The first $tau + 1$ states of $s^t$ must match $s^tau$.
+
+#lecture-addition("Reopening the Arrow-Debreu market", source: "2026-10-30, 00:51:12 - 00:53:37")[
+  If a household could improve its continuation plan at the prices in
+  @eq:ap-conditional-price without more wealth, it could have bought that
+  plan at date zero. For a positive-probability history, this would raise
+  expected lifetime utility, contradicting initial optimality. Reopening
+  markets therefore leaves the original plan optimal.
+]
+
+*Synthetic asset pricing* replicates an asset's payoffs with
+Arrow-Debreu claims. Under *no arbitrage*, the asset and its replicating
+portfolio have the same price.
+
+== Pricing synthetic assets
+
+// Ilzetzki 1.2, slide 4.
+=== A one-period risk-free bond
+
+At history $s^t$, buy one Arrow claim for each possible next state.
+The portfolio pays *one unit next period in every state*. Its price $P_t$
+and gross risk-free return $R_t$ satisfy
+$
+  P_t & = sum_(s_(t+1)) Q(s_(t+1) | s^t)
+        = sum_(s_(t+1)) frac(q^0 (s^(t+1)), q^0 (s^t)), \
+  R_t & = frac(1, P_t).
+$<eq:ap-risk-free-bond>
+
+#lecture-addition("A real risk-free payoff", source: "2026-10-30, 00:56:21 - 00:56:45")[
+  A nominal bond's purchasing power varies with inflation. The risk-free
+  bond here promises a fixed amount of consumption, so its *real payoff*
+  is state-independent.
+]
+
+=== A risk-free consol
+
+#definition("Consol")[
+  A *perpetual bond*: it pays a fixed amount (the coupon) every period
+  forever, with no maturity date or final repayment of principal.
+  Here the coupon is one unit of consumption.
+]
+
+Including the payment at date 0,
+$
+  p_0 = sum_(t=0)^infinity sum_(s^t) q^0 (s^t).
+$<eq:ap-consol>
+For each payment date, buy one claim for every possible history.
+The coupons are risk-free; the consol's resale price can change with
+state prices.
+
+=== A stock
+
+A stock pays dividends $d(s^t)$ at each date and history. Buy $d(s^t)$
+units of the corresponding claim to replicate each dividend:
+$
+  p_0^("stock") = sum_(t=0)^infinity sum_(s^t) q^0 (s^t) d(s^t).
+$<eq:ap-stock>
+Assume the infinite sums converge. Both prices include the date-zero
+payment; prices quoted after it use sums starting at $t = 1$.
+
+#lecture-addition("Default is part of the payoff", source: "2026-10-30, 00:53:43 - 00:56:14; 00:59:48 - 01:01:18")[
+  For debt with face value one, buy one claim in full-repayment histories
+  and the recovery fraction in default histories. The same pricing
+  formula covers both default probability and partial recovery.
+]
+
+#lecture-addition("Choosing states in a model", source: "2026-10-30, 01:01:20 - 01:04:57")[
+  In a production model, productivity is an exogenous shock; profits and
+  dividends are solved in equilibrium. Inherited assets are *endogenous
+  states*: past choices determine the resources available before today's
+  decisions.
+]
+
+== The Lucas tree model
+
+// Ilzetzki 1.2, slides 5-10.
+=== Environment
+
+- A unit mass of identical households $i in [0, 1]$, each initially owning
+  one *fully durable tree*.
+- Each tree produces $y_t$ units of *non-durable fruit* each period.
+  Fruit is consumed that period; $y_t$ follows a Markov process.
+- One share represents one tree. Aggregate share supply is one.
+- Households trade shares and one-period risk-free bonds. Bonds are in
+  zero net supply.
+
+#lecture-addition("A unit mass of households", source: "2026-10-30, 01:06:33 - 01:07:26")[
+  With $a_i = 1$ for every household $i in [0, 1]$, total tree supply is
+  $integral_0^1 a_i dif i = 1$. Individual holdings are measured per
+  household; aggregate holdings weight them by population mass.
+]
+
+Keep period utility $u(c)$ and discount factor $beta$. Let $p_t$ be the
+*ex-dividend share price*, after today's fruit has been paid. The gross
+bond return $R_t$ is agreed at $t$ and paid at $t + 1$.
+
+=== The household's problem
+
+At date $t$, inherited holdings are $a$ shares and $b$ units invested in
+bonds last period. They pay $a y_t$ and $R_(t-1) b$ today.
+New bond investment $b'$ costs $b'$ today and pays $R_t b'$ next period.
+
+Conditional on the observed history, continuation utility is
+$V_t (a, b, y_t)$. Current $y_t$ determines dividend income and the Markov
+distribution of next period's dividends. The household chooses current
+consumption and next-period holdings:
+$
+  V_t (a, b, y_t) = max_(c, a', b') [
+    u(c) + beta bb(E)_t [V_(t+1) (a', b', y_(t+1))]
+  ],
+$
+subject to
+$
+  c + b' + p_t (a' - a) <= a y_t + R_(t-1) b.
+$<eq:lucas-budget>
+The household takes prices as given, keeps consumption nonnegative and
+satisfies a no-Ponzi condition. The portfolio FOCs below apply to interior
+choices.
+
+=== First-order and envelope conditions
+
+Let $lambda_t$ be the budget multiplier. The FOCs are
+$
+                                        [c]: u'(c) & = lambda_t, \
+  [a']: beta bb(E)_t [V_(a,t+1) (a', b', y_(t+1))] & = lambda_t p_t, \
+  [b']: beta bb(E)_t [V_(b,t+1) (a', b', y_(t+1))] & = lambda_t.
+$
+The Benveniste-Scheinkman envelope conditions give
+$
+  V_(a,t) (a, b, y_t) & = lambda_t (p_t + y_t), \
+  V_(b,t) (a, b, y_t) & = R_(t-1) lambda_t.
+$
+An extra share provides today's fruit and its resale value; an extra
+unit of inherited bond investment pays its agreed gross return.
+
+=== Asset prices and the risk premium
+
+Apply the envelope conditions next period and use
+$lambda_t = u'(c_t)$:
+$
+      p_t & = beta bb(E)_t [
+              frac(u'(c_(t+1)), u'(c_t)) (p_(t+1) + y_(t+1))
+            ], \
+  u'(c_t) & = beta R_t bb(E)_t [u'(c_(t+1))].
+$<eq:lucas-pricing>
+The stock pays next period's dividend plus its resale price.
+
+The stock's realized gross return from $t$ to $t + 1$ is
+$
+  R_t^A = frac(p_(t+1) + y_(t+1), p_t).
+$
+Dividing the stock-pricing equation by $p_t$ gives
+$
+  1 = beta bb(E)_t [frac(u'(c_(t+1)), u'(c_t)) R_t^A].
+$
+Expand the expectation into a product of means and a covariance, then
+use the bond Euler equation. The *risk premium*, expected return above
+the risk-free return, is
+$
+  bb(E)_t [R_t^A] - R_t
+  = -frac(
+    op("cov")_t (R_t^A, frac(u'(c_(t+1)), u'(c_t))),
+    bb(E)_t [frac(u'(c_(t+1)), u'(c_t))]
+  ).
+$<eq:lucas-risk-premium>
+- Negative covariance with marginal utility: poor insurance and a
+  positive premium.
+- Positive covariance: insurance in low-consumption states and an
+  expected return below $R_t$.
+
+=== Equilibrium
+
+#definition("Lucas tree equilibrium")[
+  Given $a_0 = 1$ and $b_0 = 0$, sequences of allocations
+  $lr({c_t, a_t, b_t})$ and prices $lr({p_t, R_t})$ such that:
+  + The household solves its problem at the given prices, satisfying
+    @eq:lucas-pricing.
+  + Markets clear after every history:
+    $
+      c_t & = y_t, \
+      a_t & = 1, \
+      b_t & = 0.
+    $
+]
+
+Equilibrium prices make it optimal for households to consume the fruit,
+keep their trees and hold no bonds. Substituting market clearing into
+@eq:lucas-pricing gives
+$
+  p_t & = beta bb(E)_t [
+          frac(u'(y_(t+1)), u'(y_t)) (p_(t+1) + y_(t+1))
+        ], \
+  R_t & = frac(u'(y_t), beta bb(E)_t [u'(y_(t+1))]).
+$<eq:lucas-equilibrium-prices>
+
+=== Pricing procedure
+
++ Specify the assets, income process and preferences.
++ Solve the household's problem, taking prices as given.
++ Impose market clearing to determine equilibrium prices.
