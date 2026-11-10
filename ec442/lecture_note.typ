@@ -6367,6 +6367,13 @@ $<eq:ap-risk-neutral>
 These probabilities give greater weight to states in which marginal
 utility is high.
 
+#lecture-addition("Betting odds and beliefs", source: "2026-11-10, 00:00:00 - 00:03:18")[
+  The hypothetical AI bet hedges technology stocks by paying after a
+  collapse. A dollar received in a bust has higher marginal utility
+  than a dollar paid in a boom. Observed odds reflect both beliefs and
+  these state-dependent valuations.
+]
+
 Let $B_0 = 1$ and $B_(t+1) = R_t B_t$ be the value of a risk-free
 savings account. Then
 $
@@ -6404,7 +6411,7 @@ $
   P_t^(1) & = bb(E)_t [m_(t+1)], \
   P_t^(2) & = bb(E)_t [m_(t+1) P_(t+1)^(1)] \
           & = P_t^(1) bb(E)_t [P_(t+1)^(1)]
-              + op("cov")_t (m_(t+1), P_(t+1)^(1)).
+            + op("cov")_t (m_(t+1), P_(t+1)^(1)).
 $<eq:ap-yield-curve>
 The two-period bond's resale value next period is the price of the
 remaining one-period bond, which depends on the future short rate.
@@ -6455,7 +6462,7 @@ GBP 100,000 and about GBP 51,858 for sure @mankiw1991consumption:
 $
   c_("CE")
   = (frac(1, 2) 50000^(1 - sigma)
-      + frac(1, 2) 100000^(1 - sigma))^(1 / (1 - sigma)).
+    + frac(1, 2) 100000^(1 - sigma))^(1 / (1 - sigma)).
 $
 
 === Proposed explanations
@@ -6535,6 +6542,14 @@ $<eq:pe-consumption-growth>
   $
 ]
 
+#lecture-addition("Curvature without risk", source: "2026-11-10, 00:13:37 - 00:15:41")[
+  Curvature matters even under certainty: it governs the cost of an
+  uneven consumption path. Here a larger $sigma$ means a smaller EIS
+  $psi$, so consumption growth responds less to the return.
+  CRRA ties risk aversion and intertemporal substitution to the same
+  parameter; they are conceptually separate.
+]
+
 === Lifetime resources
 
 For $R > 1$, define wealth at date $t$ as inherited asset proceeds plus
@@ -6567,11 +6582,26 @@ per unit of additional income. For an unexpected one-off gain in this
 infinite-horizon benchmark,
 $
   "MPC" = frac(partial c_t, partial y_t)
-        = 1 - frac(1, R).
+  = 1 - frac(1, R).
 $
 The shock's persistence and the remaining planning horizon matter.
 Current income has no separate effect once lifetime wealth and the
 intertemporal return are fixed.
+
+#lecture-addition(
+  "Tax timing and Ricardian equivalence",
+  source: "2026-11-10, 00:10:01 - 00:13:37; 00:20:41 - 00:22:51",
+)[
+  PIH challenges a consumption function based only on current income:
+  moving income between dates leaves consumption unchanged if its present
+  value is fixed and borrowing is unrestricted.
+
+  With unchanged government spending, a debt-financed lump-sum tax cut
+  can be offset by future taxes. If households bear and internalize those
+  taxes and can smooth freely, lifetime net resources are unchanged, so
+  consumption does not rise @barro1974bonds. A transfer that raises
+  lifetime resources instead gives the annuity response above.
+]
 
 == Life-cycle evidence
 
@@ -6601,6 +6631,14 @@ Consumption needs and opportunities also change with age:
 More time for shopping and home production after retirement can reduce
 *expenditure* while maintaining *consumption* services.
 
+#lecture-addition("Why retirement is a sharper test", source: "2026-11-10, 00:24:28 - 00:26:37")[
+  A young household may be unable to borrow against future earnings.
+  Retirement is anticipated, and saving beforehand is feasible.
+  A borrowing limit alone therefore leaves an abrupt retirement spending
+  decline unexplained; changing needs, work expenses and home production
+  must also be considered.
+]
+
 == Excess sensitivity to predictable income
 
 // Ilzetzki 1.3, slides 8-10.
@@ -6619,6 +6657,13 @@ The test asks whether information already available predicts consumption
 growth @hall1978stochastic. *Excess sensitivity*
 means consumption responds to predictable income changes beyond the
 model's prediction.
+
+#lecture-addition("What the test identifies", source: "2026-11-10, 00:30:35 - 00:32:34")[
+  A consumption-growth test evaluates the Euler equation jointly with
+  assumptions on utility, returns and measurement. Predictability can
+  reject these joint restrictions without identifying which assumption
+  fails.
+]
 
 === Announcements and payment dates
 
@@ -6650,12 +6695,40 @@ These studies distinguish the response to *news about income* from
 the response to *cash arriving*. Durable purchases also make a measured
 spending response different from the response of consumption services.
 
+#lecture-addition("Seasonal pay versus lottery wins", source: "2026-11-10, 00:19:27 - 00:20:33; 00:38:28 - 00:42:26")[
+  The November 2026 working paper @heymann2026anticipation compares
+  fully anticipated June and December salary bonuses with unexpected
+  lottery wins in Spanish bank-account data:
+  - Three-month MPCs of *21% from bonuses* and *29% from lottery wins*
+    in the respective samples.
+  - Among households receiving both, MPCs of about *25% for each*,
+    statistically indistinguishable.
+  - Substantial responses to bonuses even among liquid households.
+
+  Recurring contractual payments make anticipation explicit. Comparing
+  the two receipts within households also reduces the scope for household
+  composition to explain the difference. The similar responses challenge
+  an explanation based only on unexpected income or a binding borrowing
+  limit.
+]
+
 == Evidence on the EIS
 
 // Ilzetzki 1.3, slides 11-14; slides 12 and 13 repeat the same material.
 The Euler equation relates expected consumption growth to the real
 return. Empirical estimates depend on the return households face, asset
 market participation, demographics and aggregation.
+
+#lecture-addition(
+  "Identifying the response to returns",
+  source: "2026-11-10, 00:42:37 - 00:44:32; 00:55:03 - 00:56:10",
+)[
+  Interest rates can respond to shocks that also move consumption.
+  A regression of consumption growth on the interest rate therefore needs
+  a source of variation separating the return from other determinants of
+  spending. The relevant price is the borrowing or saving rate the
+  household actually faces.
+]
 
 - @hall1988intertemporal: _Aggregate US data imply a small EIS, around
   0.1 and difficult to distinguish from zero._
@@ -6687,9 +6760,28 @@ market participation, demographics and aggregation.
   axis counts mortgages. Dashed lines mark mortgage-rate thresholds.
 ]
 Borrowers bunch at thresholds where extra borrowing raises the mortgage
-rate. The willingness to reduce current spending and debt to obtain
-cheaper future financing identifies intertemporal substitution through
-the model.
+rate. A model maps borrowing responses to these incentives into the EIS,
+allowing for how households finance the adjustment.
+
+#lecture-addition("Reading the LTV spikes", source: "2026-11-10, 00:56:10 - 01:01:06")[
+  - Crossing a threshold raises the interest rate on the loan. A tiny
+    amount of extra borrowing can therefore have a large interest cost,
+    creating a region just above the threshold that borrowers avoid.
+  - A large spike can coexist with a *small EIS*: the borrowing response
+    must be judged against the size of the incentive.
+  - Some refinancers cross thresholds while withdrawing additional equity.
+    For these borrowers, a need to find cash to repay existing debt is
+    insufficient to explain the choice. Published rate menus also make
+    the incentive salient.
+]
+
+#lecture-addition("The monetary-policy mechanism", source: "2026-11-10, 01:01:06 - 01:03:30")[
+  A low EIS weakens the direct channel through which real interest rates
+  shift spending across dates. Monetary policy can still affect spending
+  through income and debt-service cash flows. Matching an aggregate
+  policy response does not by itself validate the household mechanism
+  generating it.
+]
 
 == Extensions to the PIH
 
@@ -6703,6 +6795,15 @@ the model.
   similar persistence in spending._
 - @laibson1997golden @kahneman2011thinking: _Present bias and rules of
   thumb change how households value or plan future consumption._
+
+#lecture-addition("Mental accounting", source: "2026-11-10, 01:03:42 - 01:07:23")[
+  Households may anchor spending to current income and treat accumulated
+  savings as a separate account. A rule such as spending slightly less
+  than monthly pay ties consumption to payment dates even when annual
+  income is known. Aversion to drawing down savings helps reproduce the
+  similar MPCs from anticipated bonuses and lottery wins while preserving
+  liquid wealth @heymann2026anticipation.
+]
 
 == Precautionary saving
 
@@ -6734,6 +6835,16 @@ $
 $
 The second expression is relative prudence.
 
+#lecture-addition("Risk aversion and prudence", source: "2026-11-10, 01:14:30 - 01:19:18; 01:23:30 - 01:24:20")[
+  With convex marginal utility, a downside consumption realization raises
+  marginal utility more than an equal upside lowers it. Extra saving
+  shifts resources toward these future low-consumption states.
+  Risk aversion concerns the cost of bearing risk; prudence concerns how
+  risk changes saving. Concavity of $u$ alone does not guarantee
+  precautionary saving. Quadratic utility has $u''' = 0$ and removes
+  this motive.
+]
+
 === Marginal utility and long-run saving
 
 With $beta R = 1$ and slack borrowing constraints,
@@ -6753,20 +6864,28 @@ income risk, $beta R >= 1$ leads to unbounded consumption and marginal
 utility tending to zero. Finite stationary consumption in that setting
 requires $beta R < 1$._
 
+#lecture-addition("From saving demand to the equilibrium return", source: "2026-11-10, 01:19:25 - 01:21:04")[
+  In a stationary closed economy with persistent uninsured income risk,
+  $beta R = 1$ leaves households wanting to accumulate wealth.
+  The equilibrium return falls below $1 / beta$ to limit this demand.
+  With production, precautionary saving can raise capital and lower its
+  marginal product relative to a comparable complete-market steady state.
+  This is the link to the Aiyagari model.
+]
+
 === CRRA and consumption-growth risk
 
 Write $R = 1 + r$ and $beta = 1 / (1 + delta)$, where $delta$ is the
 rate of time preference. The Euler equation gives
 $
   1 = frac(1 + r, 1 + delta)
-      bb(E)_t [exp(-sigma Delta log c_(t+1))].
+  bb(E)_t [exp(-sigma Delta log c_(t+1))].
 $
 If $Delta log c_(t+1)$ is conditionally normal with variance $omega_t^2$,
 $
-  bb(E)_t [Delta log c_(t+1)]
-  & = frac(log(1 + r) - log(1 + delta), sigma)
-      + frac(sigma, 2) omega_t^2 \
-  & approx frac(r - delta, sigma) + frac(sigma, 2) omega_t^2.
+  bb(E)_t [Delta log c_(t+1)] & = frac(log(1 + r) - log(1 + delta), sigma)
+                                + frac(sigma, 2) omega_t^2 \
+                              & approx frac(r - delta, sigma) + frac(sigma, 2) omega_t^2.
 $<eq:pe-prudence-drift>
 Higher consumption-growth risk raises the expected growth needed to
 satisfy the Euler equation, encouraging postponement of consumption.
@@ -6821,7 +6940,7 @@ $phi$ is the asset floor; consumption is nonnegative.
 Let $eta_t >= 0$ be the floor's current-value multiplier. The Euler
 equation and complementary slackness are
 $
-  u'(c_t) & = beta R bb(E)_t [u'(c_(t+1))] + eta_t, \
+                u'(c_t) & = beta R bb(E)_t [u'(c_(t+1))] + eta_t, \
   eta_t (a_(t+1) - phi) & = 0.
 $<eq:pe-constrained-euler>
 - If the floor is slack, $eta_t = 0$ and the usual Euler equation holds.
@@ -6832,7 +6951,7 @@ $<eq:pe-constrained-euler>
 With $beta R = 1$ and convex marginal utility,
 $
   u'(c_t) >= bb(E)_t [u'(c_(t+1))]
-          >= u'(bb(E)_t [c_(t+1)]),
+  >= u'(bb(E)_t [c_(t+1)]),
 $
 so $c_t <= bb(E)_t [c_(t+1)]$. Under certainty this is a rising or flat
 consumption path; under uncertainty it is a restriction on conditional
@@ -6854,7 +6973,7 @@ $T > t$ gives
 $
   u'(c_t)
   = bb(E)_t [u'(c_T)]
-    + sum_(j=t)^(T-1) bb(E)_t [eta_j].
+  + sum_(j=t)^(T-1) bb(E)_t [eta_j].
 $<eq:pe-future-constraints>
 Even with $eta_t = 0$, expected future multipliers enter today's marginal
 utility through continuation values. Building a buffer reduces the
@@ -6893,6 +7012,13 @@ Expenditure Survey (CEX) and PSID. Researchers can also infer spending
 from administrative income and wealth records.
 Capital gains and changes in asset values must be separated from saving.
 
+#lecture-addition("Measuring spending", source: "2026-11-10, 00:46:31 - 00:50:23")[
+  When respondents infer spending from remembered income, measurement
+  errors can be correlated. Income and wealth records recover spending
+  from the budget constraint. Transaction records have gaps for cash
+  and purchases through other accounts.
+]
+
 Transaction records add high-frequency information:
 - US bank-account data, including JPMorgan Chase data used by
   @ganong2019consumer.
@@ -6905,6 +7031,17 @@ durability, quality and time inputs:
 - Shopping and home production use time to replace market expenditure.
 - Zero-price digital goods can provide services with little recorded
   spending; quality change also complicates price deflation.
+
+#lecture-addition("What a lower payment measures", source: "2026-11-10, 00:50:23 - 00:54:54")[
+  - Retirees substitute shopping and cooking time for expenditure,
+    maintaining food quantity and quality
+    @aguiar2005consumption @aguiar2007prices.
+  - A refrigerator provides services over time. Its purchase can make
+    expenditure lumpy while consumption stays smooth.
+  - Mortgage principal repayment builds equity. Housing consumption is
+    the service flow, valued using imputed rent for owner-occupiers in
+    national accounts.
+]
 
 === Expenditure composition and time use
 
