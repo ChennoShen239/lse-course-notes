@@ -6332,3 +6332,593 @@ $<eq:lucas-equilibrium-prices>
 + Specify the assets, income process and preferences.
 + Solve the household's problem, taking prices as given.
 + Impose market clearing to determine equilibrium prices.
+
+== Do stock prices follow a random walk?
+
+// Ilzetzki 1.2, slide 11.
+#definition("Martingale")[
+  An integrable process $X_t$ is a martingale if its conditional expected next value
+  equals its current value:
+  $
+    bb(E)_t [X_(t+1)] = X_t.
+  $
+  A zero-drift random walk also requires independent, identically
+  distributed increments.
+]
+
+The *stochastic discount factor* prices a payoff according to its value
+in marginal utility:
+$
+  m_(t+1) = beta frac(u'(c_(t+1)), u'(c_t)),
+  p_t = bb(E)_t [m_(t+1) (p_(t+1) + y_(t+1))].
+$<eq:ap-sdf>
+A high payoff when marginal utility is high provides insurance.
+
+Normalize the state weights to obtain *risk-neutral probabilities*:
+$
+  pi_t^Q (s')
+  = frac(pi(s' | s^t) m_(t+1) (s'), bb(E)_t [m_(t+1)]),
+  sum_(s') pi_t^Q (s') = 1.
+$
+Since $bb(E)_t [m_(t+1)] = 1 / R_t$,
+$
+  p_t = frac(1, R_t) bb(E)_t^Q [p_(t+1) + y_(t+1)].
+$<eq:ap-risk-neutral>
+These probabilities give greater weight to states in which marginal
+utility is high.
+
+Let $B_0 = 1$ and $B_(t+1) = R_t B_t$ be the value of a risk-free
+savings account. Then
+$
+  bb(E)_t^Q [frac(p_(t+1) + y_(t+1), B_(t+1))]
+  = frac(p_t, B_t).
+$
+Discounted cumulative gains, including dividends, form a martingale under
+$Q$. The ex-dividend price also reflects interest, dividends and changing
+risk premia.
+
+With risk-neutral utility, $u'$ is constant, so $m_(t+1) = beta$ and
+$Q$ coincides with the physical probabilities. The pricing equation
+becomes $p_t = beta bb(E)_t [p_(t+1) + y_(t+1)]$. Even here, dividends and
+discounting generally make expected price changes nonzero. #footnote[
+  In slide 11, risk neutrality requires constant marginal utility.
+  The martingale statement applies to discounted cumulative gains.
+]
+
+== The yield curve
+
+// Ilzetzki 1.2, slide 12.
+Let $P_t^(n)$ be the price of a zero-coupon bond paying one unit of
+consumption at $t + n$. Define its gross holding-to-maturity return and
+per-period log yield as
+$
+  R_t^(n) = frac(1, P_t^(n)),
+  z_t^(n) = -frac(1, n) log P_t^(n).
+$
+Thus $R_t^(2)$ is a two-period return; its per-period net yield is
+$(R_t^(2))^(1/2) - 1$. For one period, $R_t^(1) = R_t$.
+The *yield curve* relates per-period yields to maturity.
+
+The one- and two-period bond prices satisfy
+$
+  P_t^(1) & = bb(E)_t [m_(t+1)], \
+  P_t^(2) & = bb(E)_t [m_(t+1) P_(t+1)^(1)] \
+          & = P_t^(1) bb(E)_t [P_(t+1)^(1)]
+              + op("cov")_t (m_(t+1), P_(t+1)^(1)).
+$<eq:ap-yield-curve>
+The two-period bond's resale value next period is the price of the
+remaining one-period bond, which depends on the future short rate.
+A high resale price in low-consumption states provides insurance:
+positive covariance raises the bond's price and lowers its yield.
+
+When the covariance is zero,
+$
+  frac(1, R_t^(2))
+  = frac(1, R_t^(1)) bb(E)_t [frac(1, R_(t+1)^(1))].
+$
+With a known next-period short rate,
+$R_t^(2) = R_t^(1) R_(t+1)^(1)$. Under uncertainty, use expected
+*inverse* returns. #footnote[
+  The product of expected gross returns on slide 12 requires certainty
+  or an approximation; expectation and inversion generally do not commute.
+]
+
+== The equity premium puzzle
+
+// Ilzetzki 1.2, slides 13-14.
+The *equity premium puzzle* is the gap between the large historical
+equity premium and the premium implied by moderate risk aversion and
+aggregate consumption risk @mehra1985equity @kocherlakota1996equity.
+The lecture's benchmark is roughly a 7% real stock return and a 1%
+risk-free return, giving a premium of about 6 percentage points per year.
+
+In the *consumption-based capital asset pricing model (C-CAPM)*,
+use CRRA utility
+$
+  u(c) = frac(c^(1 - sigma) - 1, 1 - sigma),
+  u'(c) = c^(-sigma),
+  sigma > 0,
+$
+with $u(c) = log c$ at $sigma = 1$. From @eq:lucas-risk-premium,
+$
+  bb(E)_t [(frac(c_t, c_(t+1)))^sigma]
+  (bb(E)_t [R_t^A] - R_t)
+  = -op("cov")_t (R_t^A, (frac(c_t, c_(t+1)))^sigma).
+$<eq:ap-equity-puzzle>
+Aggregate consumption growth is smooth, so the covariance is too small
+to generate the observed premium at moderate risk aversion.
+
+In the lecture calibration, log utility gives a premium of about 0.24%;
+matching roughly 6% requires $sigma approx 20$. At this value, the
+household is indifferent between a 50-50 lottery paying GBP 50,000 or
+GBP 100,000 and about GBP 51,858 for sure @mankiw1991consumption:
+$
+  c_("CE")
+  = (frac(1, 2) 50000^(1 - sigma)
+      + frac(1, 2) 100000^(1 - sigma))^(1 / (1 - sigma)).
+$
+
+=== Proposed explanations
+
+// Ilzetzki 1.2, slide 15.
+- @weil1989equity: _Separate risk aversion from the elasticity of
+  intertemporal substitution. Recursive preferences relax the CRRA link
+  between them, but this separation alone can leave a risk-free-rate
+  puzzle._
+- @campbell1999force: _Habit makes consumption close to the habit level
+  especially costly. Risk compensation can rise sharply in bad times._
+- @benartzi1995myopic: _Loss aversion combined with frequent portfolio
+  evaluation makes investors sensitive to short-run stock losses, even
+  when their investment horizon is long._
+- @barro2006rare: _Rare consumption disasters give large marginal-utility
+  weights to severe stock losses. A short sample can contain little
+  evidence of the disasters investors fear._
+- @mankiw1991consumption: _Stockholders' consumption is more volatile
+  and more correlated with stock returns than nonstockholders'
+  consumption. Asset pricing depends on the consumption risk of
+  participating investors._
+
+= Consumption in partial equilibrium
+
+// Ethan Ilzetzki, EC442 1.3, slides 1-27.
+== Outline
+
++ The permanent-income and life-cycle hypotheses.
++ Evidence on consumption smoothing and intertemporal substitution.
++ Precautionary saving, buffer stocks and borrowing constraints.
++ Illiquid wealth, spending data and time use.
+
+== The permanent income hypothesis
+
+// Ilzetzki 1.3, slides 3-5.
+A household receives income $y_t$, inherits assets $a_t$ and can borrow
+or save at a fixed gross risk-free return $R$. Asset holdings are chosen
+before their return is paid next period.
+
+=== Deterministic income
+
+Given $a_0$, choose a consumption and asset path:
+$
+  max_({c_t, a_(t+1)}) sum_(t=0)^infinity beta^t u(c_t),
+$
+subject to
+$
+  c_t + a_(t+1) <= y_t + R a_t,
+  c_t >= 0,
+$
+and a no-Ponzi condition. There is no additional borrowing constraint.
+At an interior optimum,
+$
+  u'(c_t) = beta R u'(c_(t+1)).
+$<eq:pe-euler>
+Income affects lifetime resources; $beta R$ determines the consumption
+tilt.
+
+Keep the CRRA convention $u'(c) = c^(-sigma)$. Then
+$
+  frac(c_(t+1), c_t) = (beta R)^(1 / sigma).
+$<eq:pe-consumption-growth>
+- $beta R = 1$: constant consumption.
+- $beta R > 1$: rising consumption.
+- $beta R < 1$: falling consumption.
+
+#definition("Elasticity of intertemporal substitution")[
+  The EIS measures how consumption growth responds to the relative
+  return on postponing consumption. #footnote[
+    Here $sigma$ remains relative risk aversion, as in Chapter 11;
+    $psi$ is the EIS. The negative signs on slide 4 are inconsistent with
+    @eq:pe-euler.
+  ]
+  Holding $beta$ fixed, CRRA utility gives
+  $
+    psi = frac(d log(c_(t+1) / c_t), d log R) = frac(1, sigma).
+  $
+]
+
+=== Lifetime resources
+
+For $R > 1$, define wealth at date $t$ as inherited asset proceeds plus
+the present value of income:
+$
+  W_t = R a_t + sum_(j=0)^infinity R^(-j) y_(t+j).
+$<eq:pe-wealth>
+Iterating the budget and exhausting lifetime wealth gives
+$
+  sum_(j=0)^infinity R^(-j) c_(t+j) = W_t.
+$
+With $beta R = 1$, consumption is the annuity value of wealth:
+$
+  c_t = (1 - frac(1, R)) W_t.
+$<eq:pe-annuity>
+
+The *permanent income hypothesis* ties current consumption to lifetime
+resources. The *life-cycle hypothesis* applies this smoothing logic to
+income and needs over a finite life.
+
+- An unexpected one-off income gain $Delta y_t$ raises consumption by
+  $(1 - 1/R) Delta y_t$. The remaining gain is saved.
+- A permanent increase of $Delta y$ in income from today onward raises
+  consumption by $Delta y$.
+- An anticipated income change is already in the plan. Its arrival
+  creates no new revision to consumption.
+
+The *marginal propensity to consume* is the current consumption response
+per unit of additional income. For an unexpected one-off gain in this
+infinite-horizon benchmark,
+$
+  "MPC" = frac(partial c_t, partial y_t)
+        = 1 - frac(1, R).
+$
+The shock's persistence and the remaining planning horizon matter.
+Current income has no separate effect once lifetime wealth and the
+intertemporal return are fixed.
+
+== Life-cycle evidence
+
+// Ilzetzki 1.3, slides 6-7.
+Income and consumption both have hump-shaped age profiles. Consumption
+tracks earnings more closely than the simplest model with constant
+needs and unrestricted borrowing predicts.
+
+#align(center)[
+  #figure(
+    image("figures/pih_lifecycle.pdf", width: 72%),
+    caption: [Income and consumption over the life cycle.],
+  )<fig:pih-lifecycle>
+]
+#figure-note[
+  Ilzetzki 1.3, slide 6 @browning2001life.
+  Horizontal axis: husband's age in years. Vertical axis: $100 log("value")$,
+  as labelled in the source.
+]
+
+Consumption needs and opportunities also change with age:
+- Work-related spending falls when employment ends; consumption and
+  labor can be complements.
+- Young households may be unable to borrow against higher future earnings.
+- Children change household size and consumption needs.
+
+More time for shopping and home production after retirement can reduce
+*expenditure* while maintaining *consumption* services.
+
+== Excess sensitivity to predictable income
+
+// Ilzetzki 1.3, slides 8-10.
+With uncertainty and an interior choice, the Euler equation is
+$
+  u'(c_t) = beta R bb(E)_t [u'(c_(t+1))].
+$<eq:pe-stochastic-euler>
+With quadratic utility and $beta R = 1$, marginal utility is affine,
+giving
+$
+  c_t = bb(E)_t [c_(t+1)],
+  c_(t+1) = c_t + epsilon_(t+1),
+  bb(E)_t [epsilon_(t+1)] = 0.
+$<eq:pe-hall>
+The test asks whether information already available predicts consumption
+growth @hall1978stochastic. *Excess sensitivity*
+means consumption responds to predictable income changes beyond the
+model's prediction.
+
+=== Announcements and payment dates
+
+- @wilcox1989social: _Social Security benefit increases were announced
+  before payment, yet aggregate spending rose when the payments arrived.
+  The unconstrained PIH predicts an adjustment when the news arrives._
+- @zeldes1989consumption: _PSID evidence supports borrowing constraints
+  for low-wealth households. High-wealth households fit the unconstrained
+  Euler equation more closely. Wealth differences alone also leave room
+  for differences in preferences or planning behavior._
+- @shea1995union: _Union contracts identify predictable wage changes.
+  Consumption responds especially to predictable wage declines. A
+  borrowing limit alone cannot explain a failure to save ahead of an
+  announced decline, since saving remains possible._
+
+=== Tax rebates and predictable transfers
+
+- @parker2013consumer: _Randomized timing of the 2008 US stimulus
+  payments identifies the spending response to receipt. In the three-month
+  receipt period, nondurable spending rose by 12-30% of the payment;
+  including durables raised the response to 50-90%. Responses were
+  substantial for older, lower-income and home-owning households._
+- @hsieh2003anticipated: _Alaskan households smooth the large, predictable
+  Permanent Fund dividend but respond to the receipt of smaller tax
+  refunds. This pattern is consistent with more effective planning for
+  large, salient payments._
+
+These studies distinguish the response to *news about income* from
+the response to *cash arriving*. Durable purchases also make a measured
+spending response different from the response of consumption services.
+
+== Evidence on the EIS
+
+// Ilzetzki 1.3, slides 11-14; slides 12 and 13 repeat the same material.
+The Euler equation relates expected consumption growth to the real
+return. Empirical estimates depend on the return households face, asset
+market participation, demographics and aggregation.
+
+- @hall1988intertemporal: _Aggregate US data imply a small EIS, around
+  0.1 and difficult to distinguish from zero._
+- @campbell1991response: _A mixture of optimizing and current-income
+  consumers fits the time-series evidence. The US estimates discussed in
+  the paper attribute roughly 35-50% of income to rule-of-thumb consumers._
+- @vissing2002limited: _Estimate the Euler equation for households holding
+  the relevant asset. EIS estimates are around 0.3-0.4 for stockholders
+  and 0.8-1 for bondholders. Nonparticipants need not satisfy the interior
+  Euler equation for that asset._
+- @attanasio1993growth @attanasio1995consistent @attanasio2010consumption:
+  _Cohort and household data give larger estimates, around 0.8 in the
+  lecture's summary. Nonlinear aggregation and omitted demographics can
+  make aggregate-data estimates misleading._
+- @best2020elasticity: _Discrete changes in UK mortgage rates at
+  loan-to-value thresholds create incentives to reduce borrowing.
+  A model linking bunching to intertemporal substitution gives an EIS
+  around 0.1 using directly observed mortgage rates and household data._
+
+#align(center)[
+  #figure(
+    image("figures/mortgage_ltv_notches.pdf", width: 82%),
+    caption: [Mortgage borrowing at LTV thresholds.],
+  )<fig:mortgage-ltv-notches>
+]
+#figure-note[
+  Ilzetzki 1.3, slide 14 @best2020elasticity.
+  LTV is mortgage balance divided by property value (%); the vertical
+  axis counts mortgages. Dashed lines mark mortgage-rate thresholds.
+]
+Borrowers bunch at thresholds where extra borrowing raises the mortgage
+rate. The willingness to reduce current spending and debt to obtain
+cheaper future financing identifies intertemporal substitution through
+the model.
+
+== Extensions to the PIH
+
+// Ilzetzki 1.3, slide 15.
+- @carroll1992buffer @carroll1997buffer: _Income risk creates a
+  precautionary motive; impatience limits the desired buffer._
+- Borrowing constraints restrict the use of future income to finance
+  current consumption.
+- @campbell1999force @chetty2016commitments: _Habits link utility to past
+  consumption; costly-to-adjust commitments such as housing can produce
+  similar persistence in spending._
+- @laibson1997golden @kahneman2011thinking: _Present bias and rules of
+  thumb change how households value or plan future consumption._
+
+== Precautionary saving
+
+// Ilzetzki 1.3, slides 16-19.
+=== Convex marginal utility
+
+Set $beta R = 1$. The Euler equation becomes
+$
+  u'(c_t) = bb(E)_t [u'(c_(t+1))].
+$
+If $u''' > 0$, marginal utility is convex. Jensen's inequality gives
+$
+  bb(E)_t [u'(c_(t+1))]
+  >= u'(bb(E)_t [c_(t+1)]),
+$
+strictly when conditional consumption risk is nondegenerate and marginal
+utility is strictly convex. Since $u'$ decreases,
+$
+  c_t <= bb(E)_t [c_(t+1)].
+$<eq:pe-precautionary-growth>
+A mean-preserving spread in future consumption raises
+expected marginal utility and lowers current consumption:
+*precautionary saving*.
+
+*Prudence* describes this response to risk. Under CRRA,
+$
+  u'''(c) = sigma (sigma + 1) c^(-sigma - 2) > 0,
+  -frac(c u'''(c), u''(c)) = sigma + 1.
+$
+The second expression is relative prudence.
+
+=== Marginal utility and long-run saving
+
+With $beta R = 1$ and slack borrowing constraints,
+$
+  mu_t equiv u'(c_t) = bb(E)_t [mu_(t+1)],
+  mu_t >= 0.
+$
+The nonnegative martingale convergence theorem gives
+$
+  mu_t -> mu_infinity " almost surely",
+$
+for a finite, possibly random limit. Identifying that limit requires
+conditions on continuing income risk.
+
+@chamberlain2000optimal: _Under their conditions on persistent uninsured
+income risk, $beta R >= 1$ leads to unbounded consumption and marginal
+utility tending to zero. Finite stationary consumption in that setting
+requires $beta R < 1$._
+
+=== CRRA and consumption-growth risk
+
+Write $R = 1 + r$ and $beta = 1 / (1 + delta)$, where $delta$ is the
+rate of time preference. The Euler equation gives
+$
+  1 = frac(1 + r, 1 + delta)
+      bb(E)_t [exp(-sigma Delta log c_(t+1))].
+$
+If $Delta log c_(t+1)$ is conditionally normal with variance $omega_t^2$,
+$
+  bb(E)_t [Delta log c_(t+1)]
+  & = frac(log(1 + r) - log(1 + delta), sigma)
+      + frac(sigma, 2) omega_t^2 \
+  & approx frac(r - delta, sigma) + frac(sigma, 2) omega_t^2.
+$<eq:pe-prudence-drift>
+Higher consumption-growth risk raises the expected growth needed to
+satisfy the Euler equation, encouraging postponement of consumption.
+
+Prudence helps explain low consumption early in life and strong saving
+responses to downside risk. With $beta R = 1$, its positive effect on
+expected consumption growth leaves the late-life consumption decline
+unexplained.
+
+== Buffer-stock saving
+
+// Ilzetzki 1.3, slides 20-21.
+Combine prudence with *impatience*:
+$
+  beta R < 1 <=> r < delta.
+$
+The negative drift from $r - delta$ offsets the positive risk term in
+@eq:pe-prudence-drift. #footnote[
+  Slide 20 reverses the inequality between $r$ and $delta$.
+]
+
+Sufficiently impatient households facing income risk hold a *buffer stock*
+of assets to protect consumption @carroll1992buffer @carroll1997buffer:
+- Below the target wealth-to-income ratio, the precautionary motive
+  encourages rebuilding assets.
+- Above the target, impatience encourages spending down assets.
+
+The target depends on income risk, returns and preferences. With trending
+income, target saving also depends on impatience relative to income growth.
+
+Life-cycle saving then reflects changing income risk and the remaining
+horizon. Young households can accumulate buffers despite expecting
+higher future income; buffers can be drawn down as uncertainty resolves.
+With little liquid wealth, consumption tracks current income more
+closely and the MPC exceeds the simple PIH annuity factor.
+
+== Borrowing constraints
+
+// Ilzetzki 1.3, slides 22-23.
+The household now solves
+$
+  max_({c_t, a_(t+1)}) bb(E)_0 [
+    sum_(t=0)^infinity beta^t u(c_t)
+  ],
+$
+subject to
+$
+  c_t + a_(t+1) <= y_t + R a_t,
+  a_(t+1) >= phi.
+$
+$phi$ is the asset floor; consumption is nonnegative.
+Let $eta_t >= 0$ be the floor's current-value multiplier. The Euler
+equation and complementary slackness are
+$
+  u'(c_t) & = beta R bb(E)_t [u'(c_(t+1))] + eta_t, \
+  eta_t (a_(t+1) - phi) & = 0.
+$<eq:pe-constrained-euler>
+- If the floor is slack, $eta_t = 0$ and the usual Euler equation holds.
+- If $eta_t > 0$, the household chooses $a_(t+1) = phi$ and would like
+  to borrow more. Current marginal utility exceeds the discounted
+  expected value of saving.
+
+With $beta R = 1$ and convex marginal utility,
+$
+  u'(c_t) >= bb(E)_t [u'(c_(t+1))]
+          >= u'(bb(E)_t [c_(t+1)]),
+$
+so $c_t <= bb(E)_t [c_(t+1)]$. Under certainty this is a rising or flat
+consumption path; under uncertainty it is a restriction on conditional
+expected consumption.
+
+Borrowing constraints help explain low consumption when young and large
+responses to cash receipts. Saving before an announced income decline
+remains feasible, so a borrowing floor alone leaves the response to
+predictable wage declines unexplained @shea1995union.
+Under $beta R = 1$, they also leave expected late-life consumption
+declines unexplained.
+
+=== Anticipating future constraints
+
+// Ilzetzki 1.3, slide 24.
+A possible future constraint affects saving before it binds.
+With $beta R = 1$, iterating @eq:pe-constrained-euler to a finite date
+$T > t$ gives
+$
+  u'(c_t)
+  = bb(E)_t [u'(c_T)]
+    + sum_(j=t)^(T-1) bb(E)_t [eta_j].
+$<eq:pe-future-constraints>
+Even with $eta_t = 0$, expected future multipliers enter today's marginal
+utility through continuation values. Building a buffer reduces the
+chance of arriving at a future constraint with too little cash.
+
+== The wealthy hand-to-mouth
+
+// Ilzetzki 1.3, slide 25.
+#definition("Wealthy hand-to-mouth household")[
+  A household with substantial illiquid wealth and little liquid wealth
+  available for current spending.
+]
+
+The two-asset model @kaplan2014stimulus combines:
+- A liquid asset with a low return, used for transactions and short-run
+  smoothing.
+- An illiquid asset with a higher return and a cost of accessing it,
+  such as housing or retirement savings.
+
+Households can hold substantial total wealth while keeping very small
+liquid balances, for example below USD 3,000 in the lecture's illustration.
+A small payment may not justify the cost of adjusting illiquid wealth.
+Larger shocks can make portfolio adjustment worthwhile.
+
+This gives a high MPC out of cash receipts alongside a low response to
+news about future income. Liquid wealth is therefore informative about
+short-run consumption smoothing even among households with high total
+wealth.
+
+== Spending data and consumption measurement
+<sec:pe-consumption-data>
+
+// Ilzetzki 1.3, slides 26-27.
+Household expenditure is measured in surveys such as the US Consumer
+Expenditure Survey (CEX) and PSID. Researchers can also infer spending
+from administrative income and wealth records.
+Capital gains and changes in asset values must be separated from saving.
+
+Transaction records add high-frequency information:
+- US bank-account data, including JPMorgan Chase data used by
+  @ganong2019consumer.
+- UK transaction data in @hacioglu2020consumption.
+- French payment data in @bounie2020consumers.
+
+These records measure purchases. *Consumption services* also depend on
+durability, quality and time inputs:
+- Durable expenditure buys services over several future periods.
+- Shopping and home production use time to replace market expenditure.
+- Zero-price digital goods can provide services with little recorded
+  spending; quality change also complicates price deflation.
+
+=== Expenditure composition and time use
+
+- @aguiar2015inequality: _Engel curves relate spending composition to
+  household resources. Relative spending on luxuries and necessities
+  helps recover consumption inequality when reported expenditure has
+  systematic measurement error._
+- @aguiar2012time @aguiar2013time @aguiar2016allocation:
+  _Time-use data measure home production, child care and leisure.
+  Changes in those activities help interpret life-cycle and business-cycle
+  movements in market spending._
+- @goolsbee2006valuing: _Time spent using the internet, together with
+  the opportunity cost of time, helps value consumption whose monetary
+  price reveals little of its benefit._
+- @aguiar2017leisure: _Improved recreational computing changes the
+  attractiveness of leisure. Time use and labor supply provide
+  information about the value of these goods._
