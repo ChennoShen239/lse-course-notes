@@ -7181,8 +7181,8 @@ Given $a_0$ and a known income stream $lr({y_t})_(t=0)^infinity$, choose
 consumption and savings:
 $
   max_({c_t, a_(t+1)}) & sum_(t=0)^infinity beta^t u(c_t), \
-  "s.t." & c_t + a_(t+1) <= y_t + R a_t,
-    a_(t+1) >= underline(a),
+                "s.t." & c_t + a_(t+1) <= y_t + R a_t,
+                         a_(t+1) >= underline(a),
 $
 where $R = 1 + r$ is the gross return and $underline(a)$ is the borrowing
 floor. The slides impose the terminal condition
@@ -7210,7 +7210,7 @@ $
 $
 The FOCs are
 $
-        [c_t]: u'(c_t) & = lambda_t, \
+       [c_t]: u'(c_t) & = lambda_t, \
   [a_(t+1)]: lambda_t & = beta R lambda_(t+1).
 $
 Hence the *Euler equation*:
@@ -7223,7 +7223,11 @@ With strictly concave utility, $u'' < 0$:
 - $beta R < 1$: $c_(t+1) < c_t$.
 
 *Intertemporal motive:* $beta R != 1$ tilts consumption across dates.
+
+
 *Smoothing motive:* consumption need not track time-varying income.
+
+
 Optimality also requires the *transversality condition*
 
 $
@@ -7245,14 +7249,14 @@ $
 Without the borrowing floor, the Euler equation gives
 $
   c_t^(-gamma) & = beta R c_(t+1)^(-gamma), \
-          c_t & = (beta R)^(-1 / gamma) c_(t+1), \
-          c_t & = (beta R)^(t / gamma) c_0.
+           c_t & = (beta R)^(-1 / gamma) c_(t+1), \
+           c_t & = (beta R)^(t / gamma) c_0.
 $
 Combining the period budgets,
 $
   sum_(t=0)^infinity R^(-t) c_t
   = R a_0 + sum_(t=0)^infinity R^(-t) y_t
-    - lim_(T -> infinity) R^(-T) a_(T+1).
+  - lim_(T -> infinity) R^(-T) a_(T+1).
 $
 The terminal term is zero. Substituting the consumption path gives
 $
@@ -7263,8 +7267,8 @@ $
 For $R^((1 - gamma) / gamma) beta^(1 / gamma) < 1$, sum the geometric
 series:
 $
-  c_0 & = m(beta, R, gamma)
-    (R a_0 + sum_(t=0)^infinity R^(-t) y_t), \
+                c_0 & = m(beta, R, gamma)
+                      (R a_0 + sum_(t=0)^infinity R^(-t) y_t), \
   m(beta, R, gamma) & = 1 - R^((1 - gamma) / gamma) beta^(1 / gamma).
 $<eq:jor-det-mpc>
 $m$ is the *MPC* out of a one-off increase in current income.
@@ -7317,7 +7321,7 @@ $
 $
 The FOCs and complementary slackness are
 $
-  u'(c_t) = lambda_t & = beta R lambda_(t+1) + mu_t, \
+             u'(c_t) = lambda_t & = beta R lambda_(t+1) + mu_t, \
   mu_t (a_(t+1) - underline(a)) & = 0.
 $
 Therefore,
@@ -7351,8 +7355,8 @@ $<eq:jor-det-constrained-euler>
 
 $
   max_({c_t, a_(t+1)}) & bb(E)_0 [sum_(t=0)^infinity beta^t u(c_t)], \
-  "s.t." & c_t + a_(t+1) <= y_t + R a_t,
-    a_(t+1) >= underline(a).
+                "s.t." & c_t + a_(t+1) <= y_t + R a_t,
+                         a_(t+1) >= underline(a).
 $
 Initial assets $a_0$ are given. Choices $c_t (y^t)$ and $a_(t+1) (y^t)$
 depend on the observed income history $y^t = (y_0, y_1, dots, y_t)$.
@@ -7366,8 +7370,8 @@ $
 The state is $(a, y)$. The Bellman equation is
 $
   V(a, y) & = max_(c, a') [u(c) + beta bb(E) [V(a', y') | y]], \
-  "s.t." & c + a' <= y + R a,
-    a' >= underline(a).
+   "s.t." & c + a' <= y + R a,
+            a' >= underline(a).
 $<eq:jor-ifp-bellman>
 The solution consists of:
 - *Value function:* $V(a, y)$.
@@ -7385,9 +7389,9 @@ The solution consists of:
 With *IID income*, use the single state $x = y + R a$.
 Writing savings as $s = a'$, next period's cash on hand is $R s + y'$:
 $
-  V(x) & = max_(c, s) [u(c) + beta bb(E) [V(R s + y')]], \
+    V(x) & = max_(c, s) [u(c) + beta bb(E) [V(R s + y')]], \
   "s.t." & c + s <= x,
-    s >= underline(a).
+           s >= underline(a).
 $
 The solution is $V(x)$ and policies $c(x)$, $a' (x) = s(x)$.
 
@@ -7401,7 +7405,7 @@ $
 with $lambda >= 0$, $mu >= 0$ and $mu (a' - underline(a)) = 0$.
 The FOCs are
 $
-                       [c]: u'(c) & = lambda, \
+                           [c]: u'(c) & = lambda, \
   [a']: beta bb(E) [V_a (a', y') | y] & = lambda - mu.
 $
 The envelope conditions give
@@ -7452,15 +7456,15 @@ for large $N$.
 
 $
   V(a, y_j) & = max_(c, a') [
-    u(c) + beta sum_(j'=1)^J p_(j j') V(a', y_(j'))
-  ], \
-  "s.t." & c + a' <= y_j + R a,
-    a' >= underline(a).
+                u(c) + beta sum_(j'=1)^J p_(j j') V(a', y_(j'))
+              ], \
+     "s.t." & c + a' <= y_j + R a,
+              a' >= underline(a).
 $
 The Euler inequality is
 $
   u'(c(a, y_j)) >= beta R sum_(j'=1)^J
-    p_(j j') u'(c(a', y_(j'))),
+  p_(j j') u'(c(a', y_(j'))),
 $
 where $a' = y_j + R a - c(a, y_j)$.
 The solution includes $J$ consumption functions $c(a, y_j)$, one for
@@ -7490,8 +7494,8 @@ each income state.
   step 3. Otherwise stop.
 + Extract the value and policy functions:
   $
-                V & = V_(ell+1), \
-               a' & = a'_(ell+1), \
+          V & = V_(ell+1), \
+         a' & = a'_(ell+1), \
     c(a, y) & = y + R a - a' (a, y).
   $
 
