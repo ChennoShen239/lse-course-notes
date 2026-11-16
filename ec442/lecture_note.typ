@@ -7059,3 +7059,440 @@ durability, quality and time inputs:
 - @aguiar2017leisure: _Improved recreational computing changes the
   attractiveness of leisure. Time use and labor supply provide
   information about the value of these goods._
+
+
+= Heterogeneous households and the income fluctuation problem
+
+== Why Macro with Heterogeneity?
+
+// Jane Olmstead-Rumsey, Lecture 1, slide 6.
+Study macro questions using *distributions of micro variables*.
+- *Conceptually:* integrate macroeconomics and distribution.
+- *Empirically:* integrate micro and macro data.
+
+
+== Questions that require thinking about heterogeneity
+
+// Jane Olmstead-Rumsey, Lecture 1, slide 7.
++ What are the macro consequences of rising income and wealth inequality?
++ What are the redistributive and welfare effects of income-tax reforms?
++ How does household heterogeneity affect fiscal multipliers?
++ What degree of tax progressivity, or quantity of government debt, is optimal?
++ Does monetary policy affect income and wealth distributions? Through which channels?
++ How does heterogeneity affect the aggregate impact of fiscal and monetary policy?
+
+#lecture-addition("Distribution and policy transmission", source: "2026-11-16, 00:17:00 - 00:20:41")[
+  Tax reforms can change both total output and its distribution.
+  For transfers, *who receives the money* matters for aggregate spending.
+  Interest-rate changes also affect borrowers and savers differently;
+  their positions help determine aggregate transmission.
+]
+
+
+== Why heterogeneous agent models?
+
+// Jane Olmstead-Rumsey, Lecture 1, slide 8.
+Policy questions about the whole economy typically require a macro model.
+
+- A policy question is a question about *counterfactuals*.
+- *GE effects and spillovers* are typically important.
+- Estimates identified from macro variation are hard to obtain.
+- Micro estimates from cross-sectional variation (DiD, RCTs) leave
+  GE effects and spillovers unidentified: the "missing intercept".
+- *Lucas critique:* these estimates depend on the current policy regime.
+
+#lecture-addition("Scaling up a policy experiment", source: "2026-11-16, 00:21:36 - 00:25:35")[
+  A small housing-voucher experiment may leave prices almost unchanged.
+  Expanding eligibility can raise rents in destination neighborhoods,
+  lower house prices where people leave, and change peer composition.
+  Households who remain can be affected too. Housing-supply elasticity
+  matters for both scaling up and applying estimates in another city.
+  A model tracks these effects by clearing both housing markets.
+]
+
+#lecture-addition("LLMs and policy counterfactuals", source: "2026-11-16, 00:25:45 - 00:33:37")[
+  Could simulated LLM households predict responses to new policies?
+  The discussion raised three problems:
+  - Matching demographic profiles need not reproduce the dispersion
+    of human responses or mistaken beliefs.
+  - A new policy requires extrapolation beyond observed regimes;
+    training data may also contain the result being tested.
+  - A predicted outcome can leave the behavioral mechanism unclear.
+  An economic model makes the assumptions linking policy, choices and
+  equilibrium outcomes explicit.
+]
+
+== Four key differences between RA and HA models
+
+// Jane Olmstead-Rumsey, Lecture 1, slides 10-12.
+*RA*: representative agent. *HA*: heterogeneous agents.
+
++ *Wealth distribution*
+  - RA: degenerate or indeterminate stationary distribution.
+  - HA: nondegenerate stationary distribution.
++ *Long-run capital supply*
+  - RA: infinitely elastic.
+  - HA: finitely elastic.
++ *Borrowing constraints and MPCs*
+  - RA: low MPCs.
+  - HA: potentially high MPCs.
++ *Welfare theorems*
+  - RA (standard growth model): typically hold.
+  - HA with incomplete markets: typically fail.
+
+=== Infinitely elastic steady-state capital supply
+
+RA supply is horizontal at $r = rho$. Capital demand satisfies
+$f'(k) = r + delta$, where $rho$ is the rate of time preference and
+$delta$ is depreciation.
+
+#align(center)[
+  #figure(
+    image("figures/ra_capital_supply.pdf", width: 68%),
+    caption: [Capital supply and demand in the RA model.],
+  )<fig:ra-capital-supply>
+]
+#figure-note[Jane, Lecture 1, slide 11. Capital $k$; net interest rate $r$.]
+
+=== Finitely elastic long-run capital supply in HA models
+
+The HA figure illustrates upward-sloping capital supply, with finite
+elasticity.
+
+#align(center)[
+  #figure(
+    image("figures/ha_capital_supply.pdf", width: 95%),
+    caption: [Capital supply and demand in an HA model.],
+  )<fig:ha-capital-supply>
+]
+#figure-note[Jane, Lecture 1, slide 12. Capital $k$; net interest rate $r$.]
+
+#lecture-addition("Behind aggregate capital supply", source: "2026-11-16, 00:38:20 - 00:39:35")[
+  The supply curve summarizes aggregate saving. The same aggregate
+  capital stock can conceal substantial dispersion in individual asset
+  holdings. An HA model describes both the market-clearing quantity
+  and the distribution underlying it.
+]
+
+== Warmup: deterministic consumption-saving problem
+
+// Jane Olmstead-Rumsey, Lecture 1, slides 13-21.
+Given $a_0$ and a known income stream $lr({y_t})_(t=0)^infinity$, choose
+consumption and savings:
+$
+  max_({c_t, a_(t+1)}) & sum_(t=0)^infinity beta^t u(c_t), \
+  "s.t." & c_t + a_(t+1) <= y_t + R a_t,
+    a_(t+1) >= underline(a),
+$
+where $R = 1 + r$ is the gross return and $underline(a)$ is the borrowing
+floor. The slides impose the terminal condition
+$
+  lim_(T -> infinity) R^(-T) a_(T+1) = 0,
+$
+ruling out Ponzi borrowing and unspent present-value wealth.
+The *income fluctuation problem* later replaces known income with
+stochastic income.
+
+#lecture-addition("The household building block", source: "2026-11-16, 00:39:58 - 00:42:28")[
+  In *partial equilibrium*, households take $R$ and income as given,
+  generating saving supply. Adding firms and market clearing gives the
+  Aiyagari equilibrium. The *natural borrowing limit* allows debt
+  repayable from future income.
+]
+
+=== Euler equation without a borrowing constraint
+
+Drop the borrowing floor. Scale the budget multipliers by $beta^t$:
+$
+  cal(L) = sum_(t=0)^infinity beta^t [
+    u(c_t) + lambda_t (y_t + R a_t - c_t - a_(t+1))
+  ].
+$
+The FOCs are
+$
+        [c_t]: u'(c_t) & = lambda_t, \
+  [a_(t+1)]: lambda_t & = beta R lambda_(t+1).
+$
+Hence the *Euler equation*:
+$
+  u'(c_t) = beta R u'(c_(t+1)).
+$<eq:jor-det-euler>
+With strictly concave utility, $u'' < 0$:
+- $beta R = 1$: $c_(t+1) = c_t$.
+- $beta R > 1$: $c_(t+1) > c_t$.
+- $beta R < 1$: $c_(t+1) < c_t$.
+
+*Intertemporal motive:* $beta R != 1$ tilts consumption across dates.
+*Smoothing motive:* consumption need not track time-varying income.
+Optimality also requires the *transversality condition*
+
+$
+  lim_(T -> infinity) beta^T u'(c_T) a_(T+1) = 0.
+$<eq:jor-det-tvc>
+
+=== CRRA example
+
+Relative risk aversion is $gamma(c) = -frac(c u''(c), u'(c))$.
+Jane uses $gamma$ for CRRA curvature ($sigma$ in Chapter 12).
+With constant $gamma > 0$,
+$
+  u(c) = cases(
+    frac(c^(1 - gamma) - 1, 1 - gamma) & gamma != 1,
+    log c & gamma = 1,
+  ),
+  u'(c) = c^(-gamma).
+$
+Without the borrowing floor, the Euler equation gives
+$
+  c_t^(-gamma) & = beta R c_(t+1)^(-gamma), \
+          c_t & = (beta R)^(-1 / gamma) c_(t+1), \
+          c_t & = (beta R)^(t / gamma) c_0.
+$
+Combining the period budgets,
+$
+  sum_(t=0)^infinity R^(-t) c_t
+  = R a_0 + sum_(t=0)^infinity R^(-t) y_t
+    - lim_(T -> infinity) R^(-T) a_(T+1).
+$
+The terminal term is zero. Substituting the consumption path gives
+$
+  sum_(t=0)^infinity
+  (R^((1 - gamma) / gamma) beta^(1 / gamma))^t c_0
+  = R a_0 + sum_(t=0)^infinity R^(-t) y_t.
+$
+For $R^((1 - gamma) / gamma) beta^(1 / gamma) < 1$, sum the geometric
+series:
+$
+  c_0 & = m(beta, R, gamma)
+    (R a_0 + sum_(t=0)^infinity R^(-t) y_t), \
+  m(beta, R, gamma) & = 1 - R^((1 - gamma) / gamma) beta^(1 / gamma).
+$<eq:jor-det-mpc>
+$m$ is the *MPC* out of a one-off increase in current income.
+
+#lecture-addition("Finding consumption today", source: "2026-11-16, 00:47:31 - 00:50:42")[
+  Repeated substitution removes intermediate assets from the period
+  budgets. The lifetime budget fixes total resources; the Euler equation
+  fixes the consumption path's shape. Together they determine $c_0$.
+  Period zero means *today*: re-index from any current date.
+]
+
+=== Insights
+
+- If $beta R = 1$, $m = 1 - beta$.
+- If $gamma = 1$ (log utility), $m = 1 - beta$.
+- Without borrowing constraints, only the *present discounted value of
+  income* matters: the permanent income hypothesis, underlying Ricardian
+  equivalence.
+- Differences in $beta_i$ and $R_i$ drive wealth inequality through smoothing.
+
+#lecture-addition("Calibration and the low MPC", source: "2026-11-16, 00:51:25 - 00:55:28")[
+  Under $beta R = 1$, annual $beta = 0.96$ gives $m = 0.04$.
+  Calibrating to a 2% annual real return instead gives
+  $beta = 1 / 1.02 approx 0.98$.
+  Both parameters must use the model's period length.
+  The larger spending responses to US tax rebates motivate departures
+  from this unconstrained benchmark @parker2013consumer.
+]
+
+#lecture-addition("Types, histories and MPCs", source: "2026-11-16, 00:55:39 - 01:06:28")[
+  - *Ex ante heterogeneity:* permanent differences in preferences or
+    returns, such as $beta_i$, $R_i$ or $gamma_i$.
+  - *Ex post heterogeneity:* households with common preferences face
+    different income histories and accumulate different assets.
+  In the unconstrained CRRA example, $m(beta, R, gamma)$ is independent
+  of income and wealth levels. Two households can consume different
+  amounts yet spend the same fraction of an equal transfer.
+  The aggregate MPC then equals their common $m$. Borrowing constraints
+  make MPCs depend on household states, even with common CRRA preferences.
+]
+
+=== Euler equation with a borrowing constraint
+
+Let $mu_t >= 0$ be the multiplier on $a_(t+1) >= underline(a)$:
+$
+  cal(L) = sum_(t=0)^infinity beta^t [
+    u(c_t) + lambda_t (y_t + R a_t - c_t - a_(t+1))
+    + mu_t (a_(t+1) - underline(a))
+  ].
+$
+The FOCs and complementary slackness are
+$
+  u'(c_t) = lambda_t & = beta R lambda_(t+1) + mu_t, \
+  mu_t (a_(t+1) - underline(a)) & = 0.
+$
+Therefore,
+$
+  u'(c_t) = beta R u'(c_(t+1)) + mu_t
+  >= beta R u'(c_(t+1)).
+$<eq:jor-det-constrained-euler>
+- *Slack:* $a_(t+1) > underline(a)$ implies $mu_t = 0$; Euler equality holds.
+- *Binding:* $a_(t+1) = underline(a)$; the inequality is strict when
+  $mu_t > 0$.
+
+#lecture-addition("Interpreting the Euler wedge", source: "2026-11-16, 01:06:56 - 01:10:28")[
+  Negative assets mean debt. Choosing lower $a_(t+1)$ releases resources
+  for consumption today. When $mu_t > 0$, the household would like to
+  borrow more but cannot. Current marginal utility exceeds its discounted
+  future value: consumption is too low to satisfy the unconstrained
+  Euler equality. This is what being *off the Euler equation* means.
+]
+
+== Income fluctuation problem: stochastic dynamic programming
+
+// Jane Olmstead-Rumsey, Lecture 1, slides 22-31.
+#lecture-addition("Smoothing and insurance", source: "2026-11-16, 01:10:50 - 01:12:30")[
+  Saving and borrowing shift resources across dates. Insurance contracts
+  pay according to income shocks. The single risk-free bond pays the
+  same in every state, so it offers only *self-insurance*. A tighter
+  borrowing floor limits smoothing further.
+]
+
+=== Sequence formulation
+
+$
+  max_({c_t, a_(t+1)}) & bb(E)_0 [sum_(t=0)^infinity beta^t u(c_t)], \
+  "s.t." & c_t + a_(t+1) <= y_t + R a_t,
+    a_(t+1) >= underline(a).
+$
+Initial assets $a_0$ are given. Choices $c_t (y^t)$ and $a_(t+1) (y^t)$
+depend on the observed income history $y^t = (y_0, y_1, dots, y_t)$.
+Income is *Markov*:
+$
+  F(y_(t+1) | y^t) = F(y_(t+1) | y_t).
+$
+
+=== Recursive formulation
+
+The state is $(a, y)$. The Bellman equation is
+$
+  V(a, y) & = max_(c, a') [u(c) + beta bb(E) [V(a', y') | y]], \
+  "s.t." & c + a' <= y + R a,
+    a' >= underline(a).
+$<eq:jor-ifp-bellman>
+The solution consists of:
+- *Value function:* $V(a, y)$.
+- *Policy functions:* $c(a, y)$ and $a' (a, y)$.
+
+#lecture-addition("What is known tomorrow?", source: "2026-11-16, 01:12:46 - 01:14:43")[
+  Once chosen, tomorrow's assets $a'$ are known; tomorrow's income $y'$
+  remains uncertain. Current $y$ predicts its distribution under the
+  Markov assumption. If prediction requires several income lags, carry
+  those lags in the state too.
+]
+
+=== Cash-on-hand state variable
+
+With *IID income*, use the single state $x = y + R a$.
+Writing savings as $s = a'$, next period's cash on hand is $R s + y'$:
+$
+  V(x) & = max_(c, s) [u(c) + beta bb(E) [V(R s + y')]], \
+  "s.t." & c + s <= x,
+    s >= underline(a).
+$
+The solution is $V(x)$ and policies $c(x)$, $a' (x) = s(x)$.
+
+=== Stochastic Euler equation
+
+With state $(a, y)$, form the Lagrangian
+$
+  cal(L) & = u(c) + beta bb(E) [V(a', y') | y] \
+         & + lambda (y + R a - c - a') + mu (a' - underline(a)),
+$
+with $lambda >= 0$, $mu >= 0$ and $mu (a' - underline(a)) = 0$.
+The FOCs are
+$
+                       [c]: u'(c) & = lambda, \
+  [a']: beta bb(E) [V_a (a', y') | y] & = lambda - mu.
+$
+The envelope conditions give
+$
+    V_a (a, y) & = R lambda, \
+  V_a (a', y') & = R lambda'.
+$
+$
+  lambda - mu = beta R bb(E) [lambda' | y].
+$
+Since $lambda = u'(c)$ and $lambda' = u'(c')$,
+$
+  u'(c) & = beta R bb(E) [u'(c') | y] + mu, \
+  u'(c) & >= beta R bb(E) [u'(c') | y].
+$<eq:jor-ifp-euler>
+Here $c' = c(a', y')$; expectations use current information.
+- *Slack borrowing constraint:* $a' > underline(a)$ implies $mu = 0$;
+  Euler equality holds.
+- *Binding constraint:* $a' = underline(a)$; the inequality is strict
+  when $mu > 0$.
+
+=== Discrete-state Markov income
+
+Income takes values $y in lr({y_1, dots, y_J})$. The transition matrix
+$P = (p_(j j'))$ has elements
+$
+  p_(j j') = op("Pr")(y_(t+1) = y_(j') | y_t = y_j),
+  0 <= p_(j j') <= 1,
+  sum_(j'=1)^J p_(j j') = 1.
+$
+The stationary income distribution is a column vector $pi$ satisfying
+$
+  pi = P^top pi,
+  pi_j >= 0,
+  sum_(j=1)^J pi_j = 1.
+$
+This is an eigenvector problem with eigenvalue one. With a row-vector
+convention, $tilde(pi) = tilde(pi) P$.
+
+For an ergodic chain, start from a probability vector $pi_0$ and iterate:
+$
+  pi_(t+1) = P^top pi_t,
+  pi_N = (P^top)^N pi_0 approx pi
+$
+for large $N$.
+
+=== Bellman equation with discrete income
+
+$
+  V(a, y_j) & = max_(c, a') [
+    u(c) + beta sum_(j'=1)^J p_(j j') V(a', y_(j'))
+  ], \
+  "s.t." & c + a' <= y_j + R a,
+    a' >= underline(a).
+$
+The Euler inequality is
+$
+  u'(c(a, y_j)) >= beta R sum_(j'=1)^J
+    p_(j j') u'(c(a', y_(j'))),
+$
+where $a' = y_j + R a - c(a, y_j)$.
+The solution includes $J$ consumption functions $c(a, y_j)$, one for
+each income state.
+
+=== Value function iteration
+
+// Slides 30-31; code: vfi_IID.m.
++ Discretize assets: $cal(A) = lr({a_1, dots, a_N})$, with
+  $a_1 = underline(a)$.
++ Set $ell = 0$. An initial guess is
+  $V_0 (a, y) = frac(u(r a + y), 1 - beta)$.
++ $
+    V_(ell+1) (a_i, y_j) = max_(a' in cal(A)) [
+      u(y_j + R a_i - a')
+      + beta sum_(j'=1)^J p_(j j') V_ell (a', y_(j'))
+    ].
+  $
+  For every $(a_i, y_j)$, restrict choices to the feasible grid and save
+  the maximizer as $a'_(ell+1) (a_i, y_j)$.
++ Check convergence:
+  $
+    epsilon_ell = max_(i,j)
+    |V_(ell+1) (a_i, y_j) - V_ell (a_i, y_j)|.
+  $
+  If $epsilon_ell >= overline(epsilon)$, increase $ell$ by one and repeat
+  step 3. Otherwise stop.
++ Extract the value and policy functions:
+  $
+                V & = V_(ell+1), \
+               a' & = a'_(ell+1), \
+    c(a, y) & = y + R a - a' (a, y).
+  $
+
+Consumption is restricted to the implied grid, limiting accuracy.
